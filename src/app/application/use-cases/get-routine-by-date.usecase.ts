@@ -1,15 +1,16 @@
-import { Routine } from "../../domain/entities/routine";
+import { Exercise } from "../../domain/entities/exercise.entity";
+import { Routine } from "../../domain/entities/routine.entity";
 import { RoutineRepository } from "../../domain/repositories/routine.repository";
 
 interface GetRoutineByDateUseCase {
-    execute( date: string ): Routine | null
+    execute( date: string ): Promise<Routine | null>
 }
 
 export class GetRoutineByDate implements GetRoutineByDateUseCase {
 
-  constructor(private repo: RoutineRepository) {}
+  constructor(private repository: RoutineRepository) {}
 
-  execute(date: string) {
-    return this.repo.getRoutineByDate(date);
+  async execute( date: string ): Promise<Routine | null> {
+    return this.repository.getRoutineByDate(date);
   }
 }

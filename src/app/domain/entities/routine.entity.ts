@@ -1,4 +1,4 @@
-import { Exercise } from "./exercise";
+import { Exercise } from "./exercise.entity";
 
 export interface Routine {
   date: string; // ISO date

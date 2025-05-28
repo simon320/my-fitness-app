@@ -1,5 +1,5 @@
 
-export abstract class CompletedDaysRepository {
-  abstract getCompletedDays(): Set<string>;
-  abstract toggleDay(dateKey: string): Set<string>;
+export interface CompletedDaysRepository {
+  getCompletedDays(): Set<string>;
+  toggleDay(dateKey: string): Set<string>;
 }

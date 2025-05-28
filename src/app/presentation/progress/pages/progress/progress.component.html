@@ -1,1 +1,16 @@
-<p>progress works!</p>
+<h2>Seguimiento semanal</h2>
+
+<input type="file" (change)="onFileSelected($event)" />
+<button (click)="upload()" [disabled]="!file()">Subir foto</button>
+
+<div class="gallery">
+
+    @for (photo of photos(); track $index) {
+        <div class="item">
+            <p>Semana {{ photo.weekNumber }} / {{ photo.year }}</p>
+            <img [src]="photo.imageBase64" alt="Foto semana {{ photo.weekNumber }}" />
+            <small>{{ photo.dateUploaded | date }}</small>
+        </div>
+    }
+    
+</div>

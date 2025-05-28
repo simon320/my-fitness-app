@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 
-import { Exercise } from '../../../../domain/entities/exercise';
+import { Exercise } from '../../../../domain/entities/exercise.entity';
 import { RoutineService } from '../../../../application/services/routine.services';
 import { WorkoutTimerComponent } from '../../../../shared/atoms/workout-timer/workout-timer.component';
 

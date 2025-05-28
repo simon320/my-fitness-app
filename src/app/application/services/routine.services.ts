@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Routine } from '../../domain/entities/routine';
+import { Routine } from '../../domain/entities/routine.entity';
 
 @Injectable({
   providedIn: 'root',
