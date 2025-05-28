@@ -1,0 +1,59 @@
+.workout {
+    text-align: center;
+
+    .actions {
+        margin-top: 1.5rem;
+
+        button {
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    .progress-container {
+        width: 100%;
+        height: 12px;
+        background-color: #eee;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background-color: #4caf50;
+        transition: width 0.3s ease-in-out;
+    }
+
+    // Lista de completados
+    .exercise-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 2rem;
+        text-align: left;
+        max-width: 300px;
+        margin-inline: auto;
+
+        li {
+            padding: 0.5rem;
+            border-left: 4px solid transparent;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+
+            &.completed {
+            color: #4caf50;
+            border-left-color: #4caf50;
+            text-decoration: line-through;
+            }
+
+            &.current {
+            background-color: #e3f2fd;
+            border-left-color: #2196f3;
+            font-weight: bold;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,35 @@
+<div class="calendar-header">
+  <button (click)="prevMonth()">⏪</button>
+  <h2>{{ currentMonth() + 1 }}/{{ currentYear() }}</h2>
+  <button (click)="nextMonth()">⏩</button>
+</div>
+
+<div class="calendar-grid">
+
+    @for (day of days(); track $index) {
+        <div
+            class="day"
+            [class.completed]="isCompleted(day)"
+            [class.planned]="getRoutineByDate.execute(getDayKey(day))"
+            (click)="openRoutineDetails(day)"
+            >
+            {{ day.getDate() }}
+        </div>
+    }
+
+</div>
+
+
+<!-- TODO Modal básico (puede evolucionar a componente) -->
+<div class="modal" *ngIf="selectedRoutine()">
+  <h3>{{ selectedRoutine()?.name }}</h3>
+  <ul>
+    @for (ex of selectedRoutine()?.exercises; track $index) {
+        <li>
+            {{ ex.name }} - {{ ex.repetitions }} reps x {{ ex.sets }} sets
+        </li>
+    }
+  </ul>
+  <button (click)="startWorkout()">Iniciar entrenamiento</button>
+  <button (click)="selectedRoutine.set(null)">Cerrar</button>
+</div>

@@ -1,0 +1,10 @@
+<div class="timer">
+  <h2>{{ displayTime() }} s</h2>
+
+  <div class="actions">
+    <button (click)="toggleTimer()">
+      {{ isRunning() ? 'Pausar' : 'Iniciar' }}
+    </button>
+    <button (click)="reset()">Reiniciar</button>
+  </div>
+</div>

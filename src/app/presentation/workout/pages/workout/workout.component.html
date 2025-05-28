@@ -1,0 +1,49 @@
+<div class="workout">
+    <div class="progress-container">
+        <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
+    </div>
+    <p>Ejercicio {{ currentIndex() + 1 }} de {{ exercises().length }}</p>
+
+    <h2>{{ currentExercise().name }}</h2>
+
+    @if (currentExercise().reps) {
+        <p>Repeticiones: {{ currentExercise().reps }}</p>
+    }
+
+    @if (currentExercise().duration) {
+        <p>Duración: {{ currentExercise().duration }} segundos</p>
+    }
+
+    <app-workout-timer [countdown]="currentExercise().duration" />
+
+    <div class="actions">
+        <button (click)="previousExercise()" [disabled]="!hasPrev()">Anterior</button>
+        <button (click)="markAsCompleted()">Hecho</button>
+        <button (click)="nextExercise()" [disabled]="!hasNext()">Siguiente</button>
+    </div>
+
+    <!-- TODO modificar -->
+    <ul class="exercise-list"> 
+        <!-- @if (routine()) { -->
+            <div>
+                <h2>{{ routine()!.name }}</h2>
+                <ul>
+                    <li *ngFor="let ex of routine()!.exercises">{{ ex.name }} - {{ ex.repetitions }} x {{ ex.sets }}</li>
+                </ul>
+            </div>
+            
+        <!-- } -->
+
+        <!-- @else { -->
+            @for (exercise of exercises(); track $index) {
+                <li
+                    [class.completed]="$index < currentIndex()"
+                    [class.current]="$index === currentIndex()"
+                    >
+                    {{ $index + 1 }}. {{ exercise.name }}
+                </li>
+            }
+        <!-- } -->
+    </ul>
+
+</div>

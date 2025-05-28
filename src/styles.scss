@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #292929; // Fondo oscuro simulando entorno de dispositivo
+}
+
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 468px) {
+    // Simular un dispositivo en escritorio
+    max-width: 390px; // Ancho típico de iPhone
+    height: 844px;     // Alto típico
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background-color: white;
+  }
+}

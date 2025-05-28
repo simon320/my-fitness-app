@@ -1,0 +1,52 @@
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.day {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #f0f0f0;
+  text-align: center;
+  line-height: 2.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &.completed {
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  button {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+.day.planned {
+  outline: 2px dashed #2196f3;
+}
+
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  right: 10%;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
