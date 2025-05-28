@@ -8,16 +8,25 @@ const MOCK_ROUTINES: Routine[] = [
     date: '2025-05-24',
     name: 'Rutina Full Body',
     exercises: [
-      { name: 'Sentadillas', repetitions: 15, sets: 3 },
-      { name: 'Flexiones', repetitions: 12, sets: 3 },
+      { name: 'Sentadillas', reps: 15 },
+      { name: 'Flexiones', reps: 12 },
     ]
   },
   {
     date: '2025-05-25',
-    name: 'Piernas y Core',
+    name: 'Rutina Full Body',
     exercises: [
-      { name: 'Estocadas', repetitions: 10, sets: 4 },
-      { name: 'Planchas', repetitions: 1, sets: 3 },
+      { name: 'Sentadillas', reps: 15 },
+      { name: 'Flexiones', reps: 12 },
+    ]
+  },
+  {
+    date: '2025-05-28',
+    name: 'Hombros y Espalda',
+    exercises: [
+      { name: 'Vuelos laterales', reps: 10 },
+      { name: 'Vuelos frontales', reps: 10 },
+      { name: 'Press militar', reps: 12 },
     ]
   }
 ];

@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExerciseCardComponent } from '../../../../shared/molecules/exercise-card/exercise-card.component';
-import { GetTodayRoutineUseCase } from '../../../../application/use-cases/get-today-routine.usecase';
+import { Component, inject, signal } from '@angular/core';
+
 import { RoutineApiService } from '../../../../infrastructure/api/routine-api.service';
+import { GetRoutineByDate } from '../../../../application/use-cases/get-routine-by-date.usecase';
+import { ExerciseCardComponent } from '../../../../shared/molecules/exercise-card/exercise-card.component';
 
 interface Exercise {
   name: string;
@@ -18,9 +19,8 @@ interface Exercise {
   styleUrls: ['./routine.component.scss']
 })
 export class RoutineComponent {
-  private routineRepo = inject(RoutineApiService);
-  private getRoutine = new GetTodayRoutineUseCase(this.routineRepo);
-
+  private routineRepository = inject(RoutineApiService);
+  private getRoutine = new GetRoutineByDate(this.routineRepository);
   readonly exercises = signal<Exercise[]>([]);
 
   constructor() {
@@ -28,7 +28,7 @@ export class RoutineComponent {
   }
 
   private async loadRoutine() {
-    const data = await this.getRoutine.execute();
-    this.exercises.set(data);
+    const data = this.getRoutine.execute(new Date().toISOString().split('T')[0]);
+    this.exercises.set(data?.exercises || []);
   }
 }

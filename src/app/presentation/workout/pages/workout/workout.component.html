@@ -24,17 +24,7 @@
 
     <!-- TODO modificar -->
     <ul class="exercise-list"> 
-        <!-- @if (routine()) { -->
-            <div>
-                <h2>{{ routine()!.name }}</h2>
-                <ul>
-                    <li *ngFor="let ex of routine()!.exercises">{{ ex.name }} - {{ ex.repetitions }} x {{ ex.sets }}</li>
-                </ul>
-            </div>
-            
-        <!-- } -->
 
-        <!-- @else { -->
             @for (exercise of exercises(); track $index) {
                 <li
                     [class.completed]="$index < currentIndex()"
@@ -43,7 +33,6 @@
                     {{ $index + 1 }}. {{ exercise.name }}
                 </li>
             }
-        <!-- } -->
     </ul>
 
 </div>

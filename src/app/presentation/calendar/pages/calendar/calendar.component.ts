@@ -1,37 +1,42 @@
-import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GetCompletedDaysUseCase } from '../../../../application/use-cases/get-completed-days.usecase';
-import { ToggleCompletedDayUseCase } from '../../../../application/use-cases/toggle-completed-day.usecase';
-import { LocalStorageCompletedDaysRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
-import { Routine } from '../../../../domain/entities/routine';
-import { GetRoutineByDateUseCase } from '../../../../application/use-cases/get-routine-by-date.usecase';
-import { RoutineApiService } from '../../../../infrastructure/api/routine-api.service';
-import { RoutineService } from '../../../../application/services/routine.services';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+
+import { Routine } from '../../../../domain/entities/routine';
+import { RoutineService } from '../../../../application/services/routine.services';
+import { RoutineApiService } from '../../../../infrastructure/api/routine-api.service';
+import { GetCompletedDays } from '../../../../application/use-cases/get-completed-days.usecase';
+import { GetRoutineByDate } from '../../../../application/use-cases/get-routine-by-date.usecase';
+import { ToggleCompletedDay } from '../../../../application/use-cases/toggle-completed-day.usecase';
+import { LocalStorageCompletedDaysRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
 
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
   imports: [CommonModule],
-  providers: [RoutineService],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
-  private repo = new LocalStorageCompletedDaysRepository();
-  private getDaysUseCase = new GetCompletedDaysUseCase(this.repo);
-  private toggleDayUseCase = new ToggleCompletedDayUseCase(this.repo);
+  private repository = new LocalStorageCompletedDaysRepository();
+  private getDaysUseCase = new GetCompletedDays(this.repository);
+  private toggleDayUseCase = new ToggleCompletedDay(this.repository);
+  private routineRepository = new RoutineApiService();
   private routineService = inject(RoutineService);
   private router = inject(Router);
+  private readonly today = new Date();
+  private readonly completedDays = signal<Set<string>>(this.getDaysUseCase.execute());
 
-  readonly today = new Date();
-  readonly currentMonth = signal(this.today.getMonth());
-  readonly currentYear = signal(this.today.getFullYear());
+  public selectedRoutine = signal<Routine | null>(null);
+  public getRoutineByDate = new GetRoutineByDate(this.routineRepository);
+  public readonly currentMonth = signal(this.today.getMonth());
+  public readonly currentYear = signal(this.today.getFullYear());
+  public readonly days = signal(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
 
-  readonly completedDays = signal<Set<string>>(this.getDaysUseCase.execute());
 
-  getDaysInMonth(month: number, year: number): Date[] {
+
+  private getDaysInMonth(month: number, year: number): Date[] {
     const date = new Date(year, month, 1);
     const days = [];
     while (date.getMonth() === month) {
@@ -41,22 +46,8 @@ export class CalendarComponent {
     return days;
   }
 
-  readonly days = signal(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
 
-  getDayKey(date: Date): string {
-    return date.toISOString().split('T')[0];
-  }
-
-  isCompleted(date: Date): boolean {
-    return this.completedDays().has(this.getDayKey(date));
-  }
-
-  toggleDay(date: Date) {
-    const updated = this.toggleDayUseCase.execute(this.getDayKey(date));
-    this.completedDays.set(updated);
-  }
-
-  prevMonth() {
+  public prevMonth(): void {
     const m = this.currentMonth();
     const y = this.currentYear();
     this.currentMonth.set(m === 0 ? 11 : m - 1);
@@ -64,7 +55,8 @@ export class CalendarComponent {
     this.days.set(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
   }
 
-  nextMonth() {
+
+  public nextMonth(): void {
     const m = this.currentMonth();
     const y = this.currentYear();
     this.currentMonth.set(m === 11 ? 0 : m + 1);
@@ -72,33 +64,43 @@ export class CalendarComponent {
     this.days.set(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
   }
 
-  private routineRepo = new RoutineApiService();
-  getRoutineByDate = new GetRoutineByDateUseCase(this.routineRepo);
 
-  selectedRoutine = signal<Routine | null>(null);
+  public getDayKey(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
 
-  openRoutineDetails(date: Date) {
+
+  public isCompleted(date: Date): boolean {
+    return this.completedDays().has(this.getDayKey(date));
+  }
+
+
+  public toggleDay(date: Date) { // TODO: Implementar en el HTML cuando querramos que se pueda marcar un día como completado.
+    const updated = this.toggleDayUseCase.execute(this.getDayKey(date));
+    this.completedDays.set(updated);
+  }
+
+
+  public openRoutineDetails(date: Date): void {
     const routine = this.getRoutineByDate.execute(this.getDayKey(date));
     if (routine) {
       this.selectedRoutine.set(routine);
     }
   }
 
-  startWorkout() {
+
+  public startWorkout(): void {
     const routine = this.selectedRoutine();
     if (!routine) return;
 
     const todayKey = this.getDayKey(new Date());
-    if (routine.date > todayKey) {
+    if (routine.date > todayKey) { // TODO: Si la rutina es del futuro, no se puede comenzar. ¿QUIERO ESTO?
       alert('No podés comenzar una rutina del futuro 🕒');
       return;
     }
 
     this.routineService.setRoutine(routine);
-    console.log(routine);
-    
     this.selectedRoutine.set(null);
-
     this.router.navigate(['/workout']);
   }
 }

@@ -1,8 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WorkoutTimerComponent } from '../../../../shared/atoms/workout-timer/workout-timer.component';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
+
 import { Exercise } from '../../../../domain/entities/exercise';
 import { RoutineService } from '../../../../application/services/routine.services';
+import { WorkoutTimerComponent } from '../../../../shared/atoms/workout-timer/workout-timer.component';
 
 @Component({
   selector: 'app-workout',
@@ -11,16 +12,8 @@ import { RoutineService } from '../../../../application/services/routine.service
   styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent {
-  readonly routineService = inject(RoutineService);
-  readonly routine = this.routineService.activeRoutine;
-  
-  public exercises = signal<Exercise[]>([
-    { name: 'Flexiones', reps: 15 },
-    { name: 'Plancha', reps: 1, duration: 60 },
-    { name: 'Sentadillas', reps: 20 },
-    { name: 'Burpees', reps: 10 },
-    { name: 'Descanso', reps: 1, duration: 30 }
-  ]);
+  private readonly routineService = inject(RoutineService);
+  public exercises = signal<Exercise[]>(this.routineService.activeRoutine()?.exercises || []);
 
   public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
   public hasPrev = computed(() => this.currentIndex() > 0);

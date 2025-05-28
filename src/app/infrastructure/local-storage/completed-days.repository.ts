@@ -12,11 +12,11 @@ export class LocalStorageCompletedDaysRepository implements CompletedDaysReposit
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(Array.from(set)));
   }
 
-  getCompletedDays(): Set<string> {
+  public getCompletedDays(): Set<string> {
     return this.load();
   }
 
-  toggleDay(dateKey: string): Set<string> {
+  public toggleDay(dateKey: string): Set<string> {
     const current = this.load();
     current.has(dateKey) ? current.delete(dateKey) : current.add(dateKey);
     this.save(current);

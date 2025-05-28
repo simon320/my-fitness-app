@@ -1,6 +1,9 @@
-import { signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Routine } from '../../domain/entities/routine';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class RoutineService {
   readonly activeRoutine = signal<Routine | null>(null);
 
