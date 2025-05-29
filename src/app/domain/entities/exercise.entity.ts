@@ -7,4 +7,7 @@ export interface Exercise {
   equipment: string;
   gifUrl: string;
   instructions: string[];
+  secondaryMuscles?: string[];
+  duration?: number;
+  reps?: number;
 }

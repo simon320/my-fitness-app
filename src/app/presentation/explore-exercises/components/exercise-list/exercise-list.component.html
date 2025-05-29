@@ -1,20 +1,29 @@
-@if (exercises.length) {
-  <div>
-    <h2>Ejercicios para {{ selectedBodyPart }}</h2>
-    <ul>
-      @for (exercise of exercises; track $index) {
-        <li>
-          <h3>{{ exercise.name }}</h3>
-          <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
-          <p><strong>Equipamiento:</strong> {{ exercise.equipment }}</p>
-          <p><strong>Instrucciones:</strong></p>
-          <ul>
-            @for (instruction of exercise.instructions; track $index) {
-              <li>{{ instruction }}</li>
-            }
-          </ul>
-        </li>
-      }
-    </ul>
-  </div>
-}
+<div class="exercise-grid">
+  @for (exercise of exercises; track $index) {
+    <div
+      class="exercise-card"
+      [class.selected]="isSelected(exercise)"
+      (click)="toggleSelection(exercise)"
+    >
+      <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
+      <div class="exercise-content">
+        <h3 class="exercise-title">{{ exercise.name }}</h3>
+        <p><strong>Equipamiento:</strong> {{ exercise.equipment }}</p>
+        <p><strong>Grupo principal:</strong> {{ exercise.target }}</p>
+        @if (exercise.secondaryMuscles) {
+          <p><strong>Secundarios:</strong> {{ exercise.secondaryMuscles.join(', ') }}</p>
+        }
+        <p class="instructions-label"><strong>Instrucciones:</strong></p>
+        <ul class="instructions-list">
+          @for (instruction of exercise.instructions; track $index) {
+            <li>{{ instruction }}</li>
+          }
+        </ul>
+      </div>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" [checked]="isSelected(exercise)" />
+      </div>
+    </div>
+  }
+</div>
+
