@@ -3,8 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Exercise } from '../../domain/entities/exercise.entity';
-import { mockLowerArms } from '../../assets/mock-lower-arms';
-import { mockUpperArms } from '../../assets/mock-upper-arms';
+import { mockLowerArms } from '../../../assets/mock-lower-arms';
+import { mockUpperArms } from '../../../assets/mock-upper-arms';
+import { mockAllExercises } from '../../../assets/mock-all-exercises';
 
 
 @Injectable({
@@ -22,7 +23,7 @@ export class ExerciseDbApiService {
   toggle = false;
 
   getAllExercises(): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(`${this.API_URL}/exercises`, { headers: this.headers });
+    return this.http.get<Exercise[]>(`${this.API_URL}/exercises?limit=100`, { headers: this.headers });
   }
 
 
@@ -35,6 +36,7 @@ export class ExerciseDbApiService {
     //   this.toggle = !this.toggle;
     //   return of(mockUpperArms as Exercise[])
     // }
+    return of(mockAllExercises as Exercise[]);
     return this.http.get<Exercise[]>(`${this.API_URL}/exercises/bodyPart/${bodyPart}?limit=10&offset=0`, { headers: this.headers });
   }
 

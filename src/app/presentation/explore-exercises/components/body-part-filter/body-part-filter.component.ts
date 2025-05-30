@@ -13,6 +13,9 @@ export class BodyPartFilterComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.exerciseService.getAllExercises().subscribe((parts) => {
+    //   console.log(parts);
+    // });
     this.exerciseService.getBodyParts().subscribe((parts) => {
       this.bodyParts.set(parts);
     });
