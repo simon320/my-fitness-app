@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 
 import { Routine } from '../../../../domain/entities/routine.entity';
-import { RoutineService } from '../../../../application/services/routine.services';
-import { GetCompletedDays } from '../../../../application/use-cases/get-completed-days.usecase';
-import { GetRoutineByDate } from '../../../../application/use-cases/get-routine-by-date.usecase';
-import { ToggleCompletedDay } from '../../../../application/use-cases/toggle-completed-day.usecase';
+import { RoutineService } from '../../../../application/services/routine.service';
 import { LocalStorageCompletedDaysRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
 
 

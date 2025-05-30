@@ -1,24 +1,24 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { ExerciseDbApiService } from '../../../../infrastructure/api/exercise-db-api.service';
 
 @Component({
   selector: 'app-body-part-filter',
   templateUrl: './body-part-filter.component.html',
+  styleUrl: './body-part-filter.component.scss'
 })
 export class BodyPartFilterComponent implements OnInit {
-  bodyParts: string[] = [];
+  private exerciseService = inject(ExerciseDbApiService);
+  public bodyPartSelected = output<string>();
+  public bodyParts = signal<string[]>([]);
 
-  @Output() bodyPartSelected = new EventEmitter<string>();
-
-  constructor(private exerciseService: ExerciseDbApiService) {}
 
   ngOnInit() {
     this.exerciseService.getBodyParts().subscribe((parts) => {
-      this.bodyParts = parts;
+      this.bodyParts.set(parts);
     });
   }
 
-  onSelect(event: Event) {
+  public onSelect(event: Event): void {
       const target = event.target as HTMLSelectElement;
       const id = target?.value;
       this.bodyPartSelected.emit(id)

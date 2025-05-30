@@ -1,0 +1,28 @@
+
+
+<div class="timer-display">
+  <h1>{{ displayTime() }}</h1>
+</div>
+
+<div class="controls">
+  <app-circle-button 
+    [bgColor]="'#222'" 
+    [colorIcon]="'#fff'" 
+    [size]="45" 
+    [icon]="'◀'" 
+    [isDisabled]="isDisabledLeft()"
+    (click)="onClickLeft()" />
+  
+  <app-circle-button 
+    [size]="65" 
+    [icon]="( isRunning() ? '❚❚' : '▶' )" 
+    (click)="toggleTimer()" />
+  
+  <app-circle-button 
+    [bgColor]="'#222'" 
+    [colorIcon]="'#fff'" 
+    [size]="45" 
+    [icon]="'▶'" 
+    [isDisabled]="isDisabledRight()"
+    (click)="onClickRight()" />
+</div>

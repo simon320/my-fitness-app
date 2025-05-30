@@ -1,10 +1,11 @@
-import { Component, OnDestroy, computed, signal, effect, input } from '@angular/core';
+import { Component, OnDestroy, computed, signal, effect, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CircleButtonComponent } from "../../atoms/circle-button/circle-button.component";
 
 @Component({
   selector: 'app-workout-timer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CircleButtonComponent],
   templateUrl: './workout-timer.component.html',
   styleUrls: ['./workout-timer.component.scss']
 })
@@ -20,6 +21,26 @@ export class WorkoutTimerComponent implements OnDestroy {
     const cd = this.countdown();
     return cd ? cd - this.time() : this.time();
   });
+
+
+//////////////////////
+
+  public actionLeft = output();
+  public actionRight = output();
+  public isDisabledLeft = input<boolean>(false);
+  public isDisabledRight = input<boolean>(false);
+  
+
+  onClickLeft() {
+    this.actionLeft.emit();
+  }
+
+  onClickRight() {
+    this.actionRight.emit();
+  }
+
+//////////////////////
+
 
   constructor() {
     effect(() => {

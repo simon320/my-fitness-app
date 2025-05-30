@@ -1,38 +1,91 @@
-<div class="workout">
+
+<!-- 
+    VISTA 1
+        No comenzo el entrenamiento.
+
+    VISTA 2
+        Entrenamiento full-screen
+
+    VISTA 3
+        Revisa la rutina mientras el entrenamiento esta en curso.
+-->
+
+<div class="workout-screen">
     <div class="progress-container">
         <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
     </div>
-    <p>Ejercicio {{ currentIndex() + 1 }} de {{ exercises().length }}</p>
 
-    <h2>{{ currentExercise().name }}</h2>
+    <!-- EXERCISE INFO -->
+    <section class="exercise-info">
+        <h2>{{ currentExercise().name | titlecase }}</h2>
+        <div class="exercise-image">
+            <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
+        </div>
+    </section>
 
-    @if (currentExercise().reps) {
-        <p>Repeticiones: {{ currentExercise().reps }}</p>
-    }
+    <!-- CONTROLS -->
+    <section class="workout-controls">
+        <div class="info-top">
+            <div class="elapsed">
+                <span>Total</span>
+                <span> 20:05 </span>
+            </div>
+            <div class="set">
+                <span>Set</span>
+                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+            </div>
+        </div>
+        <app-workout-timer 
+            [isDisabledLeft]="!hasPrev()"
+            [isDisabledRight]="!hasNext()"
+            [countdown]="currentExercise().duration" 
+            (actionLeft)="previousExercise()" 
+            (actionRight)="nextExercise()" />
+    </section>
 
-    @if (currentExercise().duration) {
-        <p>Duración: {{ currentExercise().duration }} segundos</p>
-    }
+    <!-- ROUTINE -->
+    <section class="container-routine">
+    
+        @if(!isTraining()) {
+            <div class="start-training">
+                <h1>Comenzar rutina</h1>
+                <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'" (action)="markAsCompleted()" />
+            </div>
+        }
 
-    <app-workout-timer [countdown]="currentExercise().duration" />
-
-    <div class="actions">
-        <button (click)="previousExercise()" [disabled]="!hasPrev()">Anterior</button>
-        <button (click)="markAsCompleted()">Hecho</button>
-        <button (click)="nextExercise()" [disabled]="!hasNext()">Siguiente</button>
-    </div>
-
-    <!-- TODO modificar -->
-    <ul class="exercise-list"> 
-
+        @if(isTraining()) {
+            <div class="arrow-btn">
+                <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="markAsCompleted()" />
+            </div>
+        }
+    
+        <div class="routine">
             @for (exercise of exercises(); track $index) {
-                <li
-                    [class.completed]="$index < currentIndex()"
-                    [class.current]="$index === currentIndex()"
-                    >
-                    {{ $index + 1 }}. {{ exercise.name }}
-                </li>
+                <div class="exercise-card">
+                    <div class="card-left">
+                        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
+                        <div class="info-card">
+                            @if(isTraining()) {
+                                <h3>{{ exercise.name | truncate:20 }}</h3>
+                            }
+                            @else {
+                                <h3>{{ exercise.name }}</h3>
+                            }
+                            <p>{{ exercise.secondaryMuscles }}</p>
+                        </div>
+                    </div>
+                    @if(isTraining()) {
+                        <div class="button-card">
+                            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="25" [icon]="' ▶'" (action)="markAsCompleted()" />
+                        </div>
+                    }
+
+                    <!-- <li [class.completed]="$index < currentIndex()" [class.current]="$index === currentIndex()">
+                        {{ exercise.name }}
+                    </li> -->
+                </div>
             }
-    </ul>
+        </div>
+    </section>
 
 </div>

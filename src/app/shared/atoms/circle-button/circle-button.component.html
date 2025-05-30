@@ -1,0 +1,16 @@
+<button
+  class="circle-btn"
+  [ngStyle]="{
+    backgroundColor: bgColor(),
+    width: size() + 'px',
+    height: size() + 'px',
+    fontSize: size() * 0.4 + 'px',
+    color: colorIcon(),
+  }"
+  (click)="onClick()"
+  [disabled]="isDisabled()"
+>
+  <div class="align-icon">
+    {{ icon() }}
+  </div>
+</button>

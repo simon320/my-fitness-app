@@ -1,49 +1,55 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, signal, inject, input } from '@angular/core';
 
 import { Exercise } from '../../../../domain/entities/exercise.entity';
 import { ExerciseDbApiService } from '../../../../infrastructure/api/exercise-db-api.service';
+import { RoutineService } from '../../../../application/services/routine.service';
+import { Routine } from '../../../../domain/entities/routine.entity';
 
 
 
 @Component({
   selector: 'app-exercise-list',
-  standalone: true,
-  imports: [],
   templateUrl: './exercise-list.component.html',
   styleUrl: './exercise-list.component.scss',
 })
 export class ExerciseListComponent implements OnChanges {
-  @Input() selectedBodyPart: string = '';
-  exercises: Exercise[] = [];
+  private exerciseService = inject(ExerciseDbApiService);
+  private routineService = inject(RoutineService);
+  public selectedBodyPart = input<string>('');
+  public exercises = signal<Exercise[]>([]);
+  public selectedExercises = signal<Exercise[]>([]);
 
-  constructor(private exerciseService: ExerciseDbApiService) {}
 
   ngOnChanges() {
-    if (this.selectedBodyPart) {
+    if (this.selectedBodyPart()) {
       this.exerciseService
-        .getExercisesByBodyPart(this.selectedBodyPart)
+        .getExercisesByBodyPart(this.selectedBodyPart())
         .subscribe((exercises) => {
-          this.exercises = exercises;
+          this.exercises.set(exercises);
         });
     }
   }
 
 
+  public toggleSelection(exercise: Exercise): void {
+    const exists = this.selectedExercises().find(e => e.id === exercise.id);
 
-  ////////////// TODO => Review this code
-  selectedExercises: any[] = [];
+    if (exists) 
+      this.selectedExercises.set(this.selectedExercises().filter(e => e.id !== exercise.id));
 
-  toggleSelection(exercise: any): void {
-    const exists = this.selectedExercises.find(e => e.id === exercise.id);
-    if (exists) {
-      this.selectedExercises = this.selectedExercises.filter(e => e.id !== exercise.id);
-    } else {
-      this.selectedExercises.push(exercise);
-    }
+    else 
+      this.selectedExercises.update(exercises => [...exercises, exercise]);
+
+    this.saveSelectionExercises({ name: '', date: '', exercises: this.selectedExercises() });
   }
 
-  isSelected(exercise: any): boolean {
-    return this.selectedExercises.some(e => e.id === exercise.id);
+
+  public isSelected(exercise: Exercise): boolean {
+    return this.selectedExercises().some(e => e.id === exercise.id);
+  }
+
+  private saveSelectionExercises(routine: Routine): void {
+    this.routineService.setRoutine(routine);
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="exercise-grid">
-  @for (exercise of exercises; track $index) {
+  @for (exercise of exercises(); track $index) {
     <div
       class="exercise-card"
       [class.selected]="isSelected(exercise)"

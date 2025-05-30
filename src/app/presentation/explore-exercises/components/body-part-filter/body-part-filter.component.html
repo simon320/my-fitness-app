@@ -1,6 +1,6 @@
     <label for="bodyPart">Selecciona una parte del cuerpo:</label>
     <select id="bodyPart" (change)="onSelect($event)">
-      @for (part of bodyParts; track $index) {
+      @for (part of bodyParts(); track $index) {
         <option [value]="part">{{ part }}</option>
       }
     </select>
