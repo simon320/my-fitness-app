@@ -1,9 +1,9 @@
 import { Component, OnChanges, signal, inject, input } from '@angular/core';
+import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
+import { RoutineService } from '../../../../../application/services/routine.service';
+import { Exercise } from '../../../../../domain/entities/exercise.entity';
+import { Routine } from '../../../../../domain/entities/routine.entity';
 
-import { Exercise } from '../../../../domain/entities/exercise.entity';
-import { ExerciseDbApiService } from '../../../../infrastructure/api/exercise-db-api.service';
-import { RoutineService } from '../../../../application/services/routine.service';
-import { Routine } from '../../../../domain/entities/routine.entity';
 
 
 

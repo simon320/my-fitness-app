@@ -9,12 +9,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: #fff;
+    background: #0b0b0c;
     border-top: 1px solid #ddd;
     font-size: 14px;
 
     a {
-        color: #444;
+        color: #ccc;
+        font-weight: 400;
         text-decoration: none;
         &.active {
         color: #007bff;

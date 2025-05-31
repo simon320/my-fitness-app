@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 1.4rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+    .header__title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+
+        span {
+            font-size: 0.8rem;
+            color: #E3E3E3;
+            font-weight:400
+        }
+
+        p {
+            color: #E3E3E3;
+            margin: 0;
+            font-weight: bold;
+        }
+    }
+
+    .profile {
+        color: #E3E3E3
+    }
+}
