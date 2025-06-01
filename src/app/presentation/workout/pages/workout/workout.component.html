@@ -26,13 +26,13 @@
     <!-- CONTROLS -->
     <section class="workout-controls">
         <div class="info-top">
+            <div class="set">
+                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+                <span>Ejercicios</span>
+            </div>
             <div class="elapsed">
                 <span>Total</span>
                 <span> 20:05 </span>
-            </div>
-            <div class="set">
-                <span>Set</span>
-                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
             </div>
         </div>
         <app-workout-timer 

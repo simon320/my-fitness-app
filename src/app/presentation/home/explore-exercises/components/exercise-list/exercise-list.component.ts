@@ -1,4 +1,4 @@
-import { Component, OnChanges, signal, inject, input } from '@angular/core';
+import { Component, OnChanges, signal, inject, input, output } from '@angular/core';
 import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
 import { RoutineService } from '../../../../../application/services/routine.service';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
@@ -18,6 +18,7 @@ export class ExerciseListComponent implements OnChanges {
   public selectedBodyPart = input<string>('');
   public exercises = signal<Exercise[]>([]);
   public selectedExercises = signal<Exercise[]>([]);
+  public selectionWasChanged = output();
 
 
   ngOnChanges() {
@@ -41,8 +42,12 @@ export class ExerciseListComponent implements OnChanges {
       this.selectedExercises.update(exercises => [...exercises, exercise]);
 
     this.saveSelectionExercises({ name: '', date: '', exercises: this.selectedExercises() });
+    this.onClick();
   }
 
+  public onClick(): void {
+    this.selectionWasChanged.emit();
+  }
 
   public isSelected(exercise: Exercise): boolean {
     return this.selectedExercises().some(e => e.id === exercise.id);
