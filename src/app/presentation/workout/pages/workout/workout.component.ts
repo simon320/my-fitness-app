@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 
-import { Exercise } from '../../../../domain/entities/exercise.entity';
-import { RoutineService } from '../../../../application/services/routine.service';
-import { WorkoutTimerComponent } from '../../../../shared/organisms/workout-timer/workout-timer.component';
-import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
 import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
+import { Exercise } from '../../../../domain/entities/exercise.entity';
+import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
+import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
+import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
 
 
 const mockExercises: Exercise[] = [
@@ -142,43 +142,101 @@ const mockExercises: Exercise[] = [
 ];
 
 @Component({
-  selector: 'app-workout',
-  imports: [CommonModule, WorkoutTimerComponent, CircleButtonComponent, TruncatePipe, ArrowButton],
-  templateUrl: './workout.component.html',
-  styleUrls: ['./workout.component.scss']
+    selector: 'app-workout',
+    imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe],
+    templateUrl: './workout.component.html',
+    styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent {
-  private readonly routineService = inject(RoutineService);
-  // public exercises = signal<Exercise[]>(this.routineService.activeRoutine()?.exercises || []);
-  public exercises = signal<Exercise[]>(mockExercises);
-  public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
-  public hasPrev = computed(() => this.currentIndex() > 0);
-  public readonly currentExercise = computed(() => this.exercises()[this.currentIndex()]);
-  public currentIndex = signal(0);
+    public exercises = signal<Exercise[]>(mockExercises);
+    public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
+    public hasPrev = computed(() => this.currentIndex() > 0);
+    public currentExercise = computed(() => this.exercises()[this.currentIndex()]);
+    public currentIndex = signal(0);
+    public isTraining = signal<boolean>(false);
 
-  public readonly progressPercentage = computed(() => ((this.currentIndex() + 1) / this.exercises().length) * 100 );
-  public readonly completedExercises = computed(() => this.exercises().slice(0, this.currentIndex()) );
+    public readonly progressPercentage = computed(() => ((this.currentIndex() + 1) / this.exercises().length) * 100);
 
-  public isTraining = signal<boolean>(false);
+    private intervalId: any;
+    readonly isRunning = signal(false);
+    public countdown = input<number | undefined>();
+    readonly time = signal(0);
+    readonly displayTime = computed(() => { 
+        const cd = this.countdown();
+        return cd ? cd - this.time() : this.time();
+    });
 
-  nextExercise() {
-    if (this.currentIndex() < this.exercises().length - 1) {
-      this.currentIndex.update(i => i + 1);
+    constructor() {
+        effect(() => {
+            if (this.isRunning()) {
+                this.startInterval();
+            } else {
+                this.clearInterval();
+            }
+        });
+
+        // Si es countdown, preestablecer tiempo en 0.
+        effect(() => {
+            if (this.countdown()) {
+                this.time.set(0);
+            }
+        });
     }
-  }
 
-  previousExercise() {
-    if (this.currentIndex() > 0) {
-      this.currentIndex.update(i => i - 1);
+    private startInterval() {
+        this.intervalId = setInterval(() => {
+            const cd = this.countdown();
+            this.time.update((t) => {
+                if (cd && t >= cd) {
+                    this.isRunning.set(false);
+                    return t;
+                }
+                return t + 1;
+            });
+        }, 1000);
     }
-  }
 
-  markAsCompleted() {
-    // alert(`Ejercicio completado: ${this.currentExercise().name}`);
-    // this.nextExercise();
-    console.log(this.exercises());
-    
-    this.isTraining.set(!this.isTraining());
-  }
+
+    private clearInterval() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+    }
+
+
+    public reset(): void {
+        this.time.set(0);
+        this.isRunning.set(false);
+    }
+
+
+    ngOnDestroy(): void {
+        this.clearInterval();
+    }
+
+
+    public toggleTimer(): void {
+        this.isRunning.update((r) => !r);
+    }
+
+
+    public nextExercise(): void {
+        if (this.currentIndex() < this.exercises().length - 1) 
+            this.currentIndex.update(i => i + 1);
+    }
+
+
+    public previousExercise(): void {
+        if (this.currentIndex() > 0) 
+            this.currentIndex.update(i => i - 1);
+    }
+
+
+    public markAsCompleted(): void {
+        // alert(`Ejercicio completado: ${this.currentExercise().name}`);
+        // this.nextExercise();
+        this.isTraining.set(!this.isTraining());
+    }
 
 }

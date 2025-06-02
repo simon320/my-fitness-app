@@ -22,27 +22,44 @@
 
     <!-- CONTROLS -->
     <section class="workout-controls">
+        <div class="timer">
+            <span>{{ displayTime() | formatTime }}</span>
+        </div>
         <div class="info-top">
             <div class="set">
                 <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
-                <span>Ejercicios</span>
             </div>
             <div class="elapsed">
-                <span>Total</span>
-                <span> 20:05 </span>
+                <span>{{ progressPercentage() | formatPercentage }}</span>
             </div>
         </div>
-
+        
         <div class="progress-container">
             <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
         </div>
+
+        <div class="controls">
+        <app-circle-button 
+            [bgColor]="'transparent'" 
+            [colorIcon]="'#fff'" 
+            [size]="45" 
+            [icon]="'◀'" 
+            [isDisabled]="!hasPrev()"
+            (click)="previousExercise()" />
         
-        <app-workout-timer 
-            [isDisabledLeft]="!hasPrev()"
-            [isDisabledRight]="!hasNext()"
-            [countdown]="currentExercise().duration" 
-            (actionLeft)="previousExercise()" 
-            (actionRight)="nextExercise()" />
+        <app-circle-button 
+            [size]="65" 
+            [icon]="( isRunning() ? '❚❚' : '▶' )" 
+            (click)="toggleTimer()" />
+        
+        <app-circle-button 
+            [bgColor]="'transparent'" 
+            [colorIcon]="'#fff'" 
+            [size]="45" 
+            [icon]="'▶'" 
+            [isDisabled]="!hasNext()"
+            (click)="nextExercise()" />
+        </div>
     </section>
 
     <!-- ROUTINE -->
@@ -82,9 +99,6 @@
                         </div>
                     }
 
-                    <!-- <li [class.completed]="$index < currentIndex()" [class.current]="$index === currentIndex()">
-                        {{ exercise.name }}
-                    </li> -->
                 </div>
             }
         </div>
