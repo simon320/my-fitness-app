@@ -18,7 +18,7 @@
           <input
             type="checkbox"
             [checked]="isSelected(exercise)"
-            (click)="$event.stopPropagation(); toggleSelection(exercise)"
+            (click)="toggleSelection(exercise)"
           />
           <span class="checkmark"></span>
         </label>
@@ -26,7 +26,7 @@
 
       <div class="exercise-content">
         <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
-        <p><strong>Grupo principal:</strong> {{ exercise.target }}</p>
+        <p>{{ exercise.target }}</p>
       </div>
 
       <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
@@ -41,7 +41,6 @@
    
    <div class="modal-container">
      <h2 class="modal-title">Renombrar rutina</h2>
-     
      <input type="text" [(ngModel)]="routineName" class="modal-input" placeholder="Nombre de la rutina (opcional)" />
      
      <div class="modal-buttons">

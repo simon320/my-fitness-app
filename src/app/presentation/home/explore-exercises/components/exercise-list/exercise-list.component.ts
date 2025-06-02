@@ -63,7 +63,6 @@ export class ExerciseListComponent implements OnChanges {
       this.selectedExercises.set( this.selectedExercises().filter((e) => e.id !== exercise.id) );
     else 
         this.selectedExercises.update((exs) => [...exs, exercise]);
-    
   }
 
 

@@ -11,9 +11,6 @@
 -->
 
 <div class="workout-screen">
-    <div class="progress-container">
-        <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
-    </div>
 
     <!-- EXERCISE INFO -->
     <section class="exercise-info">
@@ -35,6 +32,11 @@
                 <span> 20:05 </span>
             </div>
         </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
+        </div>
+        
         <app-workout-timer 
             [isDisabledLeft]="!hasPrev()"
             [isDisabledRight]="!hasNext()"
