@@ -20,7 +20,6 @@ export class ExerciseDbApiService {
   });
 
   // TODO => Quitar los mocks....
-  toggle = false;
 
   getAllExercises(): Observable<Exercise[]> {
     return this.http.get<Exercise[]>(`${this.API_URL}/exercises?limit=100`, { headers: this.headers });

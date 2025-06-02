@@ -1,7 +1,3 @@
 <app-body-part-filter (bodyPartSelected)="onBodyPartSelected($event)"></app-body-part-filter>
 
-@if(isThereAnySelected()) {
-    <button class="create-routine">Crear Entrenamiento</button>
-}
-
-<app-exercise-list [selectedBodyPart]="selectedBodyPart" (selectionWasChanged)="selectionWasChanged()"></app-exercise-list>
+<app-exercise-list [selectedBodyPart]="selectedBodyPart" ></app-exercise-list>

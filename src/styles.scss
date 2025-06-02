@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+:root {
+  --color-primary: #00e676;
+  --color-secondary: #1db954;
+  --color-background: #0b0b0b;
+  --color-background-secondary: #1F2022;
+  --color-background-tertiary: #2b2b2b;
+  --color-text: #e0e0e0;
+  --color-muted: #777;
+  --color-line: #555;
+}
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -9,12 +22,12 @@ html, body {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
   font-style: normal;
-
 }
 
 .app-wrapper {
   width: 100%;
   height: 100%;
+  background-color: #0b0b0b;
 
   @media (min-width: 468px) {
     // Simular un dispositivo en escritorio

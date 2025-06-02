@@ -7,9 +7,11 @@ export interface Muscle {
   is_front: boolean;
 }
 
-export abstract class RoutineRepository {
-  abstract getTodayRoutine(): Promise<Exercise[]>;
-  abstract getRoutineByDate(date: string): Promise<Routine | null>;
-  abstract getMuscleGroups(): Promise<Muscle[]>;
-  abstract getExercisesByMuscle(muscleId: number): Promise<Exercise[]>;
+export interface RoutineRepository {
+  // getTodayRoutine(): Promise<Exercise[]>;
+  // getRoutineByDate(date: string): Promise<Routine | null>;
+  // getMuscleGroups(): Promise<Muscle[]>;
+  // getExercisesByMuscle(muscleId: number): Promise<Exercise[]>;
+
+  saveRoutine(routine: Routine): void;
 }

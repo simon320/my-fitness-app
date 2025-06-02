@@ -1,28 +1,53 @@
-<div class="exercise-grid">
+<div class="buttons-container">
+  @if (selectedExercises().length > 0) {
+    <button class="create-routine" (click)="toggleOptions('open')">Crear Entrenamiento</button>
+    
+    <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="45" [icon]="'x'"  (action)="cancel()"/>
+  }
+</div>
 
-  @for (exercise of exercises(); track $index) {
+<div class="exercise-grid">
+  @for (exercise of displayedExercises(); track exercise.id) {
     <div
       class="exercise-card"
       [class.selected]="isSelected(exercise)"
       (click)="toggleSelection(exercise)"
-      >
-
+    >
       <div class="checkbox-wrapper">
         <label class="custom-checkbox">
-          <input type="checkbox" [checked]="isSelected(exercise)" />
+          <input
+            type="checkbox"
+            [checked]="isSelected(exercise)"
+            (click)="$event.stopPropagation(); toggleSelection(exercise)"
+          />
           <span class="checkmark"></span>
         </label>
       </div>
 
       <div class="exercise-content">
-        <h3 class="exercise-title">{{ exercise.name }}</h3>
+        <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
         <p><strong>Grupo principal:</strong> {{ exercise.target }}</p>
       </div>
 
       <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
-
-
     </div>
   }
-
 </div>
+
+
+<!-- MODAL -->
+ @if(openModal()) {
+   <div class="modal-backdrop" (click)="toggleOptions('close')"></div>
+   
+   <div class="modal-container">
+     <h2 class="modal-title">Renombrar rutina</h2>
+     
+     <input type="text" [(ngModel)]="routineName" class="modal-input" placeholder="Nombre de la rutina (opcional)" />
+     
+     <div class="modal-buttons">
+       <button class="btn primary" (click)="createRoutine('train')">Entrenar</button>
+       <button class="btn secondary" (click)="createRoutine('calendar')">Programar en fecha</button>
+       <button class="btn tertiary" (click)="createRoutine('routine')">Solo guardar</button>
+      </div>
+    </div>
+  }
