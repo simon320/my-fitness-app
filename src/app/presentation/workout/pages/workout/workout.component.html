@@ -11,56 +11,55 @@
 -->
 
 <div class="workout-screen">
-
-    <!-- EXERCISE INFO -->
-    <section class="exercise-info">
-        <h2>{{ currentExercise().name | titlecase }}</h2>
-        <div class="exercise-image">
-            <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
-        </div>
-    </section>
-
-    <!-- CONTROLS -->
-    <section class="workout-controls">
-        <div class="timer">
-            <span>{{ displayTime() | formatTime }}</span>
-        </div>
-        <div class="info-top">
-            <div class="set">
-                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+    @if(isTraining() && !listExerciseOpen()) {
+        <!-- EXERCISE INFO -->
+        <section class="exercise-info">
+            <h2>{{ currentExercise().name | titlecase }}</h2>
+            <div class="exercise-image">
+                <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
             </div>
-            <div class="elapsed">
-                <span>{{ progressPercentage() | formatPercentage }}</span>
-            </div>
-        </div>
-        
-        <div class="progress-container">
-            <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
-        </div>
+        </section>
 
-        <div class="controls">
-        <app-circle-button 
-            [bgColor]="'transparent'" 
-            [colorIcon]="'#fff'" 
-            [size]="45" 
-            [icon]="'◀'" 
-            [isDisabled]="!hasPrev()"
-            (click)="previousExercise()" />
-        
-        <app-circle-button 
-            [size]="65" 
-            [icon]="( isRunning() ? '❚❚' : '▶' )" 
-            (click)="toggleTimer()" />
-        
-        <app-circle-button 
-            [bgColor]="'transparent'" 
-            [colorIcon]="'#fff'" 
-            [size]="45" 
-            [icon]="'▶'" 
-            [isDisabled]="!hasNext()"
-            (click)="nextExercise()" />
-        </div>
-    </section>
+        <!-- CONTROLS -->
+        <section class="workout-controls">
+            <div class="timer">
+                <span>{{ displayTime() | formatTime }}</span>
+            </div>
+            <div class="info-top">
+                <div class="set">
+                    <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+                </div>
+                <div class="elapsed">
+                    <span>{{ progressPercentage() | formatPercentage }}</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
+            </div>
+
+            <div class="controls">
+                <app-circle-button 
+                    [bgColor]="'transparent'" 
+                    [colorIcon]="'#fff'" 
+                    [size]="65" 
+                    [icon]="'⮜'" 
+                    (click)="previousExercise()" />
+                
+                <app-circle-button 
+                    [size]="65" 
+                    [icon]="( isRunning() ? '❚❚' : '▶' )" 
+                    (click)="toggleTimer()" />
+                
+                <app-circle-button 
+                    [bgColor]="'transparent'" 
+                    [colorIcon]="'#fff'" 
+                    [size]="65" 
+                    [icon]="((( completedExercises().size -1 ) === exercises().length) ? 'Finalizar' : '⮞' )"
+                    (click)="nextExercise()" />
+            </div>
+        </section>
+    }
 
     <!-- ROUTINE -->
     <section class="container-routine">
@@ -68,15 +67,20 @@
         @if(!isTraining()) {
             <div class="start-training">
                 <h1>Comenzar rutina</h1>
-                <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'" (action)="markAsCompleted()" />
+                <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'" (action)="startRoutine()" />
             </div>
         }
 
         @if(isTraining()) {
             <div class="arrow-btn">
-                <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="markAsCompleted()" />
+                @if(listExerciseOpen()) {
+                    <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="toggleListExercise()" />
+                }
+                @else {
+                    <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="true" (action)="toggleListExercise()" />
+                }
             </div>
-        }
+        } 
     
         <div class="routine">
             @for (exercise of exercises(); track $index) {
@@ -95,7 +99,7 @@
                     </div>
                     @if(isTraining()) {
                         <div class="button-card">
-                            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="25" [icon]="' ▶'" (action)="markAsCompleted()" />
+                            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="25" [icon]="' ▶'" (action)="startRoutine()" />
                         </div>
                     }
 

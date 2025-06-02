@@ -26,6 +26,8 @@
     }
 
     .workout-controls {
+        position: relative;
+        top: -30px;
         background-color: var(--color-background-secondary);
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
@@ -48,7 +50,7 @@
         .info-top {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: #ccc;
 
             div {
@@ -61,7 +63,7 @@
         
         .progress-container {
             width: 100%;
-            height: 5px;
+            height: 2px;
             border-radius: 5px;
             background-color: #eee;
             overflow: hidden;
@@ -73,14 +75,23 @@
             background-color: #4caf50;
             transition: width 0.3s ease-in-out;
         }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
     }
 
 
     .container-routine {
+        position: relative;
+        top: -30px;
         background-color: #000;
-        height: 30dvh;
         width: 100%;
-        overflow: hidden;
+        overflow: scroll;
+        padding-bottom: 2rem;
 
         .start-training {
             display: flex;
@@ -88,12 +99,14 @@
             justify-content: center;
             gap: 1rem;
             padding: 1rem 0;
+            padding-top: 30px;
         }
 
         .arrow-btn {
             width: 100%;
             display: flex;
             justify-content: center;
+            padding-top: 30px;
         }
 
         .routine {

@@ -154,8 +154,15 @@ export class WorkoutComponent {
     public currentExercise = computed(() => this.exercises()[this.currentIndex()]);
     public currentIndex = signal(0);
     public isTraining = signal<boolean>(false);
+    public listExerciseOpen = signal<boolean>(false);
+    public completedExercises = signal<Set<number>>(new Set());
 
-    public readonly progressPercentage = computed(() => ((this.currentIndex() + 1) / this.exercises().length) * 100);
+    public progressPercentage = computed(() => {
+        const total = this.exercises().length;
+        const completed = this.completedExercises().size;
+
+        return (completed / total) * 100;
+    });
 
     private intervalId: any;
     readonly isRunning = signal(false);
@@ -181,6 +188,16 @@ export class WorkoutComponent {
                 this.time.set(0);
             }
         });
+    }
+
+    public startRoutine() {
+        this.toggleTimer();
+        this.isRunning.set(true);
+        this.isTraining.set(true);
+    }
+
+    public toggleListExercise(): void {
+        this.listExerciseOpen.set( !this.listExerciseOpen() );
     }
 
     private startInterval() {
@@ -222,21 +239,35 @@ export class WorkoutComponent {
 
 
     public nextExercise(): void {
-        if (this.currentIndex() < this.exercises().length - 1) 
-            this.currentIndex.update(i => i + 1);
+        const current = this.currentIndex();
+        const lastIndex = this.exercises().length - 1;
+
+        // Marcar como completado antes de avanzar (si no está)
+        if (!this.completedExercises().has(current)) {
+            const updated = new Set(this.completedExercises());
+            updated.add(current);
+            this.completedExercises.set(updated);
+        }
+
+        // Avanzar si no es el último
+        if (current < lastIndex) {
+            this.currentIndex.set(current + 1);
+        }
     }
 
 
     public previousExercise(): void {
-        if (this.currentIndex() > 0) 
-            this.currentIndex.update(i => i - 1);
-    }
-
-
-    public markAsCompleted(): void {
-        // alert(`Ejercicio completado: ${this.currentExercise().name}`);
-        // this.nextExercise();
-        this.isTraining.set(!this.isTraining());
+        const current = this.currentIndex();
+        
+        // Si lo había marcado como hecho, lo quitamos del set
+        const updated = new Set(this.completedExercises());
+        if (updated.has(current)) {
+            updated.delete(current);
+            this.completedExercises.set(updated);
+        }
+        if (current > 0) {
+            this.currentIndex.set(current - 1);
+        }
     }
 
 }
