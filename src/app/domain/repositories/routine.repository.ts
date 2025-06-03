@@ -15,5 +15,6 @@ export interface RoutineRepository {
   
   saveRoutine(routine: Routine): void;
   getRoutineById(id: string): Observable<Routine | null>;
+  getRoutineByDate(date: string): Observable<Routine | null>;
   getAllRoutine(): Observable<Routine[] | null>;
 }

@@ -1,101 +1,104 @@
-
 <div class="workout-screen">
+    @if(!routine()) {
+    <h1>No tenes ninguna rutina para el dia de hoy.</h1>
+    <span>if hay guardadas => Queres elegir alguna?</span>
+    <span>Queres crear una?</span>
+    }
+
+    @else {
+
+
     @if(isTraining() && !listExerciseOpen()) {
-        <!-- EXERCISE INFO -->
-        <section class="exercise-info">
+    <!-- EXERCISE INFO -->
+    <section class="exercise-info">
+        <div class="exercise-title">
             <span>{{( routine()!.name )}}</span>
             <h2>{{ currentExercise().name | titlecase }}</h2>
-            <div class="exercise-image">
-                <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
-            </div>
-        </section>
+        </div>
+        <div class="exercise-image">
+            <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
+            <div class="glass-display"></div>
+        </div>
+    </section>
 
-        <!-- CONTROLS -->
-        <section class="workout-controls">
-            <div class="timer">
-                <span>{{ displayTime() | formatTime }}</span>
+    <!-- CONTROLS -->
+    <section class="workout-controls">
+        <div class="timer">
+            <span>{{ displayTime() | formatTime }}</span>
+        </div>
+        <div class="info-top">
+            <div class="set">
+                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
             </div>
-            <div class="info-top">
-                <div class="set">
-                    <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
-                </div>
-                <div class="elapsed">
-                    <span>{{ progressPercentage() | formatPercentage }}</span>
-                </div>
+            <div class="elapsed">
+                <span>{{ progressPercentage() | formatPercentage }}</span>
             </div>
-            
-            <div class="progress-container">
-                <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
-            </div>
+        </div>
 
-            <div class="controls">
-                <app-circle-button 
-                    [bgColor]="'transparent'" 
-                    [colorIcon]="'#ccc'" 
-                    [size]="45" 
-                    [icon]="(false ? 'volver' : '⮜')" 
-                    (click)="previousExercise()" />
-                
-                <app-circle-button 
-                    [size]="65" 
-                    [icon]="( isRunning() ? '❚❚' : '▶' )" 
-                    (click)="toggleTimer()" />
-                
-                <app-circle-button 
-                    [bgColor]="'transparent'" 
-                    [colorIcon]="'#ccc'" 
-                    [size]="45" 
-                    [icon]="(false ? 'completar' : '⮞' )"
-                    (click)="nextExercise()" />
-            </div>
-        </section>
+        <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
+        </div>
+
+        <div class="controls">
+            <app-circle-button [bgColor]="'transparent'" [colorIcon]="'#ccc'" [size]="45"
+                [icon]="(false ? 'volver' : '⮜')" (click)="previousExercise()" />
+
+            <app-circle-button [size]="65" [icon]="( isRunning() ? '❚❚' : '▶' )" (click)="toggleTimer()" />
+
+            <app-circle-button [bgColor]="'transparent'" [colorIcon]="'#ccc'" [size]="45"
+                [icon]="(false ? 'completar' : '⮞' )" (click)="nextExercise()" />
+        </div>
+    </section>
     }
 
     <!-- ROUTINE -->
     <section class="container-routine">
-    
+
         @if(!isTraining()) {
-            <div class="start-training">
-                <h1>Comenzar rutina</h1>
-                <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'" (action)="startRoutine()" />
-            </div>
+        <div class="start-training">
+            <h1>Comenzar rutina</h1>
+            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'"
+                (action)="startRoutine()" />
+        </div>
         }
 
         @if(isTraining()) {
-            <div class="arrow-btn">
-                @if(listExerciseOpen()) {
-                    <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="toggleListExercise()" />
-                }
-                @else {
-                    <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="true" (action)="toggleListExercise()" />
-                }
-            </div>
-        } 
-    
+        <div class="arrow-btn">
+            @if(listExerciseOpen()) {
+            <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="toggleListExercise()" />
+            }
+            @else {
+            <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="true" (action)="toggleListExercise()" />
+            }
+        </div>
+        }
+
         <div class="routine">
             @for (exercise of exercises(); track $index) {
-                <div class="exercise-card">
-                    <div class="card-left">
-                        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
-                        <div class="info-card">
-                            @if(isTraining()) {
-                                <h3>{{ exercise.name | truncate:20 }}</h3>
-                            }
-                            @else {
-                                <h3>{{ exercise.name }}</h3>
-                            }
-                            <p>{{ exercise.secondaryMuscles }}</p>
-                        </div>
+            <div class="exercise-card">
+                <div class="card-left">
+                    <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
+                    <div class="info-card">
+                        @if(isTraining()) {
+                        <h3>{{ exercise.name | truncate:20 }}</h3>
+                        }
+                        @else {
+                        <h3>{{ exercise.name }}</h3>
+                        }
+                        <p>{{ exercise.secondaryMuscles }}</p>
                     </div>
-                    @if(isTraining()) {
-                        <div class="button-card">
-                            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="25" [icon]="' ▶'" (action)="startRoutine()" />
-                        </div>
-                    }
-
                 </div>
+                @if(isTraining()) {
+                <div class="button-card">
+                    <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="25" [icon]="' ▶'"
+                        (action)="startRoutine()" />
+                </div>
+                }
+
+            </div>
             }
         </div>
     </section>
+    }
 
 </div>

@@ -5,6 +5,9 @@ import { RoutineRepository } from "../../domain/repositories/routine.repository"
 const STORAGE_KEY = 'routines';
 
 export class LocalStorageRoutineRepository implements RoutineRepository {
+    getRoutineByDate(date: string): Observable<Routine | null> {
+        throw new Error("Method not implemented.");
+    }
 
     saveRoutine(routine: Routine): void {
         this.getAllRoutine().subscribe({

@@ -1,4 +1,4 @@
-<!-- <div class="calendar-header">
+<div class="calendar-header">
   <button (click)="prevMonth()">⏪</button>
   <h2>{{ currentMonth() + 1 }}/{{ currentYear() }}</h2>
   <button (click)="nextMonth()">⏩</button>
@@ -7,17 +7,20 @@
 <div class="calendar-grid">
 
     @for (day of days(); track $index) {
-        <div
+        <div class="day">
+            {{ day.getDate() }}
+        </div>
+        <!-- <div
             class="day"
             [class.completed]="isCompleted(day)"
             [class.planned]="getRoutineByDate.execute(getDayKey(day))"
             (click)="openRoutineDetails(day)"
             >
             {{ day.getDate() }}
-        </div>
+        </div> -->
     }
 
-</div>
+</div> 
 
 
 <!-- TODO Modal básico (puede evolucionar a componente) -->

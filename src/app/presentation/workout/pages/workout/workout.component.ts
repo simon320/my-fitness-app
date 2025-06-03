@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
 
+import { Routine } from '../../../../domain/entities/routine.entity';
 import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../domain/entities/exercise.entity';
 import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
+import { GetAllRoutine } from '../../../../application/use-cases/routine/get-all-routine';
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
 import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
 import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
-import { GetAllRoutine } from '../../../../application/use-cases/routine/get-all-routine';
-import { Routine } from '../../../../domain/entities/routine.entity';
 
 
 const mockExercises: Exercise[] = [

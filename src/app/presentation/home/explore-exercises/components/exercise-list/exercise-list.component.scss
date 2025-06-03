@@ -20,9 +20,10 @@
     padding: 20px;
     border-radius: 23px;
     background-color: var(--color-secondary);
+    border: #000000 1px solid;
+    box-shadow: inset -2px -2px 4px #333;
     font-weight: 700;
     font-size: 1rem;
-    border: none;
   }
   
 }
@@ -77,6 +78,7 @@
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+  filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
 }
 
 .exercise-content {
@@ -91,7 +93,7 @@
 
   p {
     margin: 4px 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .instructions-label {
