@@ -3,40 +3,44 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 
 import { Routine } from '../../../../domain/entities/routine.entity';
+import { FormatMonthPipe } from '../../../../shared/pipes/format-month.pipe';
 import { GetRoutineByDate } from '../../../../application/use-cases/routine/get-routine-by-date.usecase';
 import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
+import { UpdateRoutine } from '../../../../application/use-cases/routine/update-routine.usecase';
 
 
 @Component({
   selector: 'app-calendar',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormatMonthPipe],
   providers: [LocalStorageRoutineRepository],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
   // private repository = new LocalStorageCompletedDaysRepository();
-  // private getDaysUseCase = new GetCompletedDays(this.repository);
   // private toggleDayUseCase = new ToggleCompletedDay(this.repository);
-
+  // private readonly completedDays = signal<Set<string>>(this.getDaysUseCase.execute());
+  
   private repository = inject(LocalStorageRoutineRepository);
   private router = inject(Router);
-  private readonly today = new Date();
-  // private readonly completedDays = signal<Set<string>>(this.getDaysUseCase.execute());
-
-  public selectedRoutine = signal<Routine | null>(null);
   public getRoutineByDate = new GetRoutineByDate(this.repository);
+  public updateRoutine = new UpdateRoutine(this.repository);
+  
+  private readonly today = new Date();
+  public selectedRoutine = signal<Routine | null>(null);
   public readonly currentMonth = signal(this.today.getMonth());
   public readonly currentYear = signal(this.today.getFullYear());
   public readonly days = signal(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
-  public currentDate: Date = new Date();
   public readonly weekDays: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-
+  public isToday(date: Date): boolean {
+    return date.getDate() === this.today.getDate() &&
+            date.getMonth() === this.today.getMonth() &&
+            date.getFullYear() === this.today.getFullYear();
+  }
 
 
   public get formattedDate(): string {
-    return this.currentDate.toLocaleDateString('es-AR', {
+    return this.today.toLocaleDateString('es-AR', {
       day: '2-digit',
       month: 'long'
     }).split('-').join(' de ');
@@ -50,15 +54,13 @@ private getDaysInMonth(month: number, year: number): Date[] {
   const firstDayOfMonth = new Date(year, month, 1);
   const startDayIndex = (firstDayOfMonth.getDay() + 6) % 7; // Convertir de domingo=0 a lunes=0
 
-  // Agregar días vacíos (placeholders) antes del día 1
   for (let i = 0; i < startDayIndex; i++) {
-    days.push(null as any); // null para representar espacios vacíos
+    days.push(null as any); 
   }
 
-  const date = new Date(year, month, 1);
-  while (date.getMonth() === month) {
-    days.push(new Date(date));
-    date.setDate(date.getDate() + 1);
+  while (firstDayOfMonth.getMonth() === month) {
+    days.push(new Date(firstDayOfMonth));
+    firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
   }
 
   return days;
@@ -84,7 +86,8 @@ private getDaysInMonth(month: number, year: number): Date[] {
   }
 
 
-  public getDayKey(date: Date): string {
+  public getDayKey(date: Date | null): string {
+    if (!date) return '';
     return date.toISOString().split('T')[0];
   }
 
@@ -99,15 +102,23 @@ private getDaysInMonth(month: number, year: number): Date[] {
   //   this.completedDays.set(updated);
   // }
 
+  public isDateWorkout(date: Date): boolean {
+    let isDateWorkout = false;
+    this.getRoutineByDate.execute(this.getDayKey(date)).subscribe(routine => {
+      return isDateWorkout = routine !== null
+    });
 
-  public openRoutineDetails(date: Date): void {
+    return isDateWorkout;
+  }
+
+
+  public openRoutineDetails(date: Date): void {    
     this.getRoutineByDate.execute(this.getDayKey(date)).subscribe({
       next: (routine) => {
-        if (routine) {
+        if (routine) 
           this.selectedRoutine.set(routine);
-        } else {
+        else 
           this.selectedRoutine.set(null);
-        }
       },
       error: (err) => {
         console.error('Error fetching routine:', err);
@@ -117,12 +128,21 @@ private getDaysInMonth(month: number, year: number): Date[] {
   }
 
 
+  removeRoutine(): void {
+    const routine = this.selectedRoutine();
+    if (!routine) return;
+    routine.date = '';
+
+    this.updateRoutine.execute(routine);
+  }
+
+
   public startWorkout(): void {
     const routine = this.selectedRoutine();
     if (!routine) return;
 
     const todayKey = this.getDayKey(new Date());
-    if (routine.date > todayKey) { // TODO: Si la rutina es del futuro, no se puede comenzar. ¿QUIERO ESTO?
+    if (routine.date! > todayKey) { // TODO: Si la rutina es del futuro, no se puede comenzar. ¿QUIERO ESTO?
       alert('No podés comenzar una rutina del futuro 🕒');
       return;
     }

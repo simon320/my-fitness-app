@@ -2,7 +2,7 @@
 
   <div class="calendar-header">
     <button (click)="prevMonth()"><</button>
-        <h2>{{ formattedDate }}</h2>
+        <h2>{{ currentMonth() | formatMonth }}</h2>
         <button (click)="nextMonth()">></button>
   </div>
 
@@ -12,35 +12,33 @@
 
   <div class="calendar-grid">
     @for (day of days(); track $index) {
-      <div class="day" [class.empty]="!day">
+      <div 
+        class="day" 
+        [class.empty]="!day"
+        [class.today]="day && isToday(day)"
+        [class.planned]="isDateWorkout(day)"
+        (click)="openRoutineDetails(day)"
+        >
         {{ day ? day.getDate() : '' }}
       </div>
     }
   </div>
-    <!-- <div
-            class="day"
-            [class.completed]="isCompleted(day)"
-            [class.planned]="getRoutineByDate.execute(getDayKey(day))"
-            (click)="openRoutineDetails(day)"
-            >
-            {{ day.getDate() }}
-        </div> -->
-    
-
 
 
   <!-- TODO Modal básico (puede evolucionar a componente) -->
-  <!-- <div class="modal" *ngIf="selectedRoutine()">
-    <h3>{{ selectedRoutine()?.name }}</h3>
-    <ul>
-      @for (ex of selectedRoutine()?.exercises; track $index) {
-          <li>
-              {{ ex.name }} - {{ ex.reps }} reps
-          </li>
-      }
-    </ul>
-    <button (click)="startWorkout()">Iniciar entrenamiento</button>
-    <button (click)="selectedRoutine.set(null)">Cerrar</button>
-  </div>  -->
-
+   @if(selectedRoutine()) {
+    <div class="modal">
+      <h3>{{ selectedRoutine()?.name }}</h3>
+      <ul>
+        @for (ex of selectedRoutine()?.exercises; track $index) {
+            <li>
+                {{ ex.name }} - {{ ex.reps }} reps
+            </li>
+        }
+      </ul>
+      <button (click)="startWorkout()">Iniciar entrenamiento</button>
+      <button (click)="selectedRoutine.set(null)">Cerrar</button>
+      <button (click)="removeRoutine()">Quitar</button>
+    </div> 
+   }
 </section>

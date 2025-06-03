@@ -5,8 +5,38 @@ import { RoutineRepository } from "../../domain/repositories/routine.repository"
 const STORAGE_KEY = 'routines';
 
 export class LocalStorageRoutineRepository implements RoutineRepository {
+    updateRoutine(routine: Routine): void {
+        this.getAllRoutine().subscribe({
+            next: (allRoutines: Routine[]) => {
+                allRoutines = allRoutines.filter(r => r.id !== routine.id); 
+                allRoutines.push(routine); 
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(allRoutines));
+            },
+            error: (err) => {
+                console.error(`Error update routine with id ${routine.id} from local storage:`, err);
+            }
+        })
+    }
+
+    deleteRoutine(id: string): void {
+        this.getAllRoutine().subscribe({
+            next: (allRoutines: Routine[]) => {
+                allRoutines = allRoutines.filter(r => r.id !== id);  
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(allRoutines));
+            },
+            error: (err) => {
+                console.error(`Error update routine with id ${id} from local storage:`, err);
+            }
+        })
+    }
+
     getRoutineByDate(date: string): Observable<Routine | null> {
-        throw new Error("Method not implemented.");
+        return this.getAllRoutine().pipe(
+            map((allRoutines: Routine[]) => {
+                const routine = allRoutines.find(r => r.date!.split('T')[0] === date);
+                return routine ? routine : null;
+            })
+        );
     }
 
     saveRoutine(routine: Routine): void {

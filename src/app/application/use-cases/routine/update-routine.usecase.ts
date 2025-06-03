@@ -1,16 +1,17 @@
 import { Routine } from "../../../domain/entities/routine.entity";
 import { RoutineRepository } from "../../../domain/repositories/routine.repository";
+import { Observable } from "rxjs";
 
 
-interface SaveRoutineUseCase {
+interface UpdateRoutineUseCase {
     execute(routine: Routine): void;
 }
 
 
-export class SaveRoutine implements SaveRoutineUseCase {
+export class UpdateRoutine implements UpdateRoutineUseCase {
   constructor(private repository: RoutineRepository) {}
-
   execute(routine: Routine): void {
-    return this.repository.saveRoutine(routine);
+    return this.repository.updateRoutine(routine);
   }
+  
 }

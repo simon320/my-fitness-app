@@ -14,6 +14,8 @@ export interface RoutineRepository {
   // getExercisesByMuscle(muscleId: number): Promise<Exercise[]>;
   
   saveRoutine(routine: Routine): void;
+  updateRoutine(routine: Routine): void;
+  deleteRoutine(id: string): void;
   getRoutineById(id: string): Observable<Routine | null>;
   getRoutineByDate(date: string): Observable<Routine | null>;
   getAllRoutine(): Observable<Routine[] | null>;

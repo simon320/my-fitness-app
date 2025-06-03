@@ -81,7 +81,7 @@ export class ExerciseListComponent implements OnChanges {
     const routine: Routine = {
       id: Math.random().toString(36).substring(2, 15),
       name: this.routineName || 'Rutina personalizada',
-      date: date || new Date().toISOString(),
+      date: date || '',
       exercises: this.selectedExercises()
     };
 

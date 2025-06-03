@@ -48,7 +48,7 @@ section {
   width: 100%;
   aspect-ratio: 1;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 2.7rem;
   border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
@@ -61,9 +61,16 @@ section {
   }
 }
 
+.today {
+  border-radius: 50%;
+  outline: var(--color-primary) 1px solid;
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
 
 .day.planned {
-  outline: 2px dashed #2196f3;
+  outline: 1px dashed #2196f3;
 }
 
 .modal {
