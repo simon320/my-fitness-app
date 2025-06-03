@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 
 import { Routine } from '../../../../domain/entities/routine.entity';
-import { RoutineService } from '../../../../application/services/routine.service';
-import { LocalStorageCompletedDaysRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
-import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
 import { GetRoutineByDate } from '../../../../application/use-cases/routine/get-routine-by-date.usecase';
+import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
 
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
   imports: [CommonModule],
+  providers: [LocalStorageRoutineRepository],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
@@ -31,18 +30,40 @@ export class CalendarComponent {
   public readonly currentMonth = signal(this.today.getMonth());
   public readonly currentYear = signal(this.today.getFullYear());
   public readonly days = signal(this.getDaysInMonth(this.currentMonth(), this.currentYear()));
+  public currentDate: Date = new Date();
+  public readonly weekDays: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 
 
 
-  private getDaysInMonth(month: number, year: number): Date[] {
-    const date = new Date(year, month, 1);
-    const days = [];
-    while (date.getMonth() === month) {
-      days.push(new Date(date));
-      date.setDate(date.getDate() + 1);
-    }
-    return days;
+  public get formattedDate(): string {
+    return this.currentDate.toLocaleDateString('es-AR', {
+      day: '2-digit',
+      month: 'long'
+    }).split('-').join(' de ');
   }
+  
+
+
+private getDaysInMonth(month: number, year: number): Date[] {
+  const days: Date[] = [];
+
+  const firstDayOfMonth = new Date(year, month, 1);
+  const startDayIndex = (firstDayOfMonth.getDay() + 6) % 7; // Convertir de domingo=0 a lunes=0
+
+  // Agregar días vacíos (placeholders) antes del día 1
+  for (let i = 0; i < startDayIndex; i++) {
+    days.push(null as any); // null para representar espacios vacíos
+  }
+
+  const date = new Date(year, month, 1);
+  while (date.getMonth() === month) {
+    days.push(new Date(date));
+    date.setDate(date.getDate() + 1);
+  }
+
+  return days;
+}
+
 
 
   public prevMonth(): void {
@@ -79,11 +100,20 @@ export class CalendarComponent {
   // }
 
 
-  public async openRoutineDetails(date: Date): Promise<void> {
-    const routine = await this.getRoutineByDate.execute(this.getDayKey(date));
-    if (routine) {
-      this.selectedRoutine.set(routine);
-    }
+  public openRoutineDetails(date: Date): void {
+    this.getRoutineByDate.execute(this.getDayKey(date)).subscribe({
+      next: (routine) => {
+        if (routine) {
+          this.selectedRoutine.set(routine);
+        } else {
+          this.selectedRoutine.set(null);
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching routine:', err);
+        this.selectedRoutine.set(null);
+      }
+    })
   }
 
 
