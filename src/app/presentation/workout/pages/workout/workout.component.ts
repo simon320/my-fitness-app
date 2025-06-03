@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 
 import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../domain/entities/exercise.entity';
@@ -7,6 +7,9 @@ import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
 import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
+import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
+import { GetAllRoutine } from '../../../../application/use-cases/routine/get-all-routine';
+import { Routine } from '../../../../domain/entities/routine.entity';
 
 
 const mockExercises: Exercise[] = [
@@ -144,11 +147,15 @@ const mockExercises: Exercise[] = [
 @Component({
     selector: 'app-workout',
     imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe],
+    providers: [LocalStorageRoutineRepository],
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent {
-    public exercises = signal<Exercise[]>(mockExercises);
+    private repository = inject(LocalStorageRoutineRepository);
+    private getAllRoutine = new GetAllRoutine(this.repository);
+    public routine = signal<Routine | null>(null);
+    public exercises = signal<Exercise[]>([]);
     public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
     public hasPrev = computed(() => this.currentIndex() > 0);
     public currentExercise = computed(() => this.exercises()[this.currentIndex()]);
@@ -174,6 +181,8 @@ export class WorkoutComponent {
     });
 
     constructor() {
+        this.intializeExercises();
+
         effect(() => {
             if (this.isRunning()) {
                 this.startInterval();
@@ -186,6 +195,23 @@ export class WorkoutComponent {
         effect(() => {
             if (this.countdown()) {
                 this.time.set(0);
+            }
+        });
+    }
+
+    private intializeExercises() {
+        this.getAllRoutine.execute().subscribe({
+            next: (routines) => {
+                if (routines && routines.length > 0) {
+                    this.routine.set(routines[ routines.length - 1 ]);
+                    this.exercises.set(this.routine()!.exercises);
+                } else {
+                    this.exercises.set(mockExercises);
+                }
+            },
+            error: (error) => {
+                console.error('Error fetching routines:', error);
+                this.exercises.set(mockExercises);
             }
         });
     }

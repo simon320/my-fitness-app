@@ -1,19 +1,9 @@
 
-<!-- 
-    VISTA 1
-        No comenzo el entrenamiento.
-
-    VISTA 2
-        Entrenamiento full-screen
-
-    VISTA 3
-        Revisa la rutina mientras el entrenamiento esta en curso.
--->
-
 <div class="workout-screen">
     @if(isTraining() && !listExerciseOpen()) {
         <!-- EXERCISE INFO -->
         <section class="exercise-info">
+            <span>{{( routine()!.name )}}</span>
             <h2>{{ currentExercise().name | titlecase }}</h2>
             <div class="exercise-image">
                 <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
@@ -41,9 +31,9 @@
             <div class="controls">
                 <app-circle-button 
                     [bgColor]="'transparent'" 
-                    [colorIcon]="'#fff'" 
-                    [size]="65" 
-                    [icon]="'⮜'" 
+                    [colorIcon]="'#ccc'" 
+                    [size]="45" 
+                    [icon]="(false ? 'volver' : '⮜')" 
                     (click)="previousExercise()" />
                 
                 <app-circle-button 
@@ -53,9 +43,9 @@
                 
                 <app-circle-button 
                     [bgColor]="'transparent'" 
-                    [colorIcon]="'#fff'" 
-                    [size]="65" 
-                    [icon]="((( completedExercises().size -1 ) === exercises().length) ? 'Finalizar' : '⮞' )"
+                    [colorIcon]="'#ccc'" 
+                    [size]="45" 
+                    [icon]="(false ? 'completar' : '⮞' )"
                     (click)="nextExercise()" />
             </div>
         </section>

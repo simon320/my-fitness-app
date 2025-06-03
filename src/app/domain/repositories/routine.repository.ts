@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Exercise } from '../entities/exercise.entity';
 import { Routine } from '../entities/routine.entity';
 
@@ -9,9 +10,10 @@ export interface Muscle {
 
 export interface RoutineRepository {
   // getTodayRoutine(): Promise<Exercise[]>;
-  // getRoutineByDate(date: string): Promise<Routine | null>;
   // getMuscleGroups(): Promise<Muscle[]>;
   // getExercisesByMuscle(muscleId: number): Promise<Exercise[]>;
-
+  
   saveRoutine(routine: Routine): void;
+  getRoutineById(id: string): Observable<Routine | null>;
+  getAllRoutine(): Observable<Routine[] | null>;
 }
