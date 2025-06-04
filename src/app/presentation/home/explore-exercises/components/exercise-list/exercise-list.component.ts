@@ -10,6 +10,7 @@ import { SaveRoutine } from '../../../../../application/use-cases/routine/save-r
 import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
 import { CircleButtonComponent } from "../../../../../shared/atoms/circle-button/circle-button.component";
 import { LocalStorageRoutineRepository } from '../../../../../infrastructure/local-storage/routine.repositoty';
+import { RoutineService } from '../../../../../application/services/routine.service';
 
 
 type Flow = 'train' | 'calendar' | 'routine';
@@ -24,6 +25,7 @@ export class ExerciseListComponent implements OnChanges {
   private repository = new LocalStorageRoutineRepository();
   private saveUseCase = new SaveRoutine(this.repository);
   private exerciseService = inject(ExerciseDbApiService);
+  private routineService = inject(RoutineService);
   private router = inject(Router);
 
   public selectedBodyPart = input<string>('');
@@ -139,6 +141,7 @@ export class ExerciseListComponent implements OnChanges {
     };
 
     this.saveUseCase.execute(routine);
+    this.routineService.activeRoutine.set(routine);
 
     // TODO => Show success message
 
