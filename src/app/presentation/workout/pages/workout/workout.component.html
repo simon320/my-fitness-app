@@ -57,7 +57,7 @@
         @if(!isTraining()) {
         <div class="start-training">
             <h1>Comenzar rutina</h1>
-            <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [size]="45" [icon]="'▶'"
+        <app-circle-button [bgColor]="'#00ff6a'" [colorIcon]="'#000'" [broad]="1" [colorBorder]="'#333'" [size]="45" [icon]="'▶'"
                 (action)="startRoutine()" />
         </div>
         }

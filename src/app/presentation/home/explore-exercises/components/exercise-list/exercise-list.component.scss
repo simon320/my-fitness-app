@@ -47,7 +47,7 @@
 .exercise-card {
   position: relative;
   background-color: var(--color-background-secondary);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 2px 4px -8px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   cursor: pointer;
@@ -61,6 +61,7 @@
 
   &.selected {
     outline: 1px solid var(--color-secondary);
+    background-color: var(--color-background-tertiary);
   }
 
   &:hover {
@@ -114,8 +115,9 @@
 
 .checkbox-wrapper {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 9px;
+  right: 9px;
+  z-index: 1000;
 }
 
 // CHECKBOX STYLES

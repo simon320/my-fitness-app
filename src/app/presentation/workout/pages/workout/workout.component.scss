@@ -12,28 +12,31 @@
         flex-direction: column;
         align-items: center;
         color: var(--color-text-primary);
-        
+
         .exercise-title {
             margin-top: 1rem;
+            padding: 10px;
             width: 100%;
             display: flex;
             flex-direction: column;
             border-bottom: #272727 1px solid;
 
             span {
-                font-size: 1rem;
+                font-size: .9rem;
                 font-weight: 300;
                 color: var(--color-text);
                 text-align: center;
             }
-    
+
             h2 {
-                text-align: start;
+                color: var(--color-text);
+                text-align: center;
                 font-size: 1rem;
-                font-weight: 700;
-                text-shadow: 2px 2px 2px #000;
-                margin-left: 1rem;
+                font-weight: 600;
+                text-shadow: 2px 2px 8px #000;
+                margin-right: 1rem;
             }
+
         }
 
 
@@ -42,14 +45,14 @@
             flex: 1.5;
             width: 100dvw;
             box-shadow: inset 4px 4px 4px #000;
-            
+
             img {
                 display: flex;
                 border-radius: 10px;
                 width: 95%;
                 height: 100%;
                 margin: auto;
-                filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
+                // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
                 // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1);
 
             }
@@ -63,7 +66,6 @@
                 z-index: 1000;
             }
 
-
         }
 
     }
@@ -75,6 +77,7 @@
         justify-content: space-between;
         box-shadow: inset 0px 3px 5px #000;
         border-top: #000000 2px solid;
+        margin-bottom: 1rem;
 
         .timer {
             display: flex;
@@ -91,10 +94,11 @@
         .info-top {
             display: flex;
             justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #757070;
-            text-shadow: #000 2px 5px 10px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--color-text);
+
+            text-shadow: #050505 -.5px -.5px .5px, #000 1px 2px 4px;
 
             div {
                 display: flex;
@@ -103,20 +107,21 @@
             }
 
         }
-        
+
         .progress-container {
             width: 100%;
-            height: 3px;
+            height: 4px;
             border-radius: 5px;
             background-color: #ccc;
             overflow: hidden;
             margin-bottom: 1rem;
-            box-shadow: inset 2 -2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: inset -2px -2px 1px rgba(0, 0, 0, 0.7), 2px 2px 8px rgba(0, 0, 0, 1);
         }
 
         .progress-bar {
             height: 100%;
-            background-color: #4caf50;
+            background-color: #54f059;
+            // background-color: #4caf50;
             transition: width 0.3s ease-in-out;
         }
 
@@ -124,8 +129,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
 
+            app-circle-button:nth-child(2) {
+                position: relative; 
+                top: 1rem;              
+            }
+            
         }
     }
 
@@ -134,13 +144,38 @@
         width: 100%;
         overflow: scroll;
         padding-bottom: 2rem;
+        margin-top: 1rem;
 
         .start-training {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
             gap: 1rem;
-            padding: 1rem 0;
+            padding: 1rem 1rem;
+            border-bottom: #1e1f1e 2px solid;
+            box-shadow: #000 0px 3px 5px;
+
+            h1 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--color-text);
+                text-shadow: #000 2px 5px 10px;
+            }
+
+            app-arrow-button {
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+                background-color: var(--color-text);
+                color: var(--color-text-primary);
+                box-shadow: #000 0px 3px 5px;
+                transition: all .3s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.1);
+                    box-shadow: #000 0px 5px 10px;
+                }
+            }
         }
 
         .arrow-btn {

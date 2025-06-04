@@ -6,8 +6,8 @@
     height: size() + 'px',
     fontSize: size() * 0.4 + 'px',
     color: colorIcon(),
-    border: isDisabled() ? 'none' : '2px solid rgba(0, 0, 0, 0.7)',
-    boxShadow: isDisabled() ? 'none' : '0 0 16px rgba(0, 0, 0, 1), inset 2px 2px 38px rgba(100, 100, 100, 0.3), inset -1px -1px 5px rgba(0, 0, 0, 0.9)',
+    border: isDisabled() ? 'none' : broad() + 'px solid ' + colorBorder(),
+    boxShadow: isDisabled() ? 'none' : propertiesOfShadows(),
   }"
   (click)="onClick()"
   [disabled]="isDisabled()"
