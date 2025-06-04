@@ -55,8 +55,8 @@
         scroll-snap-align: start;
         background: #1e1e2f;
         border-radius: 1rem;
-        min-width: 220px;
-        max-width: 220px;
+        min-width: 270px;
+        max-width: 270px;
         flex-shrink: 0;
         padding: 0;
         position: relative;
@@ -66,66 +66,65 @@
 
         img {
             width: 100%;
-            height: 120px;
+            height: 100px;
             object-fit: cover;
         }
+
+        
+        .play-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--color-primary);
+            color: #000;
+            border: #000 1px solid;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        }
+
 
         .info {
             padding: 0.8rem;
 
-            h3 {
-                font-size: 1rem;
-                margin: 0 0 0.3rem;
-            }
-
-            p {
-                font-size: 0.8rem;
-                color: #aaa;
-                margin-bottom: 0.5rem;
-            }
-
-            .tags {
+            .card-header {
                 display: flex;
-                gap: 0.5rem;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+
+                h3 {
+                    font-size: 1rem;
+                    margin: 0 0 0.3rem;
+                }
+
+                .exercises-length {
+                    font-size: 0.8rem;
+                    color: #ccc;
+                    font-weight: 500;
+                }
+
+            }
+
+            .muscle-group {
+                display: flex;
+                gap: 0.3rem;
                 font-size: 0.75rem;
+                font-weight: 500;
+                color: #ccc;
+                margin-top: 0.5rem;
 
                 span {
                     background-color: #2e2e40;
                     padding: 0.3rem 0.6rem;
                     border-radius: 999px;
                 }
-
-                .duration {
-                    color: #69f0ae;
-                }
-
-                .calories {
-                    color: #ffc400;
-                }
-            }
-
-            .muscle-group {
-                font-size: 0.75rem;
-                color: #ccc;
-                margin-top: 0.5rem;
-            }
-
-            .play-button {
-                position: absolute;
-                top: 100px;
-                right: 10px;
-                background: #ff5722;
-                color: white;
-                border: none;
-                border-radius: 50%;
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
             }
         }
     }

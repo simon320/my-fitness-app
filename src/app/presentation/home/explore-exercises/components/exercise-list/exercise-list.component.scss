@@ -170,6 +170,39 @@
 
 }
 
+// PAGINATION
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+
+  button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background-color: var(--color-secondary);
+      color: white;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+
 
 // MODAL STYLES
 .modal-backdrop {

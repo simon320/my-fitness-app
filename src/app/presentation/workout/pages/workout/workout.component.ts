@@ -5,11 +5,10 @@ import { Routine } from '../../../../domain/entities/routine.entity';
 import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../domain/entities/exercise.entity';
 import { FormatTimePipe } from '../../../../shared/pipes/format-time.pipe';
+import { RoutineService } from '../../../../application/services/routine.service';
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
-import { GetAllRoutine } from '../../../../application/use-cases/routine/get-all-routine';
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
 import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
-import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
 
 
 const mockExercises: Exercise[] = [
@@ -147,14 +146,13 @@ const mockExercises: Exercise[] = [
 @Component({
     selector: 'app-workout',
     imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe],
-    providers: [LocalStorageRoutineRepository],
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent {
-    private repository = inject(LocalStorageRoutineRepository);
-    private getAllRoutine = new GetAllRoutine(this.repository);
+    private routineService = inject(RoutineService);
     public routine = signal<Routine | null>(null);
+
     public exercises = signal<Exercise[]>([]);
     public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
     public hasPrev = computed(() => this.currentIndex() > 0);
@@ -163,6 +161,10 @@ export class WorkoutComponent {
     public isTraining = signal<boolean>(false);
     public listExerciseOpen = signal<boolean>(false);
     public completedExercises = signal<Set<number>>(new Set());
+    private intervalId: any;
+    readonly isRunning = signal(false);
+    public countdown = input<number | undefined>();
+    readonly time = signal(0);
 
     public progressPercentage = computed(() => {
         const total = this.exercises().length;
@@ -171,10 +173,6 @@ export class WorkoutComponent {
         return (completed / total) * 100;
     });
 
-    private intervalId: any;
-    readonly isRunning = signal(false);
-    public countdown = input<number | undefined>();
-    readonly time = signal(0);
     readonly displayTime = computed(() => { 
         const cd = this.countdown();
         return cd ? cd - this.time() : this.time();
@@ -200,21 +198,10 @@ export class WorkoutComponent {
     }
 
     private intializeExercises() {
-        this.getAllRoutine.execute().subscribe({
-            next: (routines) => {
-                if (routines && routines.length > 0) {
-                    this.routine.set(routines[ routines.length - 1 ]);
-                    this.exercises.set(this.routine()!.exercises);
-                } else {
-                    this.exercises.set(mockExercises);
-                }
-            },
-            error: (error) => {
-                console.error('Error fetching routines:', error);
-                this.exercises.set(mockExercises);
-            }
-        });
+        this.routine.set(this.routineService.activeRoutine());
+        this.routine() && this.exercises.set(this.routine()!.exercises);
     }
+
 
     public startRoutine() {
         this.toggleTimer();
@@ -222,45 +209,27 @@ export class WorkoutComponent {
         this.isTraining.set(true);
     }
 
+
+    public removeExercise(exercise: Exercise): void {
+        if(this.exercises().length === 1) {
+            alert("La rutina debe tener al menos un ejercicio");
+            return;
+        }
+
+        this.routine.update(prev => {
+            if (!prev) 
+                return prev;
+
+            const editExercises = prev.exercises.filter(e => e.id !== exercise.id);
+            return { ...prev, exercises: editExercises };
+        });
+        this.routineService.activeRoutine.set(this.routine());
+        this.exercises.set(this.routine()!?.exercises);
+    }
+    
+
     public toggleListExercise(): void {
         this.listExerciseOpen.set( !this.listExerciseOpen() );
-    }
-
-    private startInterval() {
-        this.intervalId = setInterval(() => {
-            const cd = this.countdown();
-            this.time.update((t) => {
-                if (cd && t >= cd) {
-                    this.isRunning.set(false);
-                    return t;
-                }
-                return t + 1;
-            });
-        }, 1000);
-    }
-
-
-    private clearInterval() {
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-            this.intervalId = null;
-        }
-    }
-
-
-    public reset(): void {
-        this.time.set(0);
-        this.isRunning.set(false);
-    }
-
-
-    ngOnDestroy(): void {
-        this.clearInterval();
-    }
-
-
-    public toggleTimer(): void {
-        this.isRunning.update((r) => !r);
     }
 
 
@@ -296,24 +265,42 @@ export class WorkoutComponent {
         }
     }
 
-    public removeExercise(exercise: Exercise): void {
-        // const updatedExercises = this.exercises().filter((_, i) => i !== index);
-        // this.exercises.set(updatedExercises);
 
-        // // Si el ejercicio eliminado es el actual, retroceder el índice
-        // if (this.currentIndex() >= index) {
-        //     this.currentIndex.update((i) => Math.max(i - 1, 0));
-        // }
-
-        // // Actualizar el set de ejercicios completados
-        // const updatedCompleted = new Set(this.completedExercises());
-        // updatedCompleted.forEach((value) => {
-        //     if (value > index) {
-        //         updatedCompleted.delete(value);
-        //         updatedCompleted.add(value - 1);
-        //     }
-        // });
-        // this.completedExercises.set(updatedCompleted);
+    // Timer Methods
+    private startInterval() {
+        this.intervalId = setInterval(() => {
+            const cd = this.countdown();
+            this.time.update((t) => {
+                if (cd && t >= cd) {
+                    this.isRunning.set(false);
+                    return t;
+                }
+                return t + 1;
+            });
+        }, 1000);
     }
 
+
+    private clearInterval() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+    }
+
+
+    public reset(): void {
+        this.time.set(0);
+        this.isRunning.set(false);
+    }
+
+
+    public toggleTimer(): void {
+        this.isRunning.update((r) => !r);
+    }
+    
+
+    ngOnDestroy(): void {
+        this.clearInterval();
+    }
 }

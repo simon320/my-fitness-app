@@ -3,10 +3,9 @@ import { Component, inject, signal } from "@angular/core";
 import { Routine } from "../../../domain/entities/routine.entity";
 import { GetAllRoutine } from "../../../application/use-cases/routine/get-all-routine";
 import { LocalStorageRoutineRepository } from "../../../infrastructure/local-storage/routine.repositoty";
+import { RoutineService } from "../../../application/services/routine.service";
+import { Router } from "@angular/router";
 
-interface RoutineExercise extends Routine {
-    muscleGroup?: Set<string>;
-}
 
 @Component({
     selector: "app-created-routines",
@@ -17,7 +16,9 @@ interface RoutineExercise extends Routine {
 export class CreatedRoutinesComponent {
     private repository = inject(LocalStorageRoutineRepository);
     private getAllRoutine = new GetAllRoutine(this.repository);
-    public routines = signal<RoutineExercise[]>([]);
+    private routineService = inject(RoutineService);
+    private router = inject(Router);
+    public routines = signal<Routine[]>([]);
 
     ngOnInit() {
         this.intializeExercises();
@@ -35,6 +36,7 @@ export class CreatedRoutinesComponent {
             }
         });
         this.getGroupMuscle();
+        this.addImageToRoutine();
     }
 
     private getGroupMuscle(): void {
@@ -47,6 +49,18 @@ export class CreatedRoutinesComponent {
 
             routine.muscleGroup = muscleGroups;                            
         });
+    }
+
+    private addImageToRoutine(): void {
+        const muscleGroups = new Set<string>();
+        this.routines().map(routine => {
+            routine.image = '/assets/background-exercise/pectoral.png'; // Default image                         
+        });
+    }
+
+    public startRoutine(routine: Routine) {
+        this.routineService.activeRoutine.set(routine);
+        this.router.navigateByUrl('/workout');
     }
 
 }

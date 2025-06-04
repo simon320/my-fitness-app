@@ -32,6 +32,9 @@ export class ExerciseListComponent implements OnChanges {
   public openModal = signal<boolean>(false);
   public routineName = '';
 
+  public currentPage = signal(1);
+  private readonly pageSize = 5;
+
   private unselectedExercises = computed(() =>
     this.allExercises().filter(
       (ex) => !this.selectedExercises().some((sel) => sel.id === ex.id)
@@ -43,7 +46,57 @@ export class ExerciseListComponent implements OnChanges {
     ...this.unselectedExercises(),
   ]);
 
+  // PAGINATION
+  public paginatedExercises = computed(() => {
+    const start = (this.currentPage() - 1) * this.pageSize;
+    return this.displayedExercises().slice(start, start + this.pageSize);
+  });
 
+  public totalPages = computed(() => {
+    return Math.ceil(this.displayedExercises().length / this.pageSize);
+  });
+
+  public nextPage(): void {
+    if (this.currentPage() < this.totalPages()) {
+      this.currentPage.update(p => p + 1);
+    }
+  }
+
+  public prevPage(): void {
+    if (this.currentPage() > 1) {
+      this.currentPage.update(p => p - 1);
+    }
+  }
+
+  public pages = computed(() => {
+    const total = this.totalPages();
+    const current = this.currentPage();
+    const maxVisible = 5;
+    const pages: (number | string)[] = [];
+
+    if (total <= maxVisible) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const showLeftDots = current > 3;
+    const showRightDots = current < total - 2;
+
+    if (!showLeftDots && showRightDots) {
+      pages.push(1, 2, 3, '...', total);
+    } else if (showLeftDots && !showRightDots) {
+      pages.push(1, '...', total - 2, total - 1, total);
+    } else if (showLeftDots && showRightDots) {
+      pages.push(1, '...', current - 1, current, current + 1, '...', total);
+    }
+
+    return pages;
+  });
+
+
+  public goToPage(page: number | string): void {
+    this.currentPage.set(+page);
+  }
+  //
 
   ngOnChanges() {
     if (this.selectedBodyPart()) {

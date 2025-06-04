@@ -1,13 +1,13 @@
-<div class="buttons-container">
-  @if (selectedExercises().length > 0) {
+@if (selectedExercises().length > 0) {
+  <div class="buttons-container">
     <button class="create-routine" (click)="toggleOptions('open')">Crear Entrenamiento</button>
     
     <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="45" [icon]="'x'"  (action)="cancel()"/>
-  }
-</div>
+  </div>
+}
 
 <div class="exercise-grid">
-  @for (exercise of displayedExercises(); track exercise.id) {
+  @for (exercise of paginatedExercises(); track exercise.id) {
     <div
       class="exercise-card"
       [class.selected]="isSelected(exercise)"
@@ -34,6 +34,27 @@
   }
 </div>
 
+@if(paginatedExercises().length > 0) {
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
+
+    @for(page of pages(); track $index) {
+      <ng-container>
+        <button
+          *ngIf="typeof page === 'number'"
+          (click)="goToPage(page)"
+          [class.active]="page === currentPage()">
+          {{ page }}
+        </button>
+        @if(page === '...') {
+          <span>{{ page }}</span>
+        }
+      </ng-container>
+    }
+
+    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
+  </div>
+}
 
 <!-- MODAL -->
  @if(openModal()) {
