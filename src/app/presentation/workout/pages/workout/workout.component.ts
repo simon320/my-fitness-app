@@ -296,4 +296,24 @@ export class WorkoutComponent {
         }
     }
 
+    public removeExercise(exercise: Exercise): void {
+        // const updatedExercises = this.exercises().filter((_, i) => i !== index);
+        // this.exercises.set(updatedExercises);
+
+        // // Si el ejercicio eliminado es el actual, retroceder el índice
+        // if (this.currentIndex() >= index) {
+        //     this.currentIndex.update((i) => Math.max(i - 1, 0));
+        // }
+
+        // // Actualizar el set de ejercicios completados
+        // const updatedCompleted = new Set(this.completedExercises());
+        // updatedCompleted.forEach((value) => {
+        //     if (value > index) {
+        //         updatedCompleted.delete(value);
+        //         updatedCompleted.add(value - 1);
+        //     }
+        // });
+        // this.completedExercises.set(updatedCompleted);
+    }
+
 }

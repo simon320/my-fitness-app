@@ -1,10 +1,11 @@
 .workout-screen {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    height: 100dvh;
+    width: 100dvw;
+    height: calc(100dvh - 60px);
+    overflow: scroll;
     color: white;
-    background-image: url('/assets/textures/textura.jpg');
+    background-image: url('/assets/textures/black-wood.png');
 
 
     .exercise-info {
@@ -15,8 +16,7 @@
 
         .exercise-title {
             margin-top: 1rem;
-            padding: 10px;
-            width: 100%;
+            width: 100dvw;
             display: flex;
             flex-direction: column;
             border-bottom: #272727 1px solid;
@@ -206,7 +206,7 @@
                         height: 7rem;
                         border-radius: .3rem;
                         border: #858585 1px solid;
-                        filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
+                        // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
                     }
 
                     .info-card {
@@ -219,6 +219,17 @@
                             font-size: .8rem;
                         }
                     }
+                }
+
+                .btn-delete {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 50%;
+                    background-color: var(--color-background-tertiary);
+                    box-shadow: #000 0px 3px 5px;
                 }
 
             }

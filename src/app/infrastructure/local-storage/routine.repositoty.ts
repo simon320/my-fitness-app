@@ -33,7 +33,8 @@ export class LocalStorageRoutineRepository implements RoutineRepository {
     getRoutineByDate(date: string): Observable<Routine | null> {
         return this.getAllRoutine().pipe(
             map((allRoutines: Routine[]) => {
-                const routine = allRoutines.find(r => r.date!.split('T')[0] === date);
+                if(date === '') return null;
+                const routine = allRoutines.find(r => r.date?.split('T')[0] === date);
                 return routine ? routine : null;
             })
         );

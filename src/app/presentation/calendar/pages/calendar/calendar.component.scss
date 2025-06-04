@@ -1,8 +1,7 @@
 section {
   padding: 1rem;
-  background-image: url('/assets/textures/textura.jpg');
-  height: 100%;
-  min-height: 100dvh;
+  background-image: url('/assets/textures/black-wood.png');
+  height: calc(100dvh - 60px);
 }
 
 .calendar-header {
@@ -45,6 +44,7 @@ section {
 }
 
 .day {
+  position: relative;
   width: 100%;
   aspect-ratio: 1;
   text-align: center;
@@ -69,8 +69,9 @@ section {
 }
 
 
-.day.planned {
-  outline: 1px dashed #2196f3;
+.planned {
+  position: absolute;
+  top: -7px;
 }
 
 .modal {

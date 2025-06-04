@@ -1,0 +1,25 @@
+
+<div class="routine-section">
+    <div class="routine-header">
+        <h2>Rutinas guardadas</h2>
+        <span>ver todas</span>
+    </div>
+
+    <div class="routine-scroll">
+        @for(routine of routines(); track $index) {
+        <div class="routine-card">
+            <!-- <img [src]="routine.image" alt="routine preview" /> -->
+            <div class="info">
+                <h3>{{ routine.name }}</h3>
+                <div class="tags">
+                    <span class="duration">⏱ {{ routine.exercises.length }}</span>
+                </div>
+                @for(muscle of routine.muscleGroup; track $index) {
+                    <span class="muscle-group">{{ muscle }}</span>
+                }
+                <button class="play-button">▶</button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
