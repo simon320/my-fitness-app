@@ -2,6 +2,7 @@
 section {
   width: 90%;
   margin: auto;
+  position: relative;
 }
 
 .muscle-dropdown-header {
@@ -16,11 +17,19 @@ section {
   color: var(--color-text);
   font-size: .9rem;
   font-weight: 400;
+  transition: width .3s;
+  text-wrap: nowrap;
 
   svg {
     padding-left: .6rem;
   }
+  
+}
 
+.btn-cancel {
+  position: absolute;
+  top: 0px;
+  right: 2px;
 }
 
 .remove-border-radius {
@@ -56,6 +65,15 @@ section {
   animation: fadeSlide 200ms forwards;
 }
 
+.width-decrement {
+  width: 85%;
+}
+
+.fadeIn {
+  animation: fadeInBtn 200ms forwards;
+}
+
+
 @keyframes fadeSlide {
   from {
     opacity: 0;
@@ -65,5 +83,16 @@ section {
     opacity: 1;
     transform: translateY(0);
     height: fit-content;
+  }
+}
+
+@keyframes fadeInBtn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

@@ -7,4 +7,197 @@
         color: var(--color-text);
         font-weight: 400;
     }
+
+    .cart-container {
+        position: relative;
+        z-index: 1000;
+    }
+
+    .add-effect {
+        position: absolute;
+        top: -4px;
+        opacity: 0;
+        width: 60px;
+        height: 60px;
+        background-color: var(--color-secondary);
+        border-radius: 50%;
+    }
+
+    .animated {
+        animation: addExercise .5s ease-in-out;
+    }
+
+    @keyframes addExercise {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        25% {
+            opacity: 1;
+            transform: scale(.5);
+        }
+
+        50% {
+            opacity: 0.8;
+            transform: scale(.8);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+    }
+}
+
+// MODAL STYLES
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    overflow: scroll;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease-in-out forwards;
+    z-index: 1000;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background-color: var(--color-background);
+    border-radius: 12px;
+    padding: 24px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease forwards;
+    z-index: 1100;
+
+    .modal-title {
+        margin-bottom: 7px;
+        font-size: 1.25rem;
+        font-weight: 300;
+        color: var(--color-text);
+        margin: none;
+    }
+
+    .modal-input {
+        width: calc(100% - 10px);
+        padding: 10px 5px;
+        margin: none;
+        margin-bottom: 24px;
+        border-radius: 6px;
+        border: none;
+        background-color: #333;
+    }
+
+    .exercises-list-container {
+        max-height: 350px;
+        overflow: scroll;
+        color: var(--color-text);
+        font-weight: bold;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .exercise-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: calc(98% - 5px);
+            border: #333 1px solid;
+            background-color: #333;
+            padding: 5px;
+            border-radius: 5px;
+
+            .card-left {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                img {
+                    height: 3rem;
+                    border-radius: .3rem;
+                    border: #858585 1px solid;
+                }
+
+                .info-card {
+                    h3 {
+                        font-weight: 300;
+                        font-size: .8rem;
+                    }
+                }
+            }
+
+            .btn-delete {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                background-color: var(--color-background-tertiary);
+                box-shadow: #000 0px 3px 5px;
+            }
+
+        }
+    }
+
+    .modal-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+
+            &.primary {
+                background-color: var(--color-background-tertiary);
+                color: var(--color-text);
+                font-weight: 300;
+            }
+
+            &.secondary {
+                background-color: var(--color-background-tertiary);
+                color: var(--color-text);
+                font-weight: 300;
+            }
+
+            &.tertiary {
+                background-color: var(--color-background-tertiary);
+                color: var(--color-text);
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translate(-50%, 10%) scale(0.95);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }

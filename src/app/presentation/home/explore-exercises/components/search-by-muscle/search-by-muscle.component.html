@@ -9,12 +9,13 @@
     <span>{{ searchTerm() }}</span>
 
   </div>
+  <div #btnCancel class="btn-cancel">
+    @if (searchTerm() !== searchTermDefault) {
+      <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="35" [icon]="'x'" (action)="cancel()"/>
+    }
+  </div>
   
-  @if (searchTerm() !== searchTermDefault) {
-    <div class="buttons-container">
-      <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="45" [icon]="'x'" (action)="cancel()"/>
-    </div>
-  }
+
   <div #dropdownMenu class="dropdown-menu">
     <ul>
       @for(group of bodyParts(); track $index) {

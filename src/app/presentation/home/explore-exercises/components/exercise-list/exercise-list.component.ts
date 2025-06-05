@@ -1,38 +1,26 @@
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Component, OnChanges, signal, inject, input, computed, output } from '@angular/core';
 
-import { Routine } from '../../../../../domain/entities/routine.entity';
 import { TruncatePipe } from '../../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
 import { RoutineService } from '../../../../../application/services/routine.service';
-import { SaveRoutine } from '../../../../../application/use-cases/routine/save-routine.usecase';
 import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
-import { CircleButtonComponent } from "../../../../../shared/atoms/circle-button/circle-button.component";
-import { LocalStorageRoutineRepository } from '../../../../../infrastructure/local-storage/routine.repositoty';
 
-
-type Flow = 'train' | 'calendar' | 'routine';
 
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrl: './exercise-list.component.scss',
-  imports: [CircleButtonComponent, TruncatePipe, FormsModule],
+  imports: [ TruncatePipe, FormsModule],
 })
 export class ExerciseListComponent implements OnChanges {
-  private repository = new LocalStorageRoutineRepository();
-  private saveUseCase = new SaveRoutine(this.repository);
   private exerciseService = inject(ExerciseDbApiService);
   private routineService = inject(RoutineService);
-  private router = inject(Router);
 
   public cleanSearchName = output<boolean>();
   public selectedBodyPart = input<string>('');
   private allExercises = signal<Exercise[]>([]);
   public selectedExercises = signal<Exercise[]>([]);
-  public openModal = signal<boolean>(false);
-  public routineName = '';
 
   public currentPage = signal(1);
   private readonly pageSize = 5;
@@ -99,13 +87,15 @@ export class ExerciseListComponent implements OnChanges {
   }
 
   ngOnChanges() {    
-    if (this.selectedBodyPart()) {
+    if (this.selectedBodyPart() !== '') {
       this.exerciseService
         .getExercisesByBodyPart(this.selectedBodyPart())
         .subscribe((exercises) => {
           this.allExercises.set(exercises);
         });
     }
+    else 
+      this.cancel();
   }
 
 
@@ -128,39 +118,32 @@ export class ExerciseListComponent implements OnChanges {
   }
 
 
-  public toggleOptions(acction: 'open' | 'close'): void {
-    this.openModal.set(acction === 'open');
-  }
+  // public createRoutine(flow: Flow, date?: string): Promise<boolean> | void {
 
+  //   const routine: Routine = {
+  //     id: Math.random().toString(36).substring(2, 15),
+  //     name: this.routineName || 'Rutina personalizada',
+  //     date: date || '',
+  //     exercises: this.selectedExercises()
+  //   };
 
-  public createRoutine(flow: Flow, date?: string): Promise<boolean> | void {
+  //   this.saveUseCase.execute(routine);
+  //   this.routineService.activeRoutine.set(routine);
 
-    const routine: Routine = {
-      id: Math.random().toString(36).substring(2, 15),
-      name: this.routineName || 'Rutina personalizada',
-      date: date || '',
-      exercises: this.selectedExercises()
-    };
+  //   // TODO => Show success message
 
-    this.saveUseCase.execute(routine);
-    this.routineService.activeRoutine.set(routine);
-
-    // TODO => Show success message
-
-    switch (flow) {
-      case 'train': return this.router.navigateByUrl('/workout');        
-      case 'calendar': return this.router.navigateByUrl('/calendar'); 
-      case 'routine': 
-        this.selectedExercises.set([]);
-        this.openModal.set(false);
-    }
-  }
+  //   switch (flow) {
+  //     case 'train': return this.router.navigateByUrl('/workout');        
+  //     case 'calendar': return this.router.navigateByUrl('/calendar'); 
+  //     case 'routine': 
+  //       this.selectedExercises.set([]);
+  //       this.openModal.set(false);
+  //   }
+  // }
 
   public cancel(): void {
     this.selectedExercises.set([]);
     this.allExercises.set([]);
-    this.openModal.set(false);
-    this.routineName = '';
     this.cleanSearchName.emit(true);
   }
 }

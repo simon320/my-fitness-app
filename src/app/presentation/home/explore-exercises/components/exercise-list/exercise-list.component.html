@@ -49,19 +49,3 @@
       <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
     </div>
   }
-
-  <!-- MODAL -->
-  @if(openModal()) {
-    <div class="modal-backdrop" (click)="toggleOptions('close')"></div>
-
-    <div class="modal-container">
-      <h2 class="modal-title">Renombrar rutina</h2>
-      <input type="text" [(ngModel)]="routineName" class="modal-input" placeholder="Nombre de la rutina (opcional)" />
-
-      <div class="modal-buttons">
-        <button class="btn primary" (click)="createRoutine('train')">Entrenar</button>
-        <button class="btn secondary" (click)="createRoutine('calendar')">Programar en fecha</button>
-        <button class="btn tertiary" (click)="createRoutine('routine')">Solo guardar</button>
-      </div>
-    </div>
-  }
