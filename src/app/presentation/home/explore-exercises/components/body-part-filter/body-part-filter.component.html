@@ -10,7 +10,7 @@ class="search-input"
 <div class="search-wrapper" (click)="toggleDropdown(true)">
   </div> -->
 
-<div #inputSelect class="muscle-dropdown" (click)="toggleDropdown(true)" ()>
+<!-- <div #inputSelect class="muscle-dropdown" (click)="toggleDropdown(true)" ()> -->
 
   <div class="muscle-dropdown-header">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -20,7 +20,7 @@ class="search-input"
     <span>Explora ejercicios por grupo muscular</span>
   </div>
 
-</div>
+<!-- </div> -->
 
 @if(isOpen()) {
   @for(group of bodyParts(); track $index) {

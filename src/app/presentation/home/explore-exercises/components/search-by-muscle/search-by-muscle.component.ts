@@ -5,29 +5,37 @@ import {
   ViewChild,
   ViewContainerRef,
   OnDestroy,
+  signal,
+  output,
+  inject
 } from '@angular/core';
 import {
   Overlay,
   OverlayRef,
-  FlexibleConnectedPositionStrategy,
   OverlayModule,
 } from '@angular/cdk/overlay';
 import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
+
 
 @Component({
   selector: 'app-search-by-muscle',
   templateUrl: './search-by-muscle.component.html',
   styleUrls: ['./search-by-muscle.component.scss'], 
   imports: [
-    CommonModule,
     OverlayModule,
     PortalModule
-  ]
+]
 })
 export class SearchByMuscleComponent implements OnDestroy {
   @ViewChild('dropdownTrigger') trigger!: ElementRef;
   @ViewChild('dropdownMenu') menuTemplate!: TemplateRef<any>;
+
+  private exerciseService = inject(ExerciseDbApiService);
+  public bodyPartSelected = output<string>();
+  public bodyParts = signal<string[]>([]);
+  public isOpen = signal<boolean>(false);
+  public searchTerm = signal<string>('');
 
   private overlayRef!: OverlayRef;
 
@@ -35,6 +43,16 @@ export class SearchByMuscleComponent implements OnDestroy {
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef
   ) {}
+
+  
+  ngOnInit() {
+    // this.exerciseService.getAllExercises().subscribe((parts) => {
+    //   console.log(parts);
+    // });
+    this.exerciseService.getBodyParts().subscribe((parts: string[]) => {
+      this.bodyParts.set(parts);
+    });
+  }
 
   toggleDropdown() {
     if (this.overlayRef && this.overlayRef.hasAttached()) {
@@ -67,6 +85,12 @@ export class SearchByMuscleComponent implements OnDestroy {
       const portal = new TemplatePortal(this.menuTemplate, this.viewContainerRef);
       this.overlayRef.attach(portal);
     }
+  }
+
+  public selectMuscle(group: string): void {
+    this.searchTerm.set(group);
+    this.isOpen.set(false);    
+    this.bodyPartSelected.emit(group);
   }
 
   ngOnDestroy(): void {

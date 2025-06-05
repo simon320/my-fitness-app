@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, signal } from '@angular/core';
 
 import { Routine } from '../../../../domain/entities/routine.entity';
@@ -11,7 +11,7 @@ import { UpdateRoutine } from '../../../../application/use-cases/routine/update-
 
 @Component({
   selector: 'app-calendar',
-  imports: [CommonModule, FormatMonthPipe],
+  imports: [FormatMonthPipe],
   providers: [LocalStorageRoutineRepository],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']

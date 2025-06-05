@@ -1,11 +1,19 @@
 <!-- Trigger -->
-<button #dropdownTrigger (click)="toggleDropdown()">Abrir Dropdown</button>
+<!-- <button >Abrir Dropdown</button> -->
+
+<div #dropdownTrigger (click)="toggleDropdown()" class="muscle-dropdown-header">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m21 21-4.34-4.34" />
+    <circle cx="11" cy="11" r="8" />
+  </svg>
+  <span>Explora ejercicios por grupo muscular</span>
+</div>
 
 <!-- Dropdown menu como template para el Overlay -->
 <ng-template #dropdownMenu>
   <ul class="dropdown-menu animated">
-    <li>Opción A</li>
-    <li>Opción B</li>
-    <li>Opción C</li>
+  @for(group of bodyParts(); track $index) {
+      <li>{{ group }}</li>
+    }
   </ul>
 </ng-template>

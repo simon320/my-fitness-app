@@ -1,5 +1,9 @@
 <div class="card">
   <h3>{{ name() }}</h3>
-  <p *ngIf="reps()">Repeticiones: {{ reps() }}</p>
-  <p *ngIf="duration()">Duración: {{ duration() }} segundos</p>
+  @if (reps()) {
+    <p>Repeticiones: {{ reps() }}</p>
+  }
+  @if (duration()) {
+    <p>Duración: {{ duration() }} segundos</p>
+  }
 </div>

@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-exercise-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './exercise-card.component.html',
   styleUrls: ['./exercise-card.component.scss']
 })

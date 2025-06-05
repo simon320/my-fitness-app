@@ -1,7 +1,7 @@
 @if (selectedExercises().length > 0) {
   <div class="buttons-container">
     <button class="create-routine" (click)="toggleOptions('open')">Crear Entrenamiento</button>
-    
+
     <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="45" [icon]="'x'"  (action)="cancel()"/>
   </div>
 }
@@ -12,62 +12,63 @@
       class="exercise-card"
       [class.selected]="isSelected(exercise)"
       (click)="toggleSelection(exercise)"
-    >
+      >
       <div class="checkbox-wrapper">
         <label class="custom-checkbox">
           <input
             type="checkbox"
             [checked]="isSelected(exercise)"
             (click)="toggleSelection(exercise)"
-          />
-          <span class="checkmark"></span>
-        </label>
-      </div>
+            />
+            <span class="checkmark"></span>
+          </label>
+        </div>
 
-      <div class="exercise-content">
-        <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
-        <p>{{ exercise.target }}</p>
-      </div>
+        <div class="exercise-content">
+          <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
+          <p>{{ exercise.target }}</p>
+        </div>
 
-      <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
+        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
+      </div>
+    }
+  </div>
+
+  @if(paginatedExercises().length > 0) {
+    <div class="pagination-controls">
+      <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
+
+      @for(page of pages(); track $index) {
+        <ng-container>
+          @if (typeof page === 'number') {
+            <button
+              (click)="goToPage(page)"
+              [class.active]="page === currentPage()">
+              {{ page }}
+            </button>
+          }
+          @if(page === '...') {
+            <span>{{ page }}</span>
+          }
+        </ng-container>
+      }
+
+      <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
     </div>
   }
-</div>
 
-@if(paginatedExercises().length > 0) {
-  <div class="pagination-controls">
-    <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
+  <!-- MODAL -->
+  @if(openModal()) {
+    <div class="modal-backdrop" (click)="toggleOptions('close')"></div>
 
-    @for(page of pages(); track $index) {
-      <ng-container>
-        <button
-          *ngIf="typeof page === 'number'"
-          (click)="goToPage(page)"
-          [class.active]="page === currentPage()">
-          {{ page }}
-        </button>
-        @if(page === '...') {
-          <span>{{ page }}</span>
-        }
-      </ng-container>
-    }
+    <div class="modal-container">
+      <h2 class="modal-title">Renombrar rutina</h2>
+      <input type="text" [(ngModel)]="routineName" class="modal-input" placeholder="Nombre de la rutina (opcional)" />
 
-    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
-  </div>
-}
-
-<!-- MODAL -->
- @if(openModal()) {
-   <div class="modal-backdrop" (click)="toggleOptions('close')"></div>
-   
-   <div class="modal-container">
-     <h2 class="modal-title">Renombrar rutina</h2>
-     <input type="text" [(ngModel)]="routineName" class="modal-input" placeholder="Nombre de la rutina (opcional)" />
-     
-     <div class="modal-buttons">
-       <button class="btn primary" (click)="createRoutine('train')">Entrenar</button>
-       <button class="btn secondary" (click)="createRoutine('calendar')">Programar en fecha</button>
-       <button class="btn tertiary" (click)="createRoutine('routine')">Solo guardar</button>
+      <div class="modal-buttons">
+        <button class="btn primary" (click)="createRoutine('train')">Entrenar</button>
+        <button class="btn secondary" (click)="createRoutine('calendar')">Programar en fecha</button>
+        <button class="btn tertiary" (click)="createRoutine('routine')">Solo guardar</button>
       </div>
     </div>
   }

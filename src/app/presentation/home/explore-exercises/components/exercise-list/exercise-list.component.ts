@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { Component, OnChanges, signal, inject, input, computed } from '@angular/core';
 
 import { Routine } from '../../../../../domain/entities/routine.entity';
@@ -19,7 +19,7 @@ type Flow = 'train' | 'calendar' | 'routine';
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrl: './exercise-list.component.scss',
-  imports: [CircleButtonComponent, TruncatePipe, CommonModule, FormsModule],
+  imports: [CircleButtonComponent, TruncatePipe, FormsModule],
 })
 export class ExerciseListComponent implements OnChanges {
   private repository = new LocalStorageRoutineRepository();

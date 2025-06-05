@@ -2,18 +2,20 @@
 
   <div class="calendar-header">
     <button (click)="prevMonth()"><</button>
-        <h2>{{ currentMonth() | formatMonth }}</h2>
-        <button (click)="nextMonth()">></button>
+    <h2>{{ currentMonth() | formatMonth }}</h2>
+    <button (click)="nextMonth()">></button>
   </div>
 
   <div class="calendar-weekdays">
-    <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+    @for (day of weekDays; track day) {
+      <div class="weekday">{{ day }}</div>
+    }
   </div>
 
   <div class="calendar-grid">
     @for (day of days(); track $index) {
-      <div 
-        class="day" 
+      <div
+        class="day"
         [class.empty]="!day"
         [class.today]="day && isToday(day)"
         (click)="openRoutineDetails(day)"
@@ -36,19 +38,19 @@
 
 
   <!-- TODO Modal básico (puede evolucionar a componente) -->
-   @if(selectedRoutine()) {
+  @if(selectedRoutine()) {
     <div class="modal">
       <h3>{{ selectedRoutine()?.name }}</h3>
       <ul>
         @for (ex of selectedRoutine()?.exercises; track $index) {
-            <li>
-                {{ ex.name }} - {{ ex.reps }} reps
-            </li>
+          <li>
+            {{ ex.name }} - {{ ex.reps }} reps
+          </li>
         }
       </ul>
       <button (click)="startWorkout()">Iniciar entrenamiento</button>
       <button (click)="selectedRoutine.set(null)">Cerrar</button>
       <button (click)="removeRoutine()">Quitar</button>
-    </div> 
-   }
+    </div>
+  }
 </section>

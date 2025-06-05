@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { Component, ElementRef, inject, OnInit, output, signal, ViewChild } from '@angular/core';
 import {
   trigger,
@@ -15,7 +15,7 @@ import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise
   selector: 'app-body-part-filter',
   templateUrl: './body-part-filter.component.html',
   styleUrl: './body-part-filter.component.scss',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   animations: [
     trigger('fadeSlide', [
       transition(':enter', [
