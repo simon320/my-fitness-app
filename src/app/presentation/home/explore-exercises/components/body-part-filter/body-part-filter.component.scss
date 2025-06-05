@@ -1,53 +1,30 @@
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  background-color: #1e1e1e;
-  border-radius: 20px;
-  padding: 8px 16px;
-  gap: 8px;
-  transition: box-shadow 0.3s ease;
-  width: 100%;
-  max-width: 300px;
-  cursor: text;
-  margin: 2rem auto;
-
-  &:hover,
-  &:focus-within {
-    box-shadow: 0 0 8px rgba(100, 255, 100, 0.4);
-  }
-
-  .search-icon {
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    filter: brightness(0.8) saturate(0.8);
-  }
-
-  svg {
-    color: #ccc;
-  }
-
-  .search-input {
-    background: transparent;
-    border: none;
-    color: #ccc;
-    font-size: 14px;
-    width: 100%;
-    outline: none;
-
-    &::placeholder {
-      color: #777;
-    }
-  }
-}
 
 .muscle-dropdown {
-  margin-top: 8px;
-  background: #2b2b2b;
+  width: 88%;
+  margin: auto;
+  background-color: #1e1e1e;
+  // background: #1f1f1f;
   border-radius: 12px;
   padding: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+
+
+  .muscle-dropdown-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    
+    svg {
+      color: #8f8989;
+    }
+    
+    span {
+      color: #8f8989;
+      font-weight: 500;
+    }
+  }
 
   .muscle-option {
     padding: 8px 12px;

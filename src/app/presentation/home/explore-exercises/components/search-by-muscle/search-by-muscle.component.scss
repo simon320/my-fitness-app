@@ -1,0 +1,35 @@
+.dropdown-menu {
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 150px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-radius: 4px;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background: #f2f2f2;
+}
+
+/* Simple fade-slide animation */
+.animated {
+  animation: fadeSlide 200ms ease-out;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
