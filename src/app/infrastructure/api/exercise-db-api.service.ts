@@ -41,7 +41,7 @@ export class ExerciseDbApiService {
 
 
   getBodyParts(): Observable<string[]> {
-    return of([ "espalda", "cardio", "chest", "lower arms", "lower legs", "neck", "shoulders", "upper arms", "upper legs", "waist" ]);
+    return of([ "espalda", "cardio", "pecho", "brazos superior", "antebrazos", "piernas superior", "piernas inferiores", "cuello", "hombros", "cintura" ]);
     // return this.http.get<string[]>(`${this.API_URL}/exercises/bodyPartList`, { headers: this.headers });
   }
 }

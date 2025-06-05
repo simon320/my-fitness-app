@@ -1,16 +1,15 @@
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
-import { Component, OnChanges, signal, inject, input, computed } from '@angular/core';
+import { Component, OnChanges, signal, inject, input, computed, output } from '@angular/core';
 
 import { Routine } from '../../../../../domain/entities/routine.entity';
 import { TruncatePipe } from '../../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
+import { RoutineService } from '../../../../../application/services/routine.service';
 import { SaveRoutine } from '../../../../../application/use-cases/routine/save-routine.usecase';
 import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
 import { CircleButtonComponent } from "../../../../../shared/atoms/circle-button/circle-button.component";
 import { LocalStorageRoutineRepository } from '../../../../../infrastructure/local-storage/routine.repositoty';
-import { RoutineService } from '../../../../../application/services/routine.service';
 
 
 type Flow = 'train' | 'calendar' | 'routine';
@@ -28,6 +27,7 @@ export class ExerciseListComponent implements OnChanges {
   private routineService = inject(RoutineService);
   private router = inject(Router);
 
+  public cleanSearchName = output<boolean>();
   public selectedBodyPart = input<string>('');
   private allExercises = signal<Exercise[]>([]);
   public selectedExercises = signal<Exercise[]>([]);
@@ -44,7 +44,6 @@ export class ExerciseListComponent implements OnChanges {
   );
 
   public displayedExercises = computed(() => [
-    ...this.selectedExercises(),
     ...this.unselectedExercises(),
   ]);
 
@@ -98,9 +97,8 @@ export class ExerciseListComponent implements OnChanges {
   public goToPage(page: number | string): void {
     this.currentPage.set(+page);
   }
-  //
 
-  ngOnChanges() {
+  ngOnChanges() {    
     if (this.selectedBodyPart()) {
       this.exerciseService
         .getExercisesByBodyPart(this.selectedBodyPart())
@@ -114,10 +112,14 @@ export class ExerciseListComponent implements OnChanges {
   public toggleSelection(exercise: Exercise): void {
     const isSelected = this.selectedExercises().some((e) => e.id === exercise.id);
 
-    if (isSelected) 
+    if (isSelected) {
       this.selectedExercises.set( this.selectedExercises().filter((e) => e.id !== exercise.id) );
-    else 
-        this.selectedExercises.update((exs) => [...exs, exercise]);
+      this.routineService.addExercises( this.selectedExercises() );
+    }
+    else {
+      this.selectedExercises.update((exs) => [...exs, exercise]);
+      this.routineService.addExercises( this.selectedExercises() );
+    }
   }
 
 
@@ -155,10 +157,10 @@ export class ExerciseListComponent implements OnChanges {
   }
 
   public cancel(): void {
-    // resetar el selectedBodyPart / searchTerm de body-part-filter
     this.selectedExercises.set([]);
     this.allExercises.set([]);
     this.openModal.set(false);
     this.routineName = '';
+    this.cleanSearchName.emit(true);
   }
 }

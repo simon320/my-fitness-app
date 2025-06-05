@@ -1,19 +1,26 @@
-<!-- Trigger -->
-<!-- <button >Abrir Dropdown</button> -->
+<section>
 
-<div #dropdownTrigger (click)="toggleDropdown()" class="muscle-dropdown-header">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="m21 21-4.34-4.34" />
-    <circle cx="11" cy="11" r="8" />
-  </svg>
-  <span>Explora ejercicios por grupo muscular</span>
-</div>
+  <div #dropdownTrigger (click)="openDropdown(true)" class="muscle-dropdown-header">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="m21 21-4.34-4.34" />
+      <circle cx="11" cy="11" r="8" />
+    </svg>
+    <span>{{ searchTerm() }}</span>
 
-<!-- Dropdown menu como template para el Overlay -->
-<ng-template #dropdownMenu>
-  <ul class="dropdown-menu animated">
-  @for(group of bodyParts(); track $index) {
-      <li>{{ group }}</li>
-    }
-  </ul>
-</ng-template>
+  </div>
+  
+  @if (searchTerm() !== searchTermDefault) {
+    <div class="buttons-container">
+      <app-circle-button [bgColor]="'#2b2b2b'" [colorIcon]="'#ccc'" [size]="45" [icon]="'x'" (action)="cancel()"/>
+    </div>
+  }
+  <div #dropdownMenu class="dropdown-menu">
+    <ul>
+      @for(group of bodyParts(); track $index) {
+        <li (click)="selectMuscle(group)">{{ group }}</li>
+      }
+    </ul>
+  </div>
+
+</section>
