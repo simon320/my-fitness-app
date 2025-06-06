@@ -1,51 +1,37 @@
-
 <div class="exercise-grid">
+
   @for (exercise of paginatedExercises(); track exercise.id) {
-    <div
-      class="exercise-card"
-      [class.selected]="isSelected(exercise)"
-      (click)="toggleSelection(exercise)"
-      >
-      <div class="checkbox-wrapper">
-        <label class="custom-checkbox">
-          <input
-            type="checkbox"
-            [checked]="isSelected(exercise)"
-            (click)="toggleSelection(exercise)"
-            />
-            <span class="checkmark"></span>
-          </label>
-        </div>
-
-        <div class="exercise-content">
-          <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
-          <p>{{ exercise.target }}</p>
-        </div>
-
-        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" class="exercise-image" />
+    <div class="exercise-card" [ngClass]="{ 'animated': selectedIndex === exercise.id }" (click)="selectedExercise(exercise)">
+      
+      <div class="exercise-content">
+        <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
+        <p>{{ exercise.target }}</p>
       </div>
-    }
-  </div>
 
-  @if(paginatedExercises().length > 0) {
-    <div class="pagination-controls">
-      <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
-
-      @for(page of pages(); track $index) {
-        <ng-container>
-          @if (typeof page === 'number') {
-            <button
-              (click)="goToPage(page)"
-              [class.active]="page === currentPage()">
-              {{ page }}
-            </button>
-          }
-          @if(page === '...') {
-            <span>{{ page }}</span>
-          }
-        </ng-container>
-      }
-
-      <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
+      <img  class="exercise-image" [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
+    
     </div>
   }
+
+</div>
+
+@if(paginatedExercises().length > 0) {
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
+
+    @for(page of pages(); track $index) {
+    <ng-container>
+      @if (typeof page === 'number') {
+      <button (click)="goToPage(page)" [class.active]="page === currentPage()">
+        {{ page }}
+      </button>
+      }
+      @if(page === '...') {
+      <span>{{ page }}</span>
+      }
+    </ng-container>
+    }
+
+    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
+  </div>
+}

@@ -7,21 +7,28 @@ import { Exercise } from '../../domain/entities/exercise.entity';
 })
 export class RoutineService {
   readonly activeRoutine = signal<Routine | null>(null);
+  readonly deselectedExercise = signal<Exercise | null>(null);
   readonly routineInTheProcessOfCreation = signal<Exercise[] | null>(null);
 
-  setRoutine(routine: Routine) {
+  public setRoutine(routine: Routine): void {
     this.activeRoutine.set(routine);
   }
 
-  clear() {
+  public clear(): void {
     this.activeRoutine.set(null);
   }
 
-  addExercises(exercises: Exercise[]) {
+  public addExercises(exercises: Exercise[]): void {
     this.routineInTheProcessOfCreation.set(exercises);
   }
 
-  clearExercisesList() {
+  public removeExercises(exercise: Exercise): void {
+    this.routineInTheProcessOfCreation.update( exercises =>  exercises!.filter( e => e.id !== exercise.id) );
+    this.deselectedExercise.set( exercise );
+  }
+
+  public clearExercisesList(): void {
     this.routineInTheProcessOfCreation.set(null);
+    this.deselectedExercise.set(null);
   }
 }

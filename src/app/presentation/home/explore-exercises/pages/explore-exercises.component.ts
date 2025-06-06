@@ -17,9 +17,6 @@ export class ExploreExercisesComponent {
   public onBodyPartSelected(bodyPart: string) {
     this.selectedBodyPart = bodyPart;
   }
-  
-  public cleanSeachName() {
-    return this.title = 'Explora ejercicios por grupo muscular';
-  }
+
 
 }

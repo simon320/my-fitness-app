@@ -1,15 +1,16 @@
 import { Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 import { Component, effect, ElementRef, inject, Renderer2, signal, viewChild } from "@angular/core";
 
 import { Routine } from "../../../../../domain/entities/routine.entity";
-import { RoutineService } from "../../../../../application/services/routine.service";
-import { SaveRoutine } from "../../../../../application/use-cases/routine/save-routine.usecase";
-import { LocalStorageRoutineRepository } from "../../../../../infrastructure/local-storage/routine.repositoty";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
 import { TruncatePipe } from "../../../../../shared/pipes/truncate.pipe";
 import { Exercise } from "../../../../../domain/entities/exercise.entity";
+import { RoutineService } from "../../../../../application/services/routine.service";
+import { SaveRoutine } from "../../../../../application/use-cases/routine/save-routine.usecase";
 import { CircleButtonComponent } from "../../../../../shared/atoms/circle-button/circle-button.component";
+import { LocalStorageRoutineRepository } from "../../../../../infrastructure/local-storage/routine.repositoty";
+
 
 type Flow = 'train' | 'calendar' | 'routine';
 
@@ -34,7 +35,6 @@ export class ExerciseCartComponent {
     public routineDate = '';
 
 
-
     constructor() {
         effect(() => {
             if (this.routine() && this.routine()!.length > 0) {
@@ -43,9 +43,22 @@ export class ExerciseCartComponent {
                     this.render.removeClass(this.addExerciseEffect()?.nativeElement, 'animated')
                 }, 500)
             }
-
         });
     }
+
+
+    public toggleOptions(acction: 'open' | 'close'): void {        
+        this.openModal.set(acction === 'open');
+    }
+
+
+    public removeExercise(exercise: Exercise): void {
+        (this.routine()?.length === 1) 
+            && this.openModal.set(false);
+
+        this.routineService.removeExercises(exercise);
+    }
+
 
     public createRoutine(): Promise<boolean> | void {
         const routine: Routine = {
@@ -62,22 +75,17 @@ export class ExerciseCartComponent {
         // TODO => Show success message
     }
 
-    public toggleOptions(acction: 'open' | 'close'): void {        
-        this.openModal.set(acction === 'open');
-    }
-
-    removeExercise(_t20: Exercise) {
-        throw new Error('Method not implemented.');
-    }
 
     public createWorkoutFlow(): void {
         this.createRoutine();
         this.router.navigateByUrl('/workout');
     }
 
+
     public openModalCalendarFlow(): void {
         this.calendarModal.set(true);
     }
+
 
     public createCalendarFlow(): void {
         this.createRoutine();
