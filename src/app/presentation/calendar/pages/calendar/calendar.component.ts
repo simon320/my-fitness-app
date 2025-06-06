@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
-
 import { Component, inject, signal } from '@angular/core';
 
 import { Routine } from '../../../../domain/entities/routine.entity';
 import { FormatMonthPipe } from '../../../../shared/pipes/format-month.pipe';
+import { RoutineService } from '../../../../application/services/routine.service';
+import { UpdateRoutine } from '../../../../application/use-cases/routine/update-routine.usecase';
 import { GetRoutineByDate } from '../../../../application/use-cases/routine/get-routine-by-date.usecase';
 import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-storage/routine.repositoty';
-import { UpdateRoutine } from '../../../../application/use-cases/routine/update-routine.usecase';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class CalendarComponent {
   
   private repository = inject(LocalStorageRoutineRepository);
   private router = inject(Router);
+  private routineService = inject(RoutineService);
   public getRoutineByDate = new GetRoutineByDate(this.repository);
   public updateRoutine = new UpdateRoutine(this.repository);
   
@@ -130,24 +131,21 @@ private getDaysInMonth(month: number, year: number): Date[] {
 
   removeRoutine(): void {
     const routine = this.selectedRoutine();
-    if (!routine) return;
-    routine.date = '';
+    if (!routine) 
+      return;
 
+    routine.date = '';
     this.updateRoutine.execute(routine);
+    this.selectedRoutine.set(null);
   }
 
 
   public startWorkout(): void {
     const routine = this.selectedRoutine();
-    if (!routine) return;
-
-    const todayKey = this.getDayKey(new Date());
-    if (routine.date! > todayKey) { // TODO: Si la rutina es del futuro, no se puede comenzar. ¿QUIERO ESTO?
-      alert('No podés comenzar una rutina del futuro 🕒');
+    if (!routine) 
       return;
-    }
 
-    // this.routineService.setRoutine(routine);
+    this.routineService.setRoutine(routine);
     this.selectedRoutine.set(null);
     this.router.navigate(['/workout']);
   }

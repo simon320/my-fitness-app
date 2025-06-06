@@ -40,6 +40,12 @@
   <!-- TODO Modal básico (puede evolucionar a componente) -->
   @if(selectedRoutine()) {
     <div class="modal">
+      <div class="btn-delete">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </div>
       <h3>{{ selectedRoutine()?.name }}</h3>
       <ul>
         @for (ex of selectedRoutine()?.exercises; track $index) {
@@ -48,9 +54,11 @@
           </li>
         }
       </ul>
-      <button (click)="startWorkout()">Iniciar entrenamiento</button>
-      <button (click)="selectedRoutine.set(null)">Cerrar</button>
-      <button (click)="removeRoutine()">Quitar</button>
+
+      <div class="btn-container">
+        <button (click)="removeRoutine()">Quitar</button>
+        <button (click)="startWorkout()">Iniciar entrenamiento</button>
+      </div>
     </div>
   }
 </section>

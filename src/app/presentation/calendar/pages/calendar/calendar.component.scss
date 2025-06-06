@@ -10,7 +10,7 @@ section {
   justify-content: center;
   gap: 1rem;
   color: #f0f0f0;
-  
+
   button {
     background-color: transparent;
     color: #f0f0f0;
@@ -79,9 +79,53 @@ section {
   top: 20%;
   left: 10%;
   right: 10%;
-  background: white;
+  background: var(--color-background-tertiary);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
   z-index: 999;
+  color: var(--color-text);
+  border: #000 2px solid;
+
+  .btn-delete {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--color-background-tertiary);
+    box-shadow: #000 0px 3px 5px;
+  }
+
+  li {
+    font-weight: 300;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    button {
+      padding: 5px 8px;
+      border-radius: 13px;
+      border: #000 1px solid;
+    }
+
+    button:nth-child(1) {
+      background-color: var(--color-background-secondary);
+      color: var(--color-text);
+    }
+
+    button:nth-child(2) {
+      background-color: var(--color-secondary);
+    }
+  }
+
+
+
 }
