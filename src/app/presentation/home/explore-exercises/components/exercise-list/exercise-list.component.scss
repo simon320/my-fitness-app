@@ -3,7 +3,7 @@
   grid-template-columns: 1fr;
   gap: 24px;
   padding: 16px;
-  background-color: var(--color-background);
+  // background-color: var(--color-background);
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -29,40 +29,20 @@
   transition: transform 4s ease, box-shadow 0.3s ease;
   will-change: transform;
 
-  &.selected {
-    outline: 1px solid var(--color-secondary);
-    background-color: var(--color-background-tertiary);
-  }
-
-  &:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  .exercise-image {
-    width: 35%;
-    object-fit: contain;
-    background-color: var(--color-text);
-    margin: 5px;
-
-    border-radius: 1px;
-    border-bottom-right-radius: 12px;
-    border-top-right-radius: 12px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
-  }
-
   .exercise-content {
-    padding: 16px;
 
     .exercise-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 8px;
+      margin: .7rem 0 0 .7rem;
+      font-size: 1.1rem;
+      font-weight: 500;
       text-transform: capitalize;
     }
 
     p {
-      margin: 4px 0;
-      font-size: 1rem;
+      margin: 0 0 0 .7rem;
+      font-size: .9rem;
+      font-weight: 300;
+      color: #a3a3a3;
     }
 
     .instructions-label {
@@ -80,6 +60,28 @@
       }
     }
   }
+
+  icon-plus {
+    position: absolute;
+    bottom: .5rem;
+    left: .7rem;
+    color: #000;
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    transform: scale(.8);
+  }
+
+  .exercise-image {
+    width: 32%;
+    object-fit: contain;
+    background-color: var(--color-text);
+    border-radius: 1px;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
 }
 
 .animated {
@@ -107,12 +109,13 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 24px;
+  color: #ccc;
 
   button {
-    padding: 6px 12px;
+    padding: 6px 10px;
     border: none;
-    border-radius: 8px;
-    background-color: var(--color-background-secondary);
+    border-radius: 50%;
+    background-color: transparent;
     color: var(--color-text);
     font-weight: bold;
     cursor: pointer;
@@ -120,12 +123,8 @@
 
     &.active {
       background-color: var(--color-secondary);
-      color: white;
-    }
-
-    &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
+      color: #000;
     }
   }
+
 }

@@ -9,6 +9,7 @@ import { RoutineService } from '../../../../application/services/routine.service
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
 import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
+import { TrashCanComponent } from "../../../../../assets/icons/trash-can.svg";
 
 
 const mockExercises: Exercise[] = [
@@ -145,7 +146,7 @@ const mockExercises: Exercise[] = [
 
 @Component({
     selector: 'app-workout',
-    imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe],
+    imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe, TrashCanComponent],
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })

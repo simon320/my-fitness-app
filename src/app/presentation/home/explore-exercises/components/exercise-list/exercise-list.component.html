@@ -1,12 +1,14 @@
 <div class="exercise-grid">
 
   @for (exercise of paginatedExercises(); track exercise.id) {
-    <div class="exercise-card" [ngClass]="{ 'animated': selectedIndex === exercise.id }" (click)="selectedExercise(exercise)">
+    <div class="exercise-card" [ngClass]="{ 'animated': selectedIndex === exercise.id }">
       
       <div class="exercise-content">
-        <h3 class="exercise-title">{{ exercise.name | truncate:12 }}</h3>
+        <h3 class="exercise-title">{{ exercise.name | truncate:20 }}</h3>
         <p>{{ exercise.target }}</p>
       </div>
+
+      <icon-plus (click)="selectedExercise(exercise)"/>
 
       <img  class="exercise-image" [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
     
@@ -17,7 +19,9 @@
 
 @if(paginatedExercises().length > 0) {
   <div class="pagination-controls">
-    <button (click)="prevPage()" [disabled]="currentPage() === 1">←</button>
+    <button (click)="prevPage()" [disabled]="currentPage() === 1">
+      <icon-arrow-left [color]="'#1db954'"/>
+    </button>
 
     @for(page of pages(); track $index) {
     <ng-container>
@@ -32,6 +36,8 @@
     </ng-container>
     }
 
-    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">→</button>
+    <button (click)="nextPage()" [disabled]="currentPage() === totalPages()">
+      <icon-arrow-right [color]="'#1db954'"/>
+    </button>
   </div>
 }

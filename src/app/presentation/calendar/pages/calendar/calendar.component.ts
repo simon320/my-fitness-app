@@ -1,7 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, inject, signal } from '@angular/core';
 
+import { CrossSVG } from "../../../../../assets/icons/cross.svg";
 import { Routine } from '../../../../domain/entities/routine.entity';
+import { DumbbellSVG } from "../../../../../assets/icons/dumbbell.svg";
 import { FormatMonthPipe } from '../../../../shared/pipes/format-month.pipe';
 import { RoutineService } from '../../../../application/services/routine.service';
 import { UpdateRoutine } from '../../../../application/use-cases/routine/update-routine.usecase';
@@ -11,7 +13,7 @@ import { LocalStorageRoutineRepository } from '../../../../infrastructure/local-
 
 @Component({
   selector: 'app-calendar',
-  imports: [FormatMonthPipe],
+  imports: [FormatMonthPipe, DumbbellSVG, CrossSVG],
   providers: [LocalStorageRoutineRepository],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
@@ -129,7 +131,7 @@ private getDaysInMonth(month: number, year: number): Date[] {
   }
 
 
-  removeRoutine(): void {
+  public removeRoutine(): void {
     const routine = this.selectedRoutine();
     if (!routine) 
       return;
@@ -148,5 +150,9 @@ private getDaysInMonth(month: number, year: number): Date[] {
     this.routineService.setRoutine(routine);
     this.selectedRoutine.set(null);
     this.router.navigate(['/workout']);
+  }
+
+  public close(): void {
+    this.selectedRoutine.set(null);
   }
 }

@@ -3,12 +3,14 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { Component, effect, ElementRef, inject, Renderer2, signal, viewChild } from "@angular/core";
 
+import { CrossSVG } from "../../../../../../assets/icons/cross.svg";
 import { Routine } from "../../../../../domain/entities/routine.entity";
 import { TruncatePipe } from "../../../../../shared/pipes/truncate.pipe";
+import { DumbbellSVG } from "../../../../../../assets/icons/dumbbell.svg";
 import { Exercise } from "../../../../../domain/entities/exercise.entity";
+import { TrashCanComponent } from "../../../../../../assets/icons/trash-can.svg";
 import { RoutineService } from "../../../../../application/services/routine.service";
 import { SaveRoutine } from "../../../../../application/use-cases/routine/save-routine.usecase";
-import { CircleButtonComponent } from "../../../../../shared/atoms/circle-button/circle-button.component";
 import { LocalStorageRoutineRepository } from "../../../../../infrastructure/local-storage/routine.repositoty";
 
 
@@ -18,7 +20,7 @@ type Flow = 'train' | 'calendar' | 'routine';
     selector: 'app-exercise-cart',
     templateUrl: './exercise-cart.component.html',
     styleUrl: './exercise-cart.component.scss',
-    imports: [CommonModule, FormsModule, TruncatePipe, CircleButtonComponent]
+    imports: [CommonModule, FormsModule, TruncatePipe, DumbbellSVG, TrashCanComponent, CrossSVG]
 })
 export class ExerciseCartComponent {
     private repository = new LocalStorageRoutineRepository();

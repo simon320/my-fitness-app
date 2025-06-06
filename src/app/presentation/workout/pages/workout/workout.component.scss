@@ -5,7 +5,8 @@
     height: calc(100dvh - 60px);
     overflow: scroll;
     color: white;
-    background-image: url('/assets/textures/black-wood.png');
+    background-image: url('/assets/textures/texture-5a.png');
+    // background-color: #0b0b0b;
 
 
     .exercise-info {
@@ -144,7 +145,6 @@
         width: 100%;
         overflow: scroll;
         padding-bottom: 2rem;
-        margin-top: 1rem;
 
         .start-training {
             display: flex;
@@ -162,20 +162,23 @@
                 text-shadow: #000 2px 5px 10px;
             }
 
-            app-arrow-button {
-                width: 2.5rem;
-                height: 2.5rem;
+            .play-button {
+                padding-left: 7px;
+                padding-bottom: 2px;
+                background: #00e677a1;
+                color: #000;
+                border: #000 2px solid;
                 border-radius: 50%;
-                background-color: var(--color-text);
-                color: var(--color-text-primary);
-                box-shadow: #000 0px 3px 5px;
-                transition: all .3s ease-in-out;
-
-                &:hover {
-                    transform: scale(1.1);
-                    box-shadow: #000 0px 5px 10px;
-                }
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
             }
+
         }
 
         .arrow-btn {
@@ -203,20 +206,31 @@
                     gap: 1rem;
 
                     img {
-                        height: 7rem;
-                        border-radius: .3rem;
+                        height: 6rem;
+                        border-radius: 50%;
                         border: #858585 1px solid;
-                        // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
                     }
 
                     .info-card {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: baseline;
+                        gap: .1px;
+                        height: 100%;
 
                         h3 {
-                            font-size: 1rem;
+                            font-family: "Cabin Sketch", sans-serif;
+                            font-weight: 400;
+                            font-style: normal;
+                            font-size: 1.3rem;
+                            margin: 0;
                         }
 
                         p {
-                            font-size: .8rem;
+                            margin: 0;
+                            font-size: .9rem;
+                            font-weight: 500;
+                            color: #858585;
                         }
                     }
                 }
@@ -225,11 +239,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 2rem;
-                    height: 2rem;
                     border-radius: 50%;
-                    background-color: var(--color-background-tertiary);
-                    box-shadow: #000 0px 3px 5px;
                 }
 
             }

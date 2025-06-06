@@ -6,13 +6,16 @@ import { TruncatePipe } from '../../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
 import { RoutineService } from '../../../../../application/services/routine.service';
 import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
+import { PlusSVG } from "../../../../../../assets/icons/plus.svg";
+import { ArrowLeftSVG } from "../../../../../../assets/icons/arrow-left.svg";
+import { ArrowRightSVG } from '../../../../../../assets/icons/arrow-right.svg';
 
 
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrl: './exercise-list.component.scss',
-  imports: [ TruncatePipe, FormsModule, CommonModule ],
+  imports: [TruncatePipe, FormsModule, CommonModule, PlusSVG, ArrowLeftSVG, ArrowRightSVG],
 })
 export class ExerciseListComponent implements OnChanges {
   private exerciseService = inject(ExerciseDbApiService);

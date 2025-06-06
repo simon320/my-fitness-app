@@ -5,13 +5,15 @@ import { GetAllRoutine } from "../../../application/use-cases/routine/get-all-ro
 import { LocalStorageRoutineRepository } from "../../../infrastructure/local-storage/routine.repositoty";
 import { RoutineService } from "../../../application/services/routine.service";
 import { Router } from "@angular/router";
+import { DumbbellSVG } from "../../../../assets/icons/dumbbell.svg";
 
 
 @Component({
     selector: "app-created-routines",
     templateUrl: "./created-routines.component.html",
     styleUrls: ["./created-routines.component.scss"],
-    providers: [LocalStorageRoutineRepository]
+    providers: [LocalStorageRoutineRepository],
+    imports: [DumbbellSVG]
 })
 export class CreatedRoutinesComponent {
     private repository = inject(LocalStorageRoutineRepository);
