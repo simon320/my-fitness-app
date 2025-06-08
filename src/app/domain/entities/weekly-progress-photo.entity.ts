@@ -5,4 +5,5 @@ export interface WeeklyProgressPhoto {
   year: number;
   imageBase64: string;
   dateUploaded: string;
+  isAvatar?: boolean;
 }

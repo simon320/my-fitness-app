@@ -4,7 +4,7 @@
 
     <div class="btn-container">
         <label class="file-upload">
-            <input type="file" (change)="onFileSelected($event)" hidden />
+            <input type="file" (change)="onFileSelected($event)" hidden/>
             <span>📷 Subir foto semanal</span>
         </label>    
         <button (click)="upload()" [disabled]="!file()">Subir foto</button>
@@ -18,11 +18,17 @@
             @for (photo of photos(); track $index) {
                 <div class="item">
                     <!-- <p>Semana {{ photo.weekNumber }} / {{ photo.year }}</p> -->
-                    <img class="gallery-image" [src]="photo.imageBase64" alt="Foto semana {{ photo.weekNumber }}" />
+                    <img class="gallery-image" [src]="photo.imageBase64" alt="Foto semana {{ photo.weekNumber }}" (click)="setAsAvatar(photo.imageBase64)"/>
                     <small>{{ photo.dateUploaded | date }}</small>
                 </div>
             }
             
+        </div>
+
+    }
+    @else {
+        <div class="camera-container">
+            <icon-camera />
         </div>
     }
 

@@ -18,7 +18,7 @@ header {
         span {
             font-size: 0.8rem;
             color: #E3E3E3;
-            font-weight:400
+            font-weight: 400
         }
 
         p {
@@ -28,7 +28,20 @@ header {
         }
     }
 
-    .profile {
-        color: #E3E3E3
+    .avatar-container {
+        display: flex;
+        justify-content: center;
+        
+        .avatar-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 3px solid var(--color-secondary);
+        }
+
+        icon-avatar-default {
+            color: #E3E3E3;
+        }
     }
 }

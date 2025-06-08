@@ -1,19 +1,22 @@
 import { DatePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
+import { CameraSVG } from "../../../../../assets/icons/camera.svg";
 import { WeeklyProgressPhoto } from '../../../../domain/entities/weekly-progress-photo.entity';
 import { SaveWeeklyPhoto } from '../../../../application/use-cases/progress/save-weekly-photo.usecase';
 import { GetAllWeeklyPhotos } from '../../../../application/use-cases/progress/get-all-weekly-photos.usecase';
 import { LocalStorageWeeklyPhotoRepository } from '../../../../infrastructure/local-storage/localstorage-weekly-photo.repository';
+import { UserService } from '../../../../application/services/user.service';
 
 
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
-  imports: [ DatePipe ],
+  imports: [DatePipe, CameraSVG],
   styleUrls: ['./progress.component.scss'],
 })
 export class ProgressComponent {
+  private userService = inject(UserService);
   private repository = new LocalStorageWeeklyPhotoRepository();
   private saveUseCase = new SaveWeeklyPhoto(this.repository);
   private getAllUseCase = new GetAllWeeklyPhotos(this.repository);
@@ -73,5 +76,10 @@ export class ProgressComponent {
     tmp.setUTCDate(tmp.getUTCDate() + 4 - dayNum);
     const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1));
     return Math.ceil((((tmp.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  }
+
+  
+  public setAsAvatar(url: string): void {
+    this.userService.setAvatar(url);
   }
 }

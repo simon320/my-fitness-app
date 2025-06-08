@@ -1,9 +1,9 @@
 section {
-  height: 100dvh;
-  // background-image: url('/assets/textures/texture-5a.png');
+  padding: 1rem 0;
+  height: calc(100dvh - 60px);
+  background-image: url('/assets/textures/texture-5a.png');
 
   h2 {
-    margin-top: 2rem;
     text-align: center;
     color: var(--color-text);
   }
@@ -47,6 +47,10 @@ section {
       color: #000;
       font-weight: 300;
       border-radius: 25px;
+
+      &:disabled {
+        opacity: .3;
+      }
     }
   }
 
@@ -80,6 +84,13 @@ section {
 small {
   color: #878686;
   font-weight: 500;
+}
+
+.camera-container {
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 }
