@@ -1,11 +1,11 @@
+import { Router } from "@angular/router";
 import { Component, inject, signal } from "@angular/core";
 
 import { Routine } from "../../../domain/entities/routine.entity";
+import { DumbbellSVG } from "../../../../assets/icons/dumbbell.svg";
+import { RoutineService } from "../../../application/services/routine.service";
 import { GetAllRoutine } from "../../../application/use-cases/routine/get-all-routine";
 import { LocalStorageRoutineRepository } from "../../../infrastructure/local-storage/routine.repositoty";
-import { RoutineService } from "../../../application/services/routine.service";
-import { Router } from "@angular/router";
-import { DumbbellSVG } from "../../../../assets/icons/dumbbell.svg";
 
 
 @Component({

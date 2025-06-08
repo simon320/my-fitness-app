@@ -1,8 +1,10 @@
 <div class="workout-screen">
     @if(!routine()) {
-    <h1>No tenes ninguna rutina para el dia de hoy.</h1>
-    <span>if hay guardadas => Queres elegir alguna?</span>
-    <span>Queres crear una?</span>
+        <h1 class="not-routine-title">No tenes ninguna rutina programada para el dia de hoy.</h1>
+        <div class="btn-container">
+            <button (click)="navigateBy('created-routine')">Elegir rutina</button>
+            <button (click)="navigateBy('explore-exercises')">Crear rutina</button>
+        </div>
     }
 
     @else {

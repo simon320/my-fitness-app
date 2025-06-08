@@ -6,7 +6,32 @@
     overflow: scroll;
     color: white;
     background-image: url('/assets/textures/texture-5a.png');
-    // background-color: #0b0b0b;
+    
+    
+    .not-routine-title {
+        margin-top: 10rem;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.2rem;
+        height: 55%;
+
+        button {
+            width: 65%;
+            padding: 1rem;
+            border-radius: 28px;
+            background-color: var(--color-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-shadow: #000 1px 4px 9px;
+        }
+    }
 
 
     .exercise-info {

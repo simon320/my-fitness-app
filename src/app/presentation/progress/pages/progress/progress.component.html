@@ -1,16 +1,29 @@
-<h2>Seguimiento semanal</h2>
+<section>
 
-<input type="file" (change)="onFileSelected($event)" />
-<button (click)="upload()" [disabled]="!file()">Subir foto</button>
+    <h2>Seguimiento semanal</h2>
 
-<div class="gallery">
+    <div class="btn-container">
+        <label class="file-upload">
+            <input type="file" (change)="onFileSelected($event)" hidden />
+            <span>📷 Subir foto semanal</span>
+        </label>    
+        <button (click)="upload()" [disabled]="!file()">Subir foto</button>
+    </div>
 
-    @for (photo of photos(); track $index) {
-        <div class="item">
-            <p>Semana {{ photo.weekNumber }} / {{ photo.year }}</p>
-            <img [src]="photo.imageBase64" alt="Foto semana {{ photo.weekNumber }}" />
-            <small>{{ photo.dateUploaded | date }}</small>
+    @if(photos().length > 0) {
+
+        <h3>Galeria</h3>
+        <div class="gallery-grid">
+            
+            @for (photo of photos(); track $index) {
+                <div class="item">
+                    <!-- <p>Semana {{ photo.weekNumber }} / {{ photo.year }}</p> -->
+                    <img class="gallery-image" [src]="photo.imageBase64" alt="Foto semana {{ photo.weekNumber }}" />
+                    <small>{{ photo.dateUploaded | date }}</small>
+                </div>
+            }
+            
         </div>
     }
-    
-</div>
+
+</section>
