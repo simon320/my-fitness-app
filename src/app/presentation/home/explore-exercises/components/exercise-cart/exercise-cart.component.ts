@@ -62,7 +62,7 @@ export class ExerciseCartComponent {
     }
 
 
-    public createRoutine(): Promise<boolean> | void {
+    private createRoutine(): Promise<boolean> | void {
         const routine: Routine = {
             id: Math.random().toString(36).substring(2, 15),
             name: this.routineName || 'Rutina personalizada',
@@ -92,6 +92,18 @@ export class ExerciseCartComponent {
     public createCalendarFlow(): void {
         this.createRoutine();
         this.router.navigateByUrl('/calendar');
+    }
+
+    private reloadComponent(): void {
+        const currentUrl = this.router.url;
+        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+            this.router.navigateByUrl(currentUrl);
+        });
+    }
+
+    public onlyCreateRoutine(): void {
+        this.createRoutine();
+        // this.reloadComponent();
     }
 
 }

@@ -47,7 +47,7 @@ export class LocalStorageRoutineRepository implements RoutineRepository {
                 if (existingIndex !== -1) 
                     allRoutines[existingIndex] = routine;
                 else 
-                    allRoutines.push(routine);
+                    allRoutines.unshift(routine);
                 
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(allRoutines));
             },

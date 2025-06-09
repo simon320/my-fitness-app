@@ -1,4 +1,5 @@
 .workout-screen {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100dvw;
@@ -6,8 +7,8 @@
     overflow: scroll;
     color: white;
     background-image: url('/assets/textures/texture-5a.png');
-    
-    
+
+
     .not-routine-title {
         margin-top: 10rem;
         text-align: center;
@@ -97,6 +98,7 @@
     }
 
     .workout-controls {
+        position: relative;
         padding: 1.5rem;
         display: flex;
         flex-direction: column;
@@ -147,8 +149,27 @@
         .progress-bar {
             height: 100%;
             background-color: #54f059;
-            // background-color: #4caf50;
             transition: width 0.3s ease-in-out;
+        }
+
+        .animated {
+            animation: increment 1s forwards;
+        }
+
+        @keyframes increment {
+            from {
+                position: absolute;
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(2);
+                color: #337735;
+                font-weight: 700;
+                font-size: 2rem;
+                top: 5rem;
+                right: 70%;
+            }
         }
 
         .controls {
@@ -157,12 +178,43 @@
             align-items: center;
             gap: 2.5rem;
 
-            app-circle-button:nth-child(2) {
-                position: relative; 
-                top: 1rem;              
+            .btn-arrow {
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-color: #20202095;
+                border: #000 2px solid;
+                color: #ccc;
+                font-size: 1.4rem;
+                box-shadow: #000 3px 3px 6px;
             }
-            
+
+            .btn-timer-control {
+                border-radius: 50%;
+                width: 65px;
+                height: 65px;
+                background-color: var(--color-secondary);
+                border: #000 2px solid;
+                color: #000;
+                font-size: 1.4rem;
+                box-shadow: #000 3px 3px 6px;
+                position: relative;
+                top: 1rem;
+            }
+
+            icon-check {
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-color: #20202095;
+                border: #000 2px solid;
+                color: #ccc;
+                box-shadow: #000 3px 3px 6px;
+            }
+
         }
+
+
     }
 
 
@@ -270,6 +322,15 @@
             }
         }
 
+    }
+
+
+    .finish-details {
+        position: absolute;
+        background-color: #000000;
+        width: 100dvw;
+        height: calc(100dvh - 60px);
+        z-index: 10000;
     }
 
 }

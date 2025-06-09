@@ -8,6 +8,27 @@
     }
 
     @else {
+        @if(finishRoutine()) {
+            <section class="finish-details">
+                <div class="exercise-title">
+                    <h2>{{( routine()!.name )}}</h2>
+                </div>
+            
+                <div class="??">
+                    @for (exercise of exercises(); track $index) {
+                    <div class="??">
+                        <div class="card-left">
+                            <div class="info-card">
+                                <h3>* {{ exercise.name }}</h3>
+                                <p>|--{{ exercise.secondaryMuscles }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <span>Tiempo: </span>
+                </div>
+            </section>
+        }
 
 
     @if(isTraining() && !listExerciseOpen()) {
@@ -33,7 +54,7 @@
                 <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
             </div>
             <div class="elapsed">
-                <span>{{ progressPercentage() | formatPercentage }}</span>
+                <span #percentage>{{ progressPercentage() | formatPercentage }}</span>
             </div>
         </div>
 
@@ -42,13 +63,31 @@
         </div>
 
         <div class="controls">
-            <app-circle-button [bgColor]="'transparent'" [colorIcon]="'#ccc'" [size]="45"
-                [icon]="(false ? 'volver' : '⮜')" (click)="previousExercise()" />
+            <button
+                class="btn-arrow"
+                (click)="previousExercise()"> 
+                {{ '⮜' }}
+            </button>
 
-            <app-circle-button [size]="65" [icon]="( isRunning() ? '❚❚' : '▶' )" (click)="toggleTimer()" />
+            <button
+                class="btn-timer-control"
+                [ngClass]="{ 'btn-last-exercise': itsTheLastExercise() }"
+                (click)="toggleTimer()"> 
+                {{ ( isRunning() ? '❚❚' : '▶' ) }}
+            </button>
 
-            <app-circle-button [bgColor]="'transparent'" [colorIcon]="'#ccc'" [size]="45"
-                [icon]="(false ? 'completar' : '⮞' )" (click)="nextExercise()" />
+            @if(!itsTheLastExercise()) {
+                <button
+                    class="btn-arrow"
+                    (click)="nextExercise()"> 
+                    {{ '⮞' }}
+                </button>
+            }
+
+            @else {   
+                <icon-check [width]="46" [height]="46" (click)="nextExercise()" />
+            }
+
         </div>
     </section>
     }

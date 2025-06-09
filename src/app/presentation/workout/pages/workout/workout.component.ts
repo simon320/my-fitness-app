@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, inject, input, Renderer2, signal, viewChild } from '@angular/core';
 
+import { CheckSVG } from "../../../../../assets/icons/check.svg";
 import { Routine } from '../../../../domain/entities/routine.entity';
 import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../domain/entities/exercise.entity';
@@ -10,19 +11,20 @@ import { TrashCanComponent } from "../../../../../assets/icons/trash-can.svg";
 import { RoutineService } from '../../../../application/services/routine.service';
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
-import { CircleButtonComponent } from '../../../../shared/atoms/circle-button/circle-button.component';
 
 
 
 @Component({
     selector: 'app-workout',
-    imports: [CommonModule, CircleButtonComponent, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe, TrashCanComponent],
+    imports: [CommonModule, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe, TrashCanComponent, CheckSVG],
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent {
     private routineService = inject(RoutineService);
     private router = inject(Router);
+    private render = inject(Renderer2);
+    public elementPercentage = viewChild<ElementRef>('percentage');
     public routine = signal<Routine | null>(null);
     public exercises = signal<Exercise[]>([]);
     public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
@@ -32,6 +34,7 @@ export class WorkoutComponent {
     public isTraining = signal<boolean>(false);
     public listExerciseOpen = signal<boolean>(false);
     public completedExercises = signal<Set<number>>(new Set());
+    public finishRoutine = signal<boolean>(false);
     private intervalId: any;
     readonly isRunning = signal(false);
     public countdown = input<number | undefined>();
@@ -68,7 +71,8 @@ export class WorkoutComponent {
         });
     }
 
-    private intializeExercises() {
+
+    private intializeExercises(): void {
         this.routine.set(this.routineService.activeRoutine());
         this.routine() && this.exercises.set(this.routine()!.exercises);
     }
@@ -79,7 +83,7 @@ export class WorkoutComponent {
     }
 
 
-    public startRoutine() {
+    public startRoutine(): void {
         this.toggleTimer();
         this.isRunning.set(true);
         this.isTraining.set(true);
@@ -113,6 +117,14 @@ export class WorkoutComponent {
         const current = this.currentIndex();
         const lastIndex = this.exercises().length - 1;
 
+        if(current === lastIndex) {
+            this.finishAnimated();
+            setTimeout(() => {
+                this.finishRoutine.set(true);
+            }, 600);
+        }
+            
+
         // Marcar como completado antes de avanzar (si no está)
         if (!this.completedExercises().has(current)) {
             const updated = new Set(this.completedExercises());
@@ -139,6 +151,16 @@ export class WorkoutComponent {
         if (current > 0) {
             this.currentIndex.set(current - 1);
         }
+    }
+
+
+    public itsTheLastExercise(): boolean {
+        return ( this.currentIndex() == this.exercises().length - 1 );
+    }
+
+
+    private finishAnimated(): void {
+        this.render.addClass(this.elementPercentage()?.nativeElement, 'animated');
     }
 
 

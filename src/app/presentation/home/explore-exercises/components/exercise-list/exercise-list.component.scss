@@ -85,17 +85,17 @@
 }
 
 .animated {
-  animation: fadeOut .3s forwards;
+  animation: fadeOut .3s ease-in;
 }
 
 @keyframes fadeOut {
   from {
-    margin: auto;
+    margin: 0 auto 0 auto;
     width: 100%;
     height: 100%;
   }
   to {
-    margin: auto;
+    margin: 0 auto 0 auto;
     width: 0px;
     height: 0px;
   }
