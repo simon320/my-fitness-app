@@ -11,6 +11,8 @@ import { TrashCanComponent } from "../../../../../assets/icons/trash-can.svg";
 import { RoutineService } from '../../../../application/services/routine.service';
 import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage.pipe";
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
+import { LocalStorageCompletedWorkoutRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
+import { SaveCompletedWorkout } from '../../../../application/use-cases/completed-workout/save-completed-workout.usecase';
 
 
 
@@ -24,6 +26,8 @@ export class WorkoutComponent {
     private routineService = inject(RoutineService);
     private router = inject(Router);
     private render = inject(Renderer2);
+    private repository = new LocalStorageCompletedWorkoutRepository();
+    private saveUseCase = new SaveCompletedWorkout(this.repository);
     public elementPercentage = viewChild<ElementRef>('percentage');
     public routine = signal<Routine | null>(null);
     public exercises = signal<Exercise[]>([]);
@@ -117,7 +121,14 @@ export class WorkoutComponent {
         const current = this.currentIndex();
         const lastIndex = this.exercises().length - 1;
 
-        if(current === lastIndex) {
+        // Finalizar entrenamiento.
+        if(current === lastIndex) {\
+            this.saveUseCase.execute({
+                name: this.routine()?.name!,
+                id: this.routine()?.id!,
+                dayTrained: new Date().toISOString(),
+                exercisesName: [] // TODO => Nombre de los ejercicios
+            })
             this.finishAnimated();
             setTimeout(() => {
                 this.finishRoutine.set(true);
