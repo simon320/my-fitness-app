@@ -122,17 +122,8 @@ export class WorkoutComponent {
         const lastIndex = this.exercises().length - 1;
 
         // Finalizar entrenamiento.
-        if(current === lastIndex) {\
-            this.saveUseCase.execute({
-                name: this.routine()?.name!,
-                id: this.routine()?.id!,
-                dayTrained: new Date().toISOString(),
-                exercisesName: [] // TODO => Nombre de los ejercicios
-            })
-            this.finishAnimated();
-            setTimeout(() => {
-                this.finishRoutine.set(true);
-            }, 600);
+        if(current === lastIndex) {
+            this.finishExercise();
         }
             
 
@@ -147,6 +138,26 @@ export class WorkoutComponent {
         if (current < lastIndex) {
             this.currentIndex.set(current + 1);
         }
+    }
+
+
+    private finishExercise(): void {
+        let exercisesNames: string[] = [];
+        this.routine()?.exercises.forEach( exercise => {
+            exercisesNames.push( exercise.name );
+        })
+
+        this.saveUseCase.execute({
+                name: this.routine()?.name!,
+                id: this.routine()?.id!,
+                dayTrained: new Date().toISOString(),
+                exercisesName: exercisesNames
+            });
+
+            this.finishAnimated();
+            setTimeout(() => {
+                this.finishRoutine.set(true);
+            }, 600);
     }
 
 

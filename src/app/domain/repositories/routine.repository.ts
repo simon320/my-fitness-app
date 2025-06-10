@@ -1,18 +1,8 @@
 import { Observable } from 'rxjs';
-import { Exercise } from '../entities/exercise.entity';
 import { Routine } from '../entities/routine.entity';
 
-export interface Muscle {
-  id: number;
-  name: string;
-  is_front: boolean;
-}
 
-export interface RoutineRepository {
-  // getTodayRoutine(): Promise<Exercise[]>;
-  // getMuscleGroups(): Promise<Muscle[]>;
-  // getExercisesByMuscle(muscleId: number): Promise<Exercise[]>;
-  
+export interface RoutineRepository {  
   saveRoutine(routine: Routine): void;
   updateRoutine(routine: Routine): void;
   deleteRoutine(id: string): void;
