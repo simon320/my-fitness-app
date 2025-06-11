@@ -153,9 +153,9 @@
             transition: width 0.3s ease-in-out;
         }
 
-        .animated {
-            animation: increment 1s forwards;
-        }
+        // .animated {
+        //     animation: increment 1s forwards;
+        // }
 
         @keyframes increment {
             from {
@@ -334,4 +334,56 @@
         z-index: 10000;
     }
 
+}
+
+
+// ANIMACION FINAL
+/* Estilos base */
+.session-complete {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle, #222, #000);
+  overflow: hidden;
+  color: white;
+}
+
+/* Efecto de explosión / energía */
+.session-complete.animated::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%);
+  border-radius: 50%;
+  animation: pulse-burst 1s ease-out forwards;
+  z-index: 0;
+}
+
+/* Animación */
+@keyframes pulse-burst {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.session-complete .message {
+  position: relative;
+  z-index: 10000000;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff;
 }

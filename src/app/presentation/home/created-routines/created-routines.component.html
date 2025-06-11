@@ -1,31 +1,33 @@
-<div class="routine-section">
-    <div class="routine-header">
-        <h2>Rutinas guardadas</h2>
-        <span>ver todas</span>
-    </div>
+@if(routines().length > 0) {
+    <div class="routine-section">
+        <div class="routine-header">
+            <h2>Rutinas guardadas</h2>
+            <span>ver todas</span>
+        </div>
 
-    <div class="routine-scroll">
-        @for(routine of routines(); track $index) {
-        <div class="routine-card">
-            <button class="play-button" (click)="startRoutine(routine)">▶</button>
-            @if(routine.image) {
-                <img [src]="routine.image" alt="routine preview" />
-            }
-            <div class="info">
-                <div class="card-header">
-                    <h3>{{ routine.name }}</h3>
-                    <span class="exercises-length">
-                        <icon-dumbbell />
-                        {{ routine.exercises.length }}
-                    </span>
-                </div>
-                <div class="muscle-group">
-                    @for(muscle of routine.muscleGroup; track $index) {
-                    <span>{{ muscle }}</span>
-                    }
+        <div class="routine-scroll">
+            @for(routine of routines(); track $index) {
+            <div class="routine-card">
+                <button class="play-button" (click)="startRoutine(routine)">▶</button>
+                @if(routine.image) {
+                    <img [src]="routine.image" alt="routine preview" />
+                }
+                <div class="info">
+                    <div class="card-header">
+                        <h3>{{ routine.name }}</h3>
+                        <span class="exercises-length">
+                            <icon-dumbbell />
+                            {{ routine.exercises.length }}
+                        </span>
+                    </div>
+                    <div class="muscle-group">
+                        @for(muscle of routine.muscleGroup; track $index) {
+                        <span>{{ muscle }}</span>
+                        }
+                    </div>
                 </div>
             </div>
+            }
         </div>
-        }
     </div>
-</div>
+}

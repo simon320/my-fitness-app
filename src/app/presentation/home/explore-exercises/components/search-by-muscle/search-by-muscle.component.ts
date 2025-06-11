@@ -26,6 +26,8 @@ export class SearchByMuscleComponent {
 
 
   ngOnInit() {
+    // this.exerciseService.getAllExercises().subscribe( r => console.log(r));
+
     this.exerciseService.getBodyParts()
       .subscribe( (parts: string[]) => this.bodyParts.set(parts) );
   }

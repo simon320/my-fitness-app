@@ -1,14 +1,14 @@
 export const mockAllExercises = [
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "body weight",
         "gifUrl": "assets/gif/0001.gif",
         "id": "0001",
         "name": "3/4 sit-up",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors",
-            "lower back"
+            "flexores de cadera",
+            "espalda baja"
         ],
         "instructions": [
             "Lie flat on your back with your knees bent and feet flat on the ground.",
@@ -19,11 +19,11 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "body weight",
         "gifUrl": "assets/gif/0002.gif",
         "name": "45° side bend",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
             "obliques"
         ],
@@ -36,14 +36,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "body weight",
         "gifUrl": "assets/gif/0003.gif",
         "id": "0003",
         "name": "air bike",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors"
+            "flexores de cadera"
         ],
         "instructions": [
             "Lie flat on your back with your hands placed behind your head.",
@@ -54,12 +54,12 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "body weight",
         "gifUrl": "assets/gif/0006.gif",
         "id": "0006",
         "name": "alternate heel touchers",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
             "obliques"
         ],
@@ -72,15 +72,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "cable",
         "gifUrl": "assets/gif/0007.gif",
         "id": "0007",
         "name": "alternate lateral pulldown",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "biceps",
-            "rhomboids"
+            "romboides"
         ],
         "instructions": [
             "Sit on the cable machine with your back straight and feet flat on the ground.",
@@ -91,15 +91,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "leverage machine",
         "gifUrl": "assets/gif/0009.gif",
         "id": "0009",
         "name": "assisted chest dip (kneeling)",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
             "triceps",
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Adjust the machine to your desired height and secure your knees on the pad.",
@@ -110,15 +110,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "assisted",
         "gifUrl": "assets/gif/0010.gif",
         "id": "0010",
         "name": "assisted hanging knee raise with throw down",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors",
-            "lower back"
+            "flexores de cadera",
+            "espalda baja"
         ],
         "instructions": [
             "Hang from a pull-up bar with your arms fully extended and your palms facing away from you.",
@@ -128,14 +128,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "assisted",
         "gifUrl": "assets/gif/0011.gif",
         "id": "0011",
         "name": "assisted hanging knee raise",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors"
+            "flexores de cadera"
         ],
         "instructions": [
             "Hang from a pull-up bar with your arms fully extended and your palms facing away from you.",
@@ -146,14 +146,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "assisted",
         "gifUrl": "assets/gif/0012.gif",
         "id": "0012",
         "name": "assisted lying leg raise with lateral throw down",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors",
+            "flexores de cadera",
             "obliques"
         ],
         "instructions": [
@@ -167,14 +167,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "assisted",
         "gifUrl": "assets/gif/0013.gif",
         "id": "0013",
         "name": "assisted lying leg raise with throw down",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "hip flexors",
+            "flexores de cadera",
             "quadriceps"
         ],
         "instructions": [
@@ -189,15 +189,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "medicine ball",
-        "gifUrl": "https://v2.exercisedb.io/image/IGgXknzdBzmUQU",
+        "gifUrl": "assets/gif/0014.gif",
         "id": "0014",
         "name": "assisted motion russian twist",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
             "obliques",
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Sit on the ground with your knees bent and feet flat on the floor.",
@@ -209,15 +209,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "leverage machine",
-        "gifUrl": "https://v2.exercisedb.io/image/1wBFUXCHT8qddd",
+        "gifUrl": "assets/gif/0015.gif",
         "id": "0015",
         "name": "assisted parallel close grip pull-up",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "biceps",
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Adjust the machine to your desired weight and height.",
@@ -230,15 +230,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "assisted",
-        "gifUrl": "https://v2.exercisedb.io/image/YLzrfU1t0DWWRm",
+        "gifUrl": "assets/gif/0016.gif",
         "id": "0016",
         "name": "assisted prone hamstring",
-        "target": "hamstrings",
+        "target": "isquiotibiales",
         "secondaryMuscles": [
-            "glutes",
-            "lower back"
+            "gluteos",
+            "espalda baja"
         ],
         "instructions": [
             "Lie face down on a mat or bench with your legs fully extended.",
@@ -249,15 +249,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "leverage machine",
-        "gifUrl": "https://v2.exercisedb.io/image/deqzyFDsxDOhsn",
+        "gifUrl": "assets/gif/0017.gif",
         "id": "0017",
         "name": "assisted pull-up",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "biceps",
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Adjust the machine to your desired weight and height settings.",
@@ -270,14 +270,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "assisted",
-        "gifUrl": "https://v2.exercisedb.io/image/5W1JEBPvZp-XRd",
+        "gifUrl": "assets/gif/0018.gif",
         "id": "0018",
         "name": "assisted standing triceps extension (with towel)",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a towel with both hands behind your head.",
@@ -288,15 +288,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "leverage machine",
-        "gifUrl": "https://v2.exercisedb.io/image/IUwdAJGcxj-f1U",
+        "gifUrl": "assets/gif/0019.gif",
         "id": "0019",
         "name": "assisted triceps dip (kneeling)",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Adjust the machine to your desired weight and height.",
@@ -307,16 +307,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "body weight",
-        "gifUrl": "https://v2.exercisedb.io/image/9vq0wEhCYFBJZ4",
+        "gifUrl": "assets/gif/0020.gif",
         "id": "0020",
         "name": "balance board",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "calves",
-            "hamstrings",
-            "glutes"
+            "gemelos",
+            "isquiotibiales",
+            "gluteos"
         ],
         "instructions": [
             "Place the balance board on a flat surface.",
@@ -327,16 +327,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/RQFCjZ6dlTrwom",
+        "gifUrl": "assets/gif/0022.gif",
         "id": "0022",
         "name": "barbell pullover to press",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "triceps",
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your head at one end and your feet on the ground.",
@@ -347,14 +347,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/tcWWr6iThjtkMg",
+        "gifUrl": "assets/gif/0023.gif",
         "id": "0023",
         "name": "barbell alternate biceps curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand up straight with your feet shoulder-width apart and hold a barbell in each hand, palms facing forward.",
@@ -366,16 +366,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/QjwWmdJlZfKSmd",
+        "gifUrl": "assets/gif/0024.gif",
         "id": "0024",
         "name": "barbell bench front squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "hamstrings",
-            "glutes",
-            "calves"
+            "isquiotibiales",
+            "gluteos",
+            "gemelos"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart and the barbell resting on your upper chest, just below your collarbone.",
@@ -386,15 +386,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/45ytVXqzhqPz2S",
+        "gifUrl": "assets/gif/0025.gif",
         "id": "0025",
         "name": "barbell bench press",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
             "triceps",
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
@@ -407,16 +407,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/IHmF6XeWnTw6dw",
+        "gifUrl": "assets/gif/0026.gif",
         "id": "0026",
         "name": "barbell bench squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Set up a barbell on a squat rack at chest height.",
@@ -430,15 +430,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/7e-KaDVm3vGrtL",
+        "gifUrl": "assets/gif/0027.gif",
         "id": "0027",
         "name": "barbell bent over row",
-        "target": "upper back",
+        "target": "espalda superior",
         "secondaryMuscles": [
             "biceps",
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and knees slightly bent.",
@@ -450,16 +450,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/HC7ebmiQJBXrfV",
+        "gifUrl": "assets/gif/0028.gif",
         "id": "0028",
         "name": "barbell clean and press",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "hamstrings",
-            "glutes",
-            "shoulders",
+            "isquiotibiales",
+            "gluteos",
+            "hombros",
             "triceps"
         ],
         "instructions": [
@@ -473,16 +473,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/SLUPynPp53rwc-",
+        "gifUrl": "assets/gif/0029.gif",
         "id": "0029",
         "name": "barbell clean-grip front squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves",
+            "isquiotibiales",
+            "gemelos",
             "core"
         ],
         "instructions": [
@@ -495,15 +495,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/qveFGtangtTbqI",
+        "gifUrl": "assets/gif/0030.gif",
         "id": "0030",
         "name": "barbell close-grip bench press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
@@ -515,14 +515,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/yb7jTHk47dp92D",
+        "gifUrl": "assets/gif/0031.gif",
         "id": "0031",
         "name": "barbell curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand up straight with your feet shoulder-width apart and hold a barbell with an underhand grip, palms facing forward.",
@@ -534,15 +534,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/MbJGQc1c5vZ-E7",
+        "gifUrl": "assets/gif/0032.gif",
         "id": "0032",
         "name": "barbell deadlift",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
-            "lower back"
+            "isquiotibiales",
+            "espalda baja"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and the barbell on the ground in front of you.",
@@ -554,15 +554,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/hHR1LUM4V51ywL",
+        "gifUrl": "assets/gif/0033.gif",
         "id": "0033",
         "name": "barbell decline bench press",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
             "triceps",
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie on a decline bench with your feet secured and your head lower than your hips.",
@@ -573,15 +573,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/214RZPTpMF5Y0R",
+        "gifUrl": "assets/gif/0034.gif",
         "id": "0034",
         "name": "barbell decline bent arm pullover",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "triceps",
-            "chest"
+            "pecho"
         ],
         "instructions": [
             "Lie down on a decline bench with your head lower than your hips and your feet secured.",
@@ -592,15 +592,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/k5Qwar5Gdd5SZh",
+        "gifUrl": "assets/gif/0035.gif",
         "id": "0035",
         "name": "barbell decline close grip to skull press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie on a decline bench with your head lower than your feet and hold a barbell with a close grip.",
@@ -610,15 +610,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/A8kej3kr0ZkRaQ",
+        "gifUrl": "assets/gif/0036.gif",
         "id": "0036",
         "name": "barbell decline wide-grip press",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
             "triceps",
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie on a decline bench with your feet secured and your head lower than your hips.",
@@ -629,15 +629,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/TnYVFzc99vlKVx",
+        "gifUrl": "assets/gif/0037.gif",
         "id": "0037",
         "name": "barbell decline wide-grip pullover",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
             "triceps",
-            "chest"
+            "pecho"
         ],
         "instructions": [
             "Lie on a decline bench with your head lower than your hips and your feet secured.",
@@ -648,14 +648,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/il-jwiC-C7jNxo",
+        "gifUrl": "assets/gif/0038.gif",
         "id": "0038",
         "name": "barbell drag curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell with an underhand grip, palms facing up.",
@@ -666,16 +666,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/livHqVQkfK9xlm",
+        "gifUrl": "assets/gif/0039.gif",
         "id": "0039",
         "name": "barbell front chest squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves",
+            "isquiotibiales",
+            "gemelos",
             "core"
         ],
         "instructions": [
@@ -688,12 +688,12 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/hoLLxj7qQhKfhV",
+        "gifUrl": "assets/gif/0040.gif",
         "id": "0040",
         "name": "barbell front raise and pullover",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
             "deltoids",
             "triceps"
@@ -708,9 +708,9 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/BaT3P7qJoY6DXv",
+        "gifUrl": "assets/gif/0041.gif",
         "id": "0041",
         "name": "barbell front raise",
         "target": "delts",
@@ -726,16 +726,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/EUDz2eLBU5h6oh",
+        "gifUrl": "assets/gif/0042.gif",
         "id": "0042",
         "name": "barbell front squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves",
+            "isquiotibiales",
+            "gemelos",
             "core"
         ],
         "instructions": [
@@ -748,16 +748,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/7icWyx8-GLCD2V",
+        "gifUrl": "assets/gif/0043.gif",
         "id": "0043",
         "name": "barbell full squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves",
+            "isquiotibiales",
+            "gemelos",
             "core"
         ],
         "instructions": [
@@ -772,14 +772,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/5jmzUU4Ja8ztX4",
+        "gifUrl": "assets/gif/0044.gif",
         "id": "0044",
         "name": "barbell good morning",
-        "target": "hamstrings",
+        "target": "isquiotibiales",
         "secondaryMuscles": [
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart and the barbell resting on your upper back.",
@@ -790,14 +790,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/OAgs284KyDZ26U",
+        "gifUrl": "assets/gif/0045.gif",
         "id": "0045",
         "name": "barbell guillotine bench press",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
-            "shoulders",
+            "hombros",
             "triceps"
         ],
         "instructions": [
@@ -810,16 +810,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/UW4Ljje-yES3D8",
+        "gifUrl": "assets/gif/0046.gif",
         "id": "0046",
         "name": "barbell hack squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart and your toes slightly turned out.",
@@ -831,14 +831,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/N2rezhdRuJsIXQ",
+        "gifUrl": "assets/gif/0047.gif",
         "id": "0047",
         "name": "barbell incline bench press",
-        "target": "pectorals",
+        "target": "pectorales",
         "secondaryMuscles": [
-            "shoulders",
+            "hombros",
             "triceps"
         ],
         "instructions": [
@@ -851,15 +851,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/dZbXXrSmPkwuOf",
+        "gifUrl": "assets/gif/0048.gif",
         "id": "0048",
         "name": "barbell incline reverse-grip press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Set up an incline bench at a 45-degree angle.",
@@ -870,15 +870,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/k3dNi6ump6eCjW",
+        "gifUrl": "assets/gif/0049.gif",
         "id": "0049",
         "name": "barbell incline row",
-        "target": "upper back",
+        "target": "espalda superior",
         "secondaryMuscles": [
             "biceps",
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Set up an incline bench at a 45-degree angle.",
@@ -891,9 +891,9 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "chest",
+        "bodyPart": "pecho",
         "equipment": "barbell",
-        "gifUrl": "https://v2.exercisedb.io/image/9jTfLhLIsI6ujY",
+        "gifUrl": "assets/gif/0050.gif",
         "id": "0050",
         "name": "barbell incline shoulder raise",
         "target": "serratus anterior",
@@ -912,16 +912,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/uQ7lVxitiyPvUs",
         "id": "0051",
         "name": "barbell jefferson squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and toes slightly turned out.",
@@ -933,15 +933,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/GI1BQ0deFeYMZZ",
         "id": "0052",
         "name": "barbell jm bench press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
@@ -952,16 +952,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/SGihrd66SyxD89",
         "id": "0053",
         "name": "barbell jump squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart, holding a barbell across your upper back.",
@@ -972,16 +972,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/5EkGRkzWRbijQZ",
         "id": "0054",
         "name": "barbell lunge",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart and a barbell resting on your upper back.",
@@ -992,15 +992,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/xkNkBM5e5weIUD",
         "id": "0055",
         "name": "barbell lying close-grip press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
@@ -1012,14 +1012,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/LvKVVVcXGH5oFx",
         "id": "0056",
         "name": "barbell lying close-grip triceps extension",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your head at the end of the bench.",
@@ -1031,14 +1031,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/qMyD4p-4vjrTcV",
         "id": "0057",
         "name": "barbell lying extension",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your head at the end of the bench.",
@@ -1049,14 +1049,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/ce0BUKko9G5RM0",
         "id": "0058",
         "name": "barbell lying lifting (on hip)",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
+            "isquiotibiales",
             "quadriceps"
         ],
         "instructions": [
@@ -1068,14 +1068,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/oG7-LJVA0aNhKp",
         "id": "0059",
         "name": "barbell lying preacher curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Sit on a preacher bench with your chest against the pad and your arms extended over the edge, holding a barbell with an underhand grip.",
@@ -1087,14 +1087,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/ah1JiMwVH5HMjg",
         "id": "0060",
         "name": "barbell lying triceps extension skull crusher",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your head at the end of the bench.",
@@ -1105,14 +1105,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/shYKTnhsyaciA0",
         "id": "0061",
         "name": "barbell lying triceps extension",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Lie flat on a bench with your feet flat on the ground and your head at the end of the bench.",
@@ -1123,16 +1123,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/4CsvNegCfgIYht",
         "id": "0063",
         "name": "barbell narrow stance squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and toes pointing slightly outward.",
@@ -1144,15 +1144,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/CejXNL3ojUR3Nb",
         "id": "0064",
         "name": "barbell one arm bent over row",
-        "target": "upper back",
+        "target": "espalda superior",
         "secondaryMuscles": [
             "biceps",
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart, knees slightly bent, and hold a barbell with one hand using an overhand grip.",
@@ -1163,15 +1163,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/QWSqq5z2uuDVIc",
         "id": "0065",
         "name": "barbell one arm floor press",
         "target": "triceps",
         "secondaryMuscles": [
-            "chest",
-            "shoulders"
+            "pecho",
+            "hombros"
         ],
         "instructions": [
             "Lie flat on your back on the floor with your knees bent and feet flat on the ground.",
@@ -1182,16 +1182,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/6-W6lG3fr6awPy",
         "id": "0066",
         "name": "barbell one arm side deadlift",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
+            "isquiotibiales",
             "quadriceps",
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart, holding a barbell in one hand with an overhand grip.",
@@ -1203,15 +1203,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/JFd1eoVJblFh9F",
         "id": "0067",
         "name": "barbell one arm snatch",
         "target": "delts",
         "secondaryMuscles": [
-            "traps",
-            "forearms",
+            "trapecio",
+            "antebrazos",
             "core"
         ],
         "instructions": [
@@ -1226,16 +1226,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/Pl62QJPeTnX6A1",
         "id": "0068",
         "name": "barbell one leg squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell across your upper back.",
@@ -1246,16 +1246,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/nOW39nt3te8mI0",
         "id": "0069",
         "name": "barbell overhead squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves",
+            "gluteos",
+            "isquiotibiales",
+            "gemelos",
             "core"
         ],
         "instructions": [
@@ -1267,14 +1267,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/jvuWQFd2i55XJH",
         "id": "0070",
         "name": "barbell preacher curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Sit on a preacher bench with your upper arms resting on the pad and your chest against the support.",
@@ -1286,15 +1286,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/zDSnAbMXDASIYE",
         "id": "0071",
         "name": "barbell press sit-up",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "shoulders",
-            "chest"
+            "hombros",
+            "pecho"
         ],
         "instructions": [
             "Lie flat on your back on a mat with your knees bent and feet flat on the ground.",
@@ -1305,14 +1305,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/KdcAujF9RxbHIu",
         "id": "0072",
         "name": "barbell prone incline curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Set up an incline bench at a 45-degree angle.",
@@ -1327,14 +1327,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/dG9EZRATaqb7Yi",
         "id": "0073",
         "name": "barbell pullover",
-        "target": "lats",
+        "target": "dorsales",
         "secondaryMuscles": [
-            "chest",
+            "pecho",
             "triceps"
         ],
         "instructions": [
@@ -1346,15 +1346,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/LdK-FqaAe3gn72",
         "id": "0074",
         "name": "barbell rack pull",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
-            "lower back"
+            "isquiotibiales",
+            "espalda baja"
         ],
         "instructions": [
             "Set up a barbell on a rack at knee height.",
@@ -1366,15 +1366,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/H93DMwFvxS3rEw",
         "id": "0075",
         "name": "barbell rear delt raise",
         "target": "delts",
         "secondaryMuscles": [
-            "traps",
-            "rhomboids"
+            "trapecio",
+            "romboides"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell with an overhand grip, palms facing down.",
@@ -1385,7 +1385,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/mL5VvAavSX7UjS",
         "id": "0076",
@@ -1393,7 +1393,7 @@ export const mockAllExercises = [
         "target": "delts",
         "secondaryMuscles": [
             "trapezius",
-            "rhomboids",
+            "romboides",
             "biceps"
         ],
         "instructions": [
@@ -1406,16 +1406,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/RZFcu9NY47JcLf",
         "id": "0077",
         "name": "barbell rear lunge v. 2",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell across your upper back.",
@@ -1426,16 +1426,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/mj39X6Ya7K-YOe",
         "id": "0078",
         "name": "barbell rear lunge",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Start by standing with your feet shoulder-width apart and a barbell resting on your upper back.",
@@ -1451,7 +1451,7 @@ export const mockAllExercises = [
         "gifUrl": "https://v2.exercisedb.io/image/zoNZ7uaXQRD1KS",
         "id": "0079",
         "name": "barbell revers wrist curl v. 2",
-        "target": "forearms",
+        "target": "antebrazos",
         "secondaryMuscles": [
             "biceps",
             "brachialis"
@@ -1466,14 +1466,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/VwqOcNZ6t4OY6D",
         "id": "0080",
         "name": "barbell reverse curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Stand up straight with your feet shoulder-width apart and hold a barbell with an overhand grip, palms facing down.",
@@ -1485,14 +1485,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/ESetiXoYz5VYe4",
         "id": "0081",
         "name": "barbell reverse preacher curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Sit on a preacher bench with your chest against the pad and your arms extended straight down, holding a barbell with an overhand grip.",
@@ -1509,7 +1509,7 @@ export const mockAllExercises = [
         "gifUrl": "https://v2.exercisedb.io/image/ISvKNP17dzVbd4",
         "id": "0082",
         "name": "barbell reverse wrist curl",
-        "target": "forearms",
+        "target": "antebrazos",
         "secondaryMuscles": [
             "biceps",
             "brachialis"
@@ -1523,14 +1523,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/DxfkuLgQr3KAcF",
         "id": "0083",
         "name": "barbell rollerout from bench",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "shoulders",
+            "hombros",
             "triceps"
         ],
         "instructions": [
@@ -1543,14 +1543,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/CsMW9n51ORfIFm",
         "id": "0084",
         "name": "barbell rollerout",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Kneel on the floor and hold a barbell with both hands, shoulder-width apart.",
@@ -1561,15 +1561,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/pGy-q1w3Sx83Yr",
         "id": "0085",
         "name": "barbell romanian deadlift",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
-            "lower back"
+            "isquiotibiales",
+            "espalda baja"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and your toes pointing forward.",
@@ -1583,7 +1583,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/9LtB0jQ8UJWXg7",
         "id": "0086",
@@ -1591,7 +1591,7 @@ export const mockAllExercises = [
         "target": "delts",
         "secondaryMuscles": [
             "triceps",
-            "upper back"
+            "espalda superior"
         ],
         "instructions": [
             "Sit on a bench with your back straight and feet flat on the ground.",
@@ -1603,7 +1603,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/jBxhQQe6w-yLH9",
         "id": "0087",
@@ -1611,7 +1611,7 @@ export const mockAllExercises = [
         "target": "delts",
         "secondaryMuscles": [
             "triceps",
-            "upper back"
+            "espalda superior"
         ],
         "instructions": [
             "Sit on a bench with your back straight and feet flat on the ground.",
@@ -1627,9 +1627,9 @@ export const mockAllExercises = [
         "gifUrl": "https://v2.exercisedb.io/image/KTvxjoP3gv-LF9",
         "id": "0088",
         "name": "barbell seated calf raise",
-        "target": "calves",
+        "target": "gemelos",
         "secondaryMuscles": [
-            "hamstrings",
+            "isquiotibiales",
             "quadriceps"
         ],
         "instructions": [
@@ -1642,14 +1642,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/L7eJyDjTn1Pd9q",
         "id": "0089",
         "name": "barbell seated close-grip concentration curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Sit on a bench with your feet flat on the floor and hold a barbell with an underhand grip, hands shoulder-width apart.",
@@ -1660,15 +1660,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/jkE7WrF4dFzZYm",
         "id": "0090",
         "name": "barbell seated good morning",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
-            "hamstrings",
-            "lower back"
+            "isquiotibiales",
+            "espalda baja"
         ],
         "instructions": [
             "Sit on a bench with your feet flat on the ground and a barbell resting on your upper back.",
@@ -1679,7 +1679,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/IzZuAzLHxzXXr6",
         "id": "0091",
@@ -1687,7 +1687,7 @@ export const mockAllExercises = [
         "target": "delts",
         "secondaryMuscles": [
             "triceps",
-            "upper back"
+            "espalda superior"
         ],
         "instructions": [
             "Sit on a bench with your back straight and feet flat on the ground.",
@@ -1699,14 +1699,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/wLt-y1nPJjWVht",
         "id": "0092",
         "name": "barbell seated overhead triceps extension",
         "target": "triceps",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Sit on a bench with your back straight and feet flat on the ground.",
@@ -1717,15 +1717,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/WkouY4SgXr1hNJ",
         "id": "0094",
         "name": "barbell seated twist",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
             "obliques",
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Sit on a flat bench with your feet flat on the ground and your knees bent.",
@@ -1737,14 +1737,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "back",
+        "bodyPart": "espalda",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/Wtq1WIOrtMoLp8",
         "id": "0095",
         "name": "barbell shrug",
-        "target": "traps",
+        "target": "trapecio",
         "secondaryMuscles": [
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell in front of you with an overhand grip.",
@@ -1755,15 +1755,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/s9Mei9lRfzle4k",
         "id": "0096",
         "name": "barbell side bent v. 2",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
             "obliques",
-            "lower back"
+            "espalda baja"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold a barbell with both hands, palms facing down.",
@@ -1775,16 +1775,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/hdQepzk9lfPKCn",
         "id": "0097",
         "name": "barbell side split squat v. 2",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet wider than shoulder-width apart, toes pointing slightly outwards.",
@@ -1797,16 +1797,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/0Juvy4XNP7rz1J",
         "id": "0098",
         "name": "barbell side split squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet wider than shoulder-width apart, toes pointing slightly outward.",
@@ -1818,16 +1818,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/4ImVMrWQnjg7pX",
         "id": "0099",
         "name": "barbell single leg split squat",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart, holding a barbell across your upper back.",
@@ -1839,7 +1839,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/jeKdVpG4sIiyVg",
         "id": "0100",
@@ -1858,16 +1858,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/WumF0zV0OiPa4n",
         "id": "0101",
         "name": "barbell speed squat",
-        "target": "glutes",
+        "target": "gluteos",
         "secondaryMuscles": [
             "quadriceps",
-            "hamstrings",
-            "calves"
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart, toes slightly turned out.",
@@ -1879,16 +1879,16 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper legs",
+        "bodyPart": "piernas superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/H3v9LRKIgeIh-d",
         "id": "0102",
         "name": "barbell squat (on knees)",
-        "target": "quads",
+        "target": "cuadriceps",
         "secondaryMuscles": [
-            "glutes",
-            "hamstrings",
-            "calves"
+            "gluteos",
+            "isquiotibiales",
+            "gemelos"
         ],
         "instructions": [
             "Start by kneeling on the ground with your knees hip-width apart and your toes pointing forward.",
@@ -1900,15 +1900,15 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "waist",
+        "bodyPart": "cintura",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/lN6nXlq9bJuWsK",
         "id": "0103",
         "name": "barbell standing ab rollerout",
-        "target": "abs",
+        "target": "abdominales",
         "secondaryMuscles": [
-            "shoulders",
-            "lower back"
+            "hombros",
+            "espalda baja"
         ],
         "instructions": [
             "Stand upright with your feet shoulder-width apart and hold the barbell with both hands in front of your thighs.",
@@ -1924,10 +1924,10 @@ export const mockAllExercises = [
         "gifUrl": "https://v2.exercisedb.io/image/CEiSuI5kCHKUKJ",
         "id": "0104",
         "name": "barbell standing back wrist curl",
-        "target": "forearms",
+        "target": "antebrazos",
         "secondaryMuscles": [
             "biceps",
-            "shoulders"
+            "hombros"
         ],
         "instructions": [
             "Stand up straight with your feet shoulder-width apart and hold a barbell with an overhand grip.",
@@ -1938,7 +1938,7 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "shoulders",
+        "bodyPart": "hombros",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/ZgdsQ5ixP6guHk",
         "id": "0105",
@@ -1946,7 +1946,7 @@ export const mockAllExercises = [
         "target": "delts",
         "secondaryMuscles": [
             "triceps",
-            "upper back"
+            "espalda superior"
         ],
         "instructions": [
             "Stand with your feet shoulder-width apart and hold the barbell in front of your shoulders with an overhand grip.",
@@ -1956,14 +1956,14 @@ export const mockAllExercises = [
         ]
     },
     {
-        "bodyPart": "upper arms",
+        "bodyPart": "brazos superior",
         "equipment": "barbell",
         "gifUrl": "https://v2.exercisedb.io/image/V7uv8sXo2dgZ2d",
         "id": "0106",
         "name": "barbell standing close grip curl",
         "target": "biceps",
         "secondaryMuscles": [
-            "forearms"
+            "antebrazos"
         ],
         "instructions": [
             "Ponte de pie con los pies separados a la anchura de los hombros y sujeta una barra con agarre supino, con las manos juntas.",

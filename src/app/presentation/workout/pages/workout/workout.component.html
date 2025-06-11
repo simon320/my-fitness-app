@@ -1,4 +1,9 @@
 <div class="workout-screen">
+    @if(finishRoutine()) {
+        <div #sessionCompleteRef class="session-complete">
+            <h2 class="message">¡Sesión completada!</h2>
+        </div>
+    }
     @if(!routine()) {
         <h1 class="not-routine-title">No tenes ninguna rutina programada para el dia de hoy.</h1>
         <div class="btn-container">
@@ -8,7 +13,8 @@
     }
 
     @else {
-        @if(finishRoutine()) {
+        <!-- @if(finishRoutine()) { -->
+        @if(false) {
             <section class="finish-details">
                 <div class="exercise-title">
                     <h2>{{( routine()!.name )}}</h2>
@@ -138,3 +144,5 @@
     }
 
 </div>
+
+

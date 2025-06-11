@@ -27,21 +27,15 @@ export class ExerciseDbApiService {
 
 
   getExercisesByBodyPart(bodyPart: string): Observable<Exercise[]> {
-    // if(this.toggle) {
-    //   this.toggle = !this.toggle;
-    //   return of(mockLowerArms as Exercise[])
-    // }
-    // else {
-    //   this.toggle = !this.toggle;
-    //   return of(mockUpperArms as Exercise[])
-    // }
+    const selectedMuscleExercise = mockAllExercises.filter( exercise => exercise.bodyPart === bodyPart );
+    return of(selectedMuscleExercise as Exercise[]);
     return of(mockAllExercises as Exercise[]);
     return this.http.get<Exercise[]>(`${this.API_URL}/exercises/bodyPart/${bodyPart}?limit=10&offset=0`, { headers: this.headers });
   }
 
 
   getBodyParts(): Observable<string[]> {
-    return of([ "espalda", "cardio", "pecho", "brazos superior", "antebrazos", "piernas superior", "piernas inferiores", "cuello", "hombros", "cintura" ]);
+    return of([ "cuello", "hombros", "espalda", "pecho", "brazos superior", "antebrazos", "piernas superior", "piernas inferiores", "cintura", "cardio" ]);
     // return this.http.get<string[]>(`${this.API_URL}/exercises/bodyPartList`, { headers: this.headers });
   }
 }

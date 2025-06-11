@@ -12,5 +12,5 @@ import { ExploreExercisesComponent } from "./explore-exercises/pages/explore-exe
     imports: [ ExploreExercisesComponent, HeaderComponent, CreatedRoutinesComponent ]
 })
 export class HomeComponent {
-
+    
 }

@@ -29,6 +29,8 @@ export class WorkoutComponent {
     private repository = new LocalStorageCompletedWorkoutRepository();
     private saveUseCase = new SaveCompletedWorkout(this.repository);
     public elementPercentage = viewChild<ElementRef>('percentage');
+    public sessionCompleteRef = viewChild<ElementRef>('sessionCompleteRef');
+
     public routine = signal<Routine | null>(null);
     public exercises = signal<Exercise[]>([]);
     public hasNext = computed(() => this.currentIndex() < this.exercises().length - 1);
@@ -155,9 +157,9 @@ export class WorkoutComponent {
             });
 
             this.finishAnimated();
-            setTimeout(() => {
-                this.finishRoutine.set(true);
-            }, 600);
+            // setTimeout(() => {
+            //     this.finishRoutine.set(true);
+            // }, 600);
     }
 
 
@@ -182,7 +184,7 @@ export class WorkoutComponent {
 
 
     private finishAnimated(): void {
-        this.render.addClass(this.elementPercentage()?.nativeElement, 'animated');
+        this.render.addClass(this.sessionCompleteRef()?.nativeElement, 'animated');
     }
 
 
