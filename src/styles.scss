@@ -16,8 +16,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   background-color: #000; // Fondo oscuro simulando entorno de dispositivo
+  box-sizing: border-box;
 
   font-family: "Poppins", sans-serif;
   font-weight: 100;

@@ -1,3 +1,105 @@
+.exercise-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  background-color: var(--color-background-secondary);
+  border-radius: 10px;
+  width: 360px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+
+  .background-transform {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 80%;
+    height: 100%;
+  }
+
+}
+
+.background-transform::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+  // clip-path: circle(120px at center);
+  clip-path: circle(50px at 20px 100px);
+  transition: 0.5s;
+}
+
+.card:hover .background-transform:before {
+  background-color: rgb(16, 211, 237);
+  clip-path: circle(400px at center);
+}
+
+.card img {
+  position: absolute;
+  top: 50%;
+  right: -4rem;
+  transform: translate(-50%, -50%);
+  height: 160px;
+  border-radius: 12px;
+  transition: 0.5s;
+}
+
+.card:hover img {
+  top: -10%;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.card .content {
+  position: relative;
+  width: 50%;
+  left: 20%;
+  padding: 20px 20px 20px 40px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.card:hover .content {
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.card .content h3 {
+  color: #ccc;
+  text-transform: uppercase;
+  font-size: 2em;
+  line-height: 1em;
+}
+
+.card .content p {
+  color: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .exercise-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -94,6 +196,7 @@
     width: 100%;
     height: 100%;
   }
+
   to {
     margin: 0 auto 0 auto;
     width: 0px;
