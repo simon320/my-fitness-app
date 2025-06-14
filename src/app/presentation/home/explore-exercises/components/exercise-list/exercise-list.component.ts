@@ -1,21 +1,22 @@
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, OnChanges, signal, inject, input, computed, effect, ElementRef } from '@angular/core';
+import { Component, OnChanges, signal, inject, input, computed, effect } from '@angular/core';
 
+import { InfoSVG } from "../../../../../../assets/icons/info.svg";
 import { TruncatePipe } from '../../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
-import { RoutineService } from '../../../../../application/services/routine.service';
-import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
-import { PlusSVG } from "../../../../../../assets/icons/plus.svg";
 import { ArrowLeftSVG } from "../../../../../../assets/icons/arrow-left.svg";
 import { ArrowRightSVG } from '../../../../../../assets/icons/arrow-right.svg';
+import { DumbbellPlusSVG } from "../../../../../../assets/icons/dumbbell-plus.svg";
+import { RoutineService } from '../../../../../application/services/routine.service';
+import { ExerciseDbApiService } from '../../../../../infrastructure/api/exercise-db-api.service';
 
 
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrl: './exercise-list.component.scss',
-  imports: [TruncatePipe, FormsModule, CommonModule, PlusSVG, ArrowLeftSVG, ArrowRightSVG],
+  imports: [TruncatePipe, FormsModule, CommonModule, ArrowLeftSVG, ArrowRightSVG, InfoSVG, DumbbellPlusSVG],
 })
 export class ExerciseListComponent implements OnChanges {
   private exerciseService = inject(ExerciseDbApiService);
@@ -26,7 +27,6 @@ export class ExerciseListComponent implements OnChanges {
   public currentPage = signal(1);
   private readonly pageSize = 5;
   public selectedIndexx: string | null = null;
-  public focusOnExercise = false;
   public selectedIndex = signal<string | null>(null);
   public onFocus = signal<boolean>(false);
 
@@ -34,7 +34,6 @@ export class ExerciseListComponent implements OnChanges {
     this.selectedIndex.set(exercise.id);
     this.onFocus.set(true);
 
-    // Centrar en viewport
     setTimeout(() => {
       cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 100);
@@ -50,15 +49,6 @@ export class ExerciseListComponent implements OnChanges {
       if (this.routineService.deselectedExercise())
         this.allExercises.update(exercises => [this.routineService.deselectedExercise()!, ...exercises])
     });
-  }
-
-
-  //   public onFocus(): boolean {
-  //   return this.focusOnExercise = true;
-  // }
-
-  public outOfFocus(): void {
-    this.focusOnExercise = false;
   }
 
 

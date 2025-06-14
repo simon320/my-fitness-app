@@ -16,15 +16,19 @@
       class="exercise-image"
       [src]="exercise.gifUrl"
       alt="{{ exercise.name }}"
-      (click)="selectExercise(exercise, card)"
     />
 
     <div class="exercise-content">
-      <h3 class="exercise-title">{{ exercise.name | truncate: 29 }}</h3>
+      <div class="exercise-title">
+        <h3>{{ exercise.name | truncate: 29 }}</h3>
+      </div>
       <p>{{ exercise.target }}</p>
     </div>
-
-    <icon-plus (click)="selectedExercise(exercise)" />
+    
+    @if (!onFocus()) {
+      <icon-dumbbell-plus (click)="selectedExercise(exercise)" /> 
+      <icon-info (click)="selectExercise(exercise, card)" />
+    }
 
     @if (onFocus()) {
       <div class="instruction-container">

@@ -2,7 +2,6 @@ import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'icon-arrow-right',
-  standalone: true,
   template: `
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" [attr.stroke]="color()" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
       <path d="M5 12h14"/>

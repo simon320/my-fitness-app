@@ -11,5 +11,3 @@ export const routes: Routes = [
   { path: 'workout', component: WorkoutComponent },
   { path: 'progress', component: ProgressComponent },
 ];
-
-// TODO: Cambiar la ruta por defecto a una home o al calendar...
