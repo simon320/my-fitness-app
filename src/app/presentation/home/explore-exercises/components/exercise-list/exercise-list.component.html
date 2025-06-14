@@ -1,79 +1,44 @@
 
-<div class="exercise-list-container">
+<div *ngIf="selectedIndex()" class="overlay" (click)="clearSelection()"></div>
 
-  <div class="card">
-    
-    <div class="background-transform"></div>
-      
-    <div class="content">
-      <h3>Oblicuos</h3>
-      <p>abdominal</p>
+@for (exercise of paginatedExercises(); track exercise.id) {
+  <div
+    class="exercise-card"
+    [class.expanded]="selectedIndex() === exercise.id"
+    [class.card-hidden]="selectedIndex() !== null && selectedIndex() !== exercise.id"
+    #card
+  >
+    <button *ngIf="selectedIndex() === exercise.id" class="close-btn" (click)="clearSelection()">
+      ✖
+    </button>
+
+    <img
+      class="exercise-image"
+      [src]="exercise.gifUrl"
+      alt="{{ exercise.name }}"
+      (click)="selectExercise(exercise, card)"
+    />
+
+    <div class="exercise-content">
+      <h3 class="exercise-title">{{ exercise.name | truncate: 29 }}</h3>
+      <p>{{ exercise.target }}</p>
     </div>
 
-    <icon-plus /> 
-    
-    <img class="exercise-image" src="/assets/gif/0002.gif" alt="image" />
-  
-  </div>
-</div>
+    <icon-plus (click)="selectedExercise(exercise)" />
 
-
-
-
-<div class="exercise-grid">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  @for (exercise of paginatedExercises(); track exercise.id) {
-    <div class="exercise-card" [ngClass]="{ 'animated': selectedIndex === exercise.id }">
-      
-      <div class="exercise-content">
-        <h3 class="exercise-title">{{ exercise.name | truncate:20 }}</h3>
-        <p>{{ exercise.target }}</p>
+    @if (onFocus()) {
+      <div class="instruction-container">
+        @for (line of exercise.instructions; track $index) {
+          <p class="line-instruction">{{ line }}</p>
+        }
       </div>
+    }
+  </div>
+}
 
-      <icon-plus (click)="selectedExercise(exercise)"/>
 
-      <img  class="exercise-image" [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
-    
-    </div>
-  }
 
-</div>
-
+<!-------- PAGINATION -------->
 @if(paginatedExercises().length > 0) {
   <div class="pagination-controls">
     <button (click)="prevPage()" [disabled]="currentPage() === 1">

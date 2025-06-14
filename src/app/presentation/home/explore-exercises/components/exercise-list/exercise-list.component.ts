@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, OnChanges, signal, inject, input, computed, effect } from '@angular/core';
+import { Component, OnChanges, signal, inject, input, computed, effect, ElementRef } from '@angular/core';
 
 import { TruncatePipe } from '../../../../../shared/pipes/truncate.pipe';
 import { Exercise } from '../../../../../domain/entities/exercise.entity';
@@ -25,39 +25,65 @@ export class ExerciseListComponent implements OnChanges {
   private allExercises = signal<Exercise[]>([]);
   public currentPage = signal(1);
   private readonly pageSize = 5;
-  public selectedIndex: string | null = null;
+  public selectedIndexx: string | null = null;
+  public focusOnExercise = false;
+  public selectedIndex = signal<string | null>(null);
+  public onFocus = signal<boolean>(false);
 
+  public selectExercise(exercise: Exercise, cardElement: HTMLElement) {
+    this.selectedIndex.set(exercise.id);
+    this.onFocus.set(true);
+
+    // Centrar en viewport
+    setTimeout(() => {
+      cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+  public clearSelection() {
+    this.selectedIndex.set(null);
+    this.onFocus.set(false);
+  }
 
   constructor() {
     effect(() => {
-      if(this.routineService.deselectedExercise()) 
-        this.allExercises.update( exercises => [ this.routineService.deselectedExercise()!, ...exercises ] )
+      if (this.routineService.deselectedExercise())
+        this.allExercises.update(exercises => [this.routineService.deselectedExercise()!, ...exercises])
     });
   }
 
 
-  ngOnChanges() {    
-    if (this.selectedBodyPart() !== '') 
+  //   public onFocus(): boolean {
+  //   return this.focusOnExercise = true;
+  // }
+
+  public outOfFocus(): void {
+    this.focusOnExercise = false;
+  }
+
+
+  ngOnChanges() {
+    if (this.selectedBodyPart() !== '')
       this.exerciseService
         .getExercisesByBodyPart(this.selectedBodyPart())
-        .subscribe( exercises => this.allExercises.set(exercises) );
-    
-    else 
+        .subscribe(exercises => this.allExercises.set(exercises));
+
+    else
       this.cancel();
   }
 
 
   public selectedExercise(exercise: Exercise): void {
-    this.selectedIndex = exercise.id;
+    this.selectedIndexx = exercise.id;
 
     setTimeout(() => {
-      this.selectedIndex = null;
+      this.selectedIndexx = null;
       this.routineService.addExercises([
-        ...(this.routineService.routineInTheProcessOfCreation() ?? []), 
+        ...(this.routineService.routineInTheProcessOfCreation() ?? []),
         exercise
       ]);
-      
-      this.allExercises.update( exercises =>  exercises.filter( e => e.id !== exercise.id) );
+
+      this.allExercises.update(exercises => exercises.filter(e => e.id !== exercise.id));
     }, 250);
   }
 
@@ -68,7 +94,7 @@ export class ExerciseListComponent implements OnChanges {
   }
 
 
-// =================== Pagination =================== \\
+  // =================== Pagination =================== \\
   public paginatedExercises = computed(() => {
     const start = (this.currentPage() - 1) * this.pageSize;
     return this.allExercises().slice(start, start + this.pageSize);
@@ -81,13 +107,13 @@ export class ExerciseListComponent implements OnChanges {
 
 
   public nextPage(): void {
-    if (this.currentPage() < this.totalPages()) 
+    if (this.currentPage() < this.totalPages())
       this.currentPage.update(p => p + 1);
   }
 
 
   public prevPage(): void {
-    if (this.currentPage() > 1) 
+    if (this.currentPage() > 1)
       this.currentPage.update(p => p - 1);
   }
 
@@ -98,21 +124,21 @@ export class ExerciseListComponent implements OnChanges {
     const maxVisible = 5;
     const pages: (number | string)[] = [];
 
-    if (total <= maxVisible) 
+    if (total <= maxVisible)
       return Array.from({ length: total }, (_, i) => i + 1);
 
     const showLeftDots = current > 3;
     const showRightDots = current < total - 2;
 
-    if (!showLeftDots && showRightDots) 
+    if (!showLeftDots && showRightDots)
       pages.push(1, 2, 3, '...', total);
 
-    else if (showLeftDots && !showRightDots) 
+    else if (showLeftDots && !showRightDots)
       pages.push(1, '...', total - 2, total - 1, total);
 
-    else if (showLeftDots && showRightDots) 
+    else if (showLeftDots && showRightDots)
       pages.push(1, '...', current - 1, current, current + 1, '...', total);
-    
+
     return pages;
   });
 
