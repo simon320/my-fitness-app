@@ -1,9 +1,13 @@
 <div class="workout-screen">
+
+    <!-- SPLASH FINISH ROUTINE -->
     @if(finishRoutine()) {
         <div #sessionCompleteRef class="session-complete">
             <h2 class="message">¡Sesión completada!</h2>
         </div>
     }
+
+    <!-- NOT ROUTINE -->
     @if(!routine()) {
         <h1 class="not-routine-title">No tenes ninguna rutina programada para el dia de hoy.</h1>
         <div class="btn-container">
@@ -125,12 +129,7 @@
                 <div class="card-left">
                     <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
                     <div class="info-card">
-                        @if(isTraining()) {
-                            <h3>{{ exercise.name | truncate:20 }}</h3>
-                        }
-                        @else {
-                            <h3>{{ exercise.name }}</h3>
-                        }
+                        <h3>{{ exercise.name | truncate: 20 }}</h3>
                         <p>{{ exercise.secondaryMuscles }}</p>
                     </div>
                 </div>

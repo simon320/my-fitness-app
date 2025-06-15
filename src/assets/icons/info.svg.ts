@@ -11,5 +11,5 @@ import { Component, input } from '@angular/core';
   `
 })
 export class InfoSVG {
-  public color = input<string>('#000');
+  public color = input<string>('#043527d6');
 }

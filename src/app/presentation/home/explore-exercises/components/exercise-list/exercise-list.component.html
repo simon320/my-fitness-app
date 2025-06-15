@@ -1,16 +1,18 @@
-
-<div *ngIf="selectedIndex()" class="overlay" (click)="clearSelection()"></div>
+@if(selectedInfoIndex()) {
+  <div class="overlay" (click)="clearSelection()"></div>
+}
 
 @for (exercise of paginatedExercises(); track exercise.id) {
   <div
     class="exercise-card"
-    [class.expanded]="selectedIndex() === exercise.id"
-    [class.card-hidden]="selectedIndex() !== null && selectedIndex() !== exercise.id"
+    [class.expanded]="selectedInfoIndex() === exercise.id"
+    [class.animated]="addSelectedExerciseIndex === exercise.id"
+    [class.card-hidden]="selectedInfoIndex() !== null && selectedInfoIndex() !== exercise.id"
     #card
   >
-    <button *ngIf="selectedIndex() === exercise.id" class="close-btn" (click)="clearSelection()">
-      ✖
-    </button>
+    @if(selectedInfoIndex() === exercise.id) {
+      <button class="close-btn" (click)="clearSelection()"> ✖ </button>
+    }
 
     <img
       class="exercise-image"

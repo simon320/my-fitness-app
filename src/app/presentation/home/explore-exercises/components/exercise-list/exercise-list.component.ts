@@ -26,12 +26,12 @@ export class ExerciseListComponent implements OnChanges {
   private allExercises = signal<Exercise[]>([]);
   public currentPage = signal(1);
   private readonly pageSize = 5;
-  public selectedIndexx: string | null = null;
-  public selectedIndex = signal<string | null>(null);
+  public addSelectedExerciseIndex: string | null = null;
+  public selectedInfoIndex = signal<string | null>(null);
   public onFocus = signal<boolean>(false);
 
   public selectExercise(exercise: Exercise, cardElement: HTMLElement) {
-    this.selectedIndex.set(exercise.id);
+    this.selectedInfoIndex.set(exercise.id);
     this.onFocus.set(true);
 
     setTimeout(() => {
@@ -40,7 +40,7 @@ export class ExerciseListComponent implements OnChanges {
   }
 
   public clearSelection() {
-    this.selectedIndex.set(null);
+    this.selectedInfoIndex.set(null);
     this.onFocus.set(false);
   }
 
@@ -64,10 +64,10 @@ export class ExerciseListComponent implements OnChanges {
 
 
   public selectedExercise(exercise: Exercise): void {
-    this.selectedIndexx = exercise.id;
+    this.addSelectedExerciseIndex = exercise.id;
 
     setTimeout(() => {
-      this.selectedIndexx = null;
+      this.addSelectedExerciseIndex = null;
       this.routineService.addExercises([
         ...(this.routineService.routineInTheProcessOfCreation() ?? []),
         exercise
