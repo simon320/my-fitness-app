@@ -13,12 +13,13 @@ import { FormatPercentagePipe } from "../../../../shared/pipes/format-percentage
 import { ArrowButton } from "../../../../shared/atoms/arrow-button/arrow-button.component";
 import { LocalStorageCompletedWorkoutRepository } from '../../../../infrastructure/local-storage/completed-days.repository';
 import { SaveCompletedWorkout } from '../../../../application/use-cases/completed-workout/save-completed-workout.usecase';
+import { TruncateArrayPipe } from "../../../../shared/pipes/truncate-array.pipe";
 
 
 
 @Component({
     selector: 'app-workout',
-    imports: [CommonModule, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe, TrashCanComponent, CheckSVG],
+    imports: [CommonModule, TruncatePipe, FormatTimePipe, ArrowButton, FormatPercentagePipe, TrashCanComponent, CheckSVG, TruncateArrayPipe],
     templateUrl: './workout.component.html',
     styleUrls: ['./workout.component.scss']
 })

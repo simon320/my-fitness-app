@@ -153,9 +153,9 @@
             transition: width 0.3s ease-in-out;
         }
 
-        // .animated {
-        //     animation: increment 1s forwards;
-        // }
+        .animated {
+            animation: increment 1s forwards;
+        }
 
         @keyframes increment {
             from {
@@ -297,11 +297,11 @@
                         height: 100%;
 
                         h3 {
-                            font-family: "Cabin Sketch", sans-serif;
                             font-weight: 400;
                             font-style: normal;
                             font-size: 1.3rem;
                             margin: 0;
+                            color: var(--color-secondary);
                         }
 
                         p {

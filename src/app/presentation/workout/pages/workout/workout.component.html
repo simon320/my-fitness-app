@@ -129,8 +129,8 @@
                 <div class="card-left">
                     <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
                     <div class="info-card">
-                        <h3>{{ exercise.name | truncate: 20 }}</h3>
-                        <p>{{ exercise.secondaryMuscles }}</p>
+                        <h3>{{ exercise.name | truncate: 14 }}</h3>
+                        <p>{{ exercise.secondaryMuscles | truncateArray }}</p>
                     </div>
                 </div>
                 <div class="btn-delete" (click)="removeExercise(exercise)">
