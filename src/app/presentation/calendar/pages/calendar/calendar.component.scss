@@ -4,7 +4,6 @@ section {
   background-image: url('/assets/textures/texture-5.jpg');
   height: calc(100dvh - 60px);
 
-  font-family: "Cabin Sketch", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -125,9 +124,10 @@ section {
     gap: 1rem;
 
     button {
-      padding: 5px 8px;
+      padding: 10px 15px;
       border-radius: 13px;
       border: #000 1px solid;
+      font-size: medium;
     }
 
     button:nth-child(1) {

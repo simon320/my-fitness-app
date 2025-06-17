@@ -13,9 +13,11 @@
         margin-top: 10rem;
         text-align: center;
         font-size: 2rem;
+        z-index: 1;
     }
-
+    
     .btn-container {
+        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -80,9 +82,6 @@
                 width: 95%;
                 height: 100%;
                 margin: auto;
-                // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1) invert(90%);
-                // filter: sepia(1) grayscale(.8) contrast(1.5) brightness(1);
-
             }
 
             .glass-display {
@@ -151,10 +150,6 @@
             height: 100%;
             background-color: #54f059;
             transition: width 0.3s ease-in-out;
-        }
-
-        .animated {
-            animation: increment 1s forwards;
         }
 
         @keyframes increment {
@@ -327,63 +322,81 @@
 
 
     .finish-details {
-        position: absolute;
         background-color: #000000;
         width: 100dvw;
-        height: calc(100dvh - 60px);
+        min-height: 100dvh;
+        position: fixed;
         z-index: 10000;
+
+        .exercise-title-finish {
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        .exercise-list-finish {
+            animation: fadeIn 1s forwards 1s;
+        }
     }
 
 }
 
 
 // ANIMACION FINAL
-/* Estilos base */
 .session-complete {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(circle, #222, #000);
+  width: 100dvw;
+  height: calc(100dvh - 60px);
+  background: #000;
   overflow: hidden;
   color: white;
+  z-index: -10;
+  transition: all 1s;
 }
 
-/* Efecto de explosión / energía */
-.session-complete.animated::before {
-  content: '';
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%);
-  border-radius: 50%;
-  animation: pulse-burst 1s ease-out forwards;
-  z-index: 0;
+.animated {
+    z-index: 10000000000;
+    animation: fade 2s forwards;
 }
 
-/* Animación */
-@keyframes pulse-burst {
-  0% {
-    transform: scale(0.2);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
+
+.message {
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff;
+    animation: pulse 1s ease-in-out .4s;
 }
 
-.session-complete .message {
-  position: relative;
-  z-index: 10000000;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px #fff;
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    95% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    from {
+        font-size: 2.2rem;
+        text-shadow: 8px 8px 20px #fff;
+    }
+    to {
+        font-size: 2rem;
+        text-shadow: 0 0 10px #fff;
+    }
 }

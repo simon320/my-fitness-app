@@ -158,9 +158,9 @@ export class WorkoutComponent {
             });
 
             this.finishAnimated();
-            // setTimeout(() => {
-            //     this.finishRoutine.set(true);
-            // }, 600);
+            setTimeout( () => {
+                this.finishRoutine.set(true);
+            }, 500);
     }
 
 

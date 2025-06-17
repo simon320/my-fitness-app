@@ -37,7 +37,7 @@
 
       <h3 class="cabin-sketch-regular">{{ selectedRoutine()?.name }}</h3>
 
-      <ul class="cabin-sketch-regular">
+      <ul>
         @for (ex of selectedRoutine()?.exercises; track $index) {
           <li>
             {{ ex.name }} - {{ ex.reps }} reps

@@ -1,11 +1,9 @@
 <div class="workout-screen">
 
     <!-- SPLASH FINISH ROUTINE -->
-    @if(finishRoutine()) {
-        <div #sessionCompleteRef class="session-complete">
-            <h2 class="message">¡Sesión completada!</h2>
-        </div>
-    }
+    <div #sessionCompleteRef class="session-complete">
+        <h2 class="message">¡Sesión completada!</h2>
+    </div>
 
     <!-- NOT ROUTINE -->
     @if(!routine()) {
@@ -17,14 +15,13 @@
     }
 
     @else {
-        <!-- @if(finishRoutine()) { -->
-        @if(false) {
+        @if(finishRoutine()) {
             <section class="finish-details">
-                <div class="exercise-title">
+                <div class="exercise-title-finish">
                     <h2>{{( routine()!.name )}}</h2>
                 </div>
             
-                <div class="??">
+                <div class="exercise-list-finish" >
                     @for (exercise of exercises(); track $index) {
                     <div class="??">
                         <div class="card-left">
@@ -41,105 +38,105 @@
         }
 
 
-    @if(isTraining() && !listExerciseOpen()) {
-    <!-- EXERCISE INFO -->
-    <section class="exercise-info">
-        <div class="exercise-title">
-            <span>{{( routine()!.name )}}</span>
-            <h2>{{ currentExercise().name | titlecase }}</h2>
-        </div>
-        <div class="exercise-image">
-            <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
-            <div class="glass-display"></div>
-        </div>
-    </section>
-
-    <!-- CONTROLS -->
-    <section class="workout-controls">
-        <div class="timer">
-            <span>{{ displayTime() | formatTime }}</span>
-        </div>
-        <div class="info-top">
-            <div class="set">
-                <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+        @if(isTraining() && !listExerciseOpen()) {
+        <!-- EXERCISE INFO -->
+        <section class="exercise-info">
+            <div class="exercise-title">
+                <span>{{( routine()!.name )}}</span>
+                <h2>{{ currentExercise().name | titlecase }}</h2>
             </div>
-            <div class="elapsed">
-                <span #percentage>{{ progressPercentage() | formatPercentage }}</span>
+            <div class="exercise-image">
+                <img [src]="currentExercise().gifUrl" alt="{{ currentExercise().name }}" />
+                <div class="glass-display"></div>
             </div>
-        </div>
+        </section>
 
-        <div class="progress-container">
-            <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
-        </div>
+        <!-- CONTROLS -->
+        <section class="workout-controls">
+            <div class="timer">
+                <span>{{ displayTime() | formatTime }}</span>
+            </div>
+            <div class="info-top">
+                <div class="set">
+                    <span>{{ currentIndex() + 1 }}/{{ exercises().length }}</span>
+                </div>
+                <div class="elapsed">
+                    <span #percentage>{{ progressPercentage() | formatPercentage }}</span>
+                </div>
+            </div>
 
-        <div class="controls">
-            <button
-                class="btn-arrow"
-                (click)="previousExercise()"> 
-                {{ '⮜' }}
-            </button>
+            <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="progressPercentage()"></div>
+            </div>
 
-            <button
-                class="btn-timer-control"
-                [ngClass]="{ 'btn-last-exercise': itsTheLastExercise() }"
-                (click)="toggleTimer()"> 
-                {{ ( isRunning() ? '❚❚' : '▶' ) }}
-            </button>
-
-            @if(!itsTheLastExercise()) {
+            <div class="controls">
                 <button
                     class="btn-arrow"
-                    (click)="nextExercise()"> 
-                    {{ '⮞' }}
+                    (click)="previousExercise()"> 
+                    {{ '⮜' }}
                 </button>
-            }
 
-            @else {   
-                <icon-check [width]="46" [height]="46" (click)="nextExercise()" />
-            }
+                <button
+                    class="btn-timer-control"
+                    [ngClass]="{ 'btn-last-exercise': itsTheLastExercise() }"
+                    (click)="toggleTimer()"> 
+                    {{ ( isRunning() ? '❚❚' : '▶' ) }}
+                </button>
 
-        </div>
-    </section>
-    }
+                @if(!itsTheLastExercise()) {
+                    <button
+                        class="btn-arrow"
+                        (click)="nextExercise()"> 
+                        {{ '⮞' }}
+                    </button>
+                }
+
+                @else {   
+                    <icon-check [width]="46" [height]="46" (click)="nextExercise()" />
+                }
+
+            </div>
+        </section>
+        }
 
     <!-- ROUTINE -->
-    <section class="container-routine">
+        <section class="container-routine">
 
-        @if(!isTraining()) {
-        <div class="start-training">
-            <h1>Comenzar rutina</h1>
-            <button class="play-button" (click)="startRoutine()">▶</button>
-        </div>
-        }
-
-        @if(isTraining()) {
-        <div class="arrow-btn">
-            @if(listExerciseOpen()) {
-            <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="toggleListExercise()" />
-            }
-            @else {
-            <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="true" (action)="toggleListExercise()" />
-            }
-        </div>
-        }
-
-        <div class="routine">
-            @for (exercise of exercises(); track $index) {
-            <div class="exercise-card">
-                <div class="card-left">
-                    <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
-                    <div class="info-card">
-                        <h3>{{ exercise.name | truncate: 14 }}</h3>
-                        <p>{{ exercise.secondaryMuscles | truncateArray }}</p>
-                    </div>
-                </div>
-                <div class="btn-delete" (click)="removeExercise(exercise)">
-                    <icon-trash-can [width]="'24'" [height]="'24'"/>
-                </div>
+            @if(!isTraining()) {
+            <div class="start-training">
+                <h1>Comenzar rutina</h1>
+                <button class="play-button" (click)="startRoutine()">▶</button>
             </div>
             }
-        </div>
-    </section>
+
+            @if(isTraining()) {
+            <div class="arrow-btn">
+                @if(listExerciseOpen()) {
+                <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="false" (action)="toggleListExercise()" />
+                }
+                @else {
+                <app-arrow-button [color]="'#00ff6a'" [size]="55" [iconUp]="true" (action)="toggleListExercise()" />
+                }
+            </div>
+            }
+
+            <div class="routine">
+                @for (exercise of exercises(); track $index) {
+                <div class="exercise-card">
+                    <div class="card-left">
+                        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
+                        <div class="info-card">
+                            <h3>{{ exercise.name | truncate: 14 }}</h3>
+                            <p>{{ exercise.secondaryMuscles | truncateArray }}</p>
+                        </div>
+                    </div>
+                    <div class="btn-delete" (click)="removeExercise(exercise)">
+                        <icon-trash-can [width]="'24'" [height]="'24'"/>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
     }
 
 </div>
